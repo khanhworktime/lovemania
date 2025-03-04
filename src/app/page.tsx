@@ -1,6 +1,10 @@
-import { Button } from "@heroui/react";
-import Image from "next/image";
+import type { Viewport } from "next";
+import { SlashScreen } from "./components/slash-screen";
 
-export default function Home() {
-  return <Button>Hello Testing</Button>;
+export const viewport: Viewport = {
+  themeColor: "#DD88CF",
+};
+
+export default function SlashPage() {
+  return <SlashScreen />;
 }

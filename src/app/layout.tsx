@@ -1,11 +1,9 @@
+import { MainProvider } from "@/providers/index.provider";
 import type { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThirdwebProvider } from "@thirdweb-dev/react";
-import { MainProvider } from "@/providers/index.provider";
-
 const poppinsFont = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
@@ -19,7 +17,7 @@ const chaletFont = localFont({
 
 export const metadata: Metadata = {
   title: "Lovemania",
-  description: "Lovemania",
+  description: "Where blockchain meets true connections",
 };
 
 export default function RootLayout({
@@ -28,12 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${poppinsFont.variable} ${chaletFont.variable} antialiased`}
-      >
-        <MainProvider>{children}</MainProvider>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body
+          className={`${poppinsFont.variable} ${chaletFont.variable} antialiased transform-gpu`}
+        >
+          <MainProvider>{children}</MainProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
