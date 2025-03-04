@@ -21,13 +21,16 @@ const IconBase = forwardRef<SVGSVGElement, IconBaseProps>(
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, (child: any) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
               // Apply color to stroke if the element has a stroke attribute
+              // @ts-ignore
               ...(child.props.stroke && { stroke: color }),
               // Apply color to fill if the element has a fill attribute and it's not "none"
+              // @ts-ignore
               ...(child.props.fill &&
+                // @ts-ignore
                 child.props.fill !== "none" && { fill: color }),
             });
           }

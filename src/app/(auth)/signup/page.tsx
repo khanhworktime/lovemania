@@ -5,9 +5,10 @@ import Image from "next/image";
 import { Button } from "@heroui/react";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
-import { Link } from "next-view-transitions";
+import { Link, useTransitionRouter } from "next-view-transitions";
 
 export default function SignupPage() {
+  const router = useTransitionRouter();
   return (
     <div className="relative flex flex-col items-center justify-between gap-y-10">
       <div />
@@ -20,7 +21,7 @@ export default function SignupPage() {
       <div className="flex flex-col items-center justify-center gap-y-10">
         <div className="px-12">
           <h1 className="text-2xl font-chalet text-center">
-            Let's meeting new people around you
+            Let&apos;s meeting new people around you
           </h1>
         </div>
 
@@ -30,6 +31,7 @@ export default function SignupPage() {
             radius="full"
             className="w-full bg-primary text-primary-foreground"
             size="lg"
+            onPress={() => router.push("/onboarding/profile-name")}
           >
             <div className="absolute left-2 rounded-full bg-white p-1">
               <WalletIcon />
@@ -51,7 +53,7 @@ export default function SignupPage() {
       {/* Description */}
 
       <p className="text-center">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link href="/login" className="text-primary-300 font-medium">
           Sign Up
         </Link>

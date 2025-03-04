@@ -1,5 +1,4 @@
 import { Chip } from "@heroui/react";
-import { label } from "framer-motion/client";
 
 const interests = [
   {

@@ -1,7 +1,6 @@
 "use client";
 
 import PhotoUploader from "@/shared-components/ui/PhotoUploader";
-import { ArrowRightIcon } from "lucide-react";
 import { Button } from "@heroui/react";
 
 export default function ProfilePhotoPage() {

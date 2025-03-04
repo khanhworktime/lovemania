@@ -4,7 +4,7 @@ export default function ProfileNamePage() {
   return (
     <div>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
-        What's your name?
+        What&apos;s your name?
       </h1>
       <Input
         placeholder="Enter your name"

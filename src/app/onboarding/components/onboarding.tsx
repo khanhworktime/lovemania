@@ -1,11 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { onboardingSteps } from "../steps";
+import { ArrowRightIcon, ChevronLeftIcon } from "@/assets/icons";
 import { Button, Progress } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
-import Image from "next/image";
-import { ChevronLeftIcon, ArrowRightIcon } from "@/assets/icons";
+import { usePathname } from "next/navigation";
+import { onboardingSteps } from "../steps";
 
 export default function Onboarding({
   children,

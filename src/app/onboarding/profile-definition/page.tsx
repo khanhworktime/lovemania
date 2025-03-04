@@ -1,10 +1,4 @@
-import {
-  FemaleIcon,
-  GenderIcon,
-  GenderNeutralIcon,
-  MaleIcon,
-  RocketIcon,
-} from "@/assets/icons";
+import { FemaleIcon, GenderIcon, MaleIcon, RocketIcon } from "@/assets/icons";
 import { Card, CardBody } from "@heroui/react";
 
 const definitionOptions = [

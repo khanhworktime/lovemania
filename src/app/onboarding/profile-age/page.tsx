@@ -1,4 +1,4 @@
-import { DateInput, Input } from "@heroui/react";
+import { DateInput } from "@heroui/react";
 
 export default function ProfileAgePage() {
   return (
