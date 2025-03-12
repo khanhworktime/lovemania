@@ -1,0 +1,29 @@
+.post-toolbox {
+  border-radius: 1.5rem 0 0 1.5rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-100%);
+    width: 12px;
+    height: 12px;
+    background: inherit;
+    clip-path: path("M12 0 C12 0, 12 12, 0 12 L 12 12Z");
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateY(100%);
+    width: 12px;
+    height: 12px;
+    background: inherit;
+    clip-path: path("M0 0 C0 0, 12 0, 12 12 L 12 0Z");
+    z-index: 1;
+  }
+}

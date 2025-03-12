@@ -1,9 +1,13 @@
-import { ThirdwebProvider as ThirdwebProviderUI } from "@thirdweb-dev/react";
+"use client";
+
+import { createThirdwebClient } from "thirdweb";
+import { ThirdwebProvider as ThirdwebProviderV5 } from "thirdweb/react";
+
+// Create and export the client
+export const client = createThirdwebClient({
+  clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || "",
+});
 
 export function ThirdwebProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <ThirdwebProviderUI clientId={process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}>
-      {children}
-    </ThirdwebProviderUI>
-  );
+  return <ThirdwebProviderV5>{children}</ThirdwebProviderV5>;
 }

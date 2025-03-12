@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRightIcon, ChevronLeftIcon } from "@/assets/icons";
+import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
 import { Button, Progress } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
@@ -17,10 +18,12 @@ export default function Onboarding({
 
   const router = useTransitionRouter();
 
+  useBodyAppColor("#fcf5fa");
+
   return (
     <div className="flex flex-col gap-6 h-full">
       {/* Return action */}
-      <div>
+      <div className="sticky top-0">
         <Button
           variant="bordered"
           size="md"
@@ -33,7 +36,7 @@ export default function Onboarding({
         </Button>
       </div>
       <div className="flex-grow">{children}</div>
-      <div className="space-y-4">
+      <div className="sticky bottom-0 space-y-4">
         <div className="flex justify-between items-end gap-2">
           <span className="font-bold text-lg font-chalet">
             {currentStep}

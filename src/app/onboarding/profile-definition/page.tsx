@@ -1,5 +1,8 @@
+"use client";
+
 import { FemaleIcon, GenderIcon, MaleIcon, RocketIcon } from "@/assets/icons";
-import { Card, CardBody } from "@heroui/react";
+import { Card, CardBody, cn } from "@heroui/react";
+import { useOnboarding } from "../components/onboarding.provider";
 
 const definitionOptions = [
   {
@@ -25,6 +28,12 @@ const definitionOptions = [
 ];
 
 export default function ProfileDefinitionPage() {
+  const { profileData, updateProfileData } = useOnboarding();
+
+  const handleDefinitionChange = (value: string) => {
+    updateProfileData({ definition: value });
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
@@ -37,12 +46,21 @@ export default function ProfileDefinitionPage() {
               shadow="sm"
               isPressable
               key={option.value}
-              className="flex items-center gap-2 aspect-square"
+              className={cn(
+                "flex items-center gap-2 aspect-square",
+                option.value === profileData.definition &&
+                  "outline-2 outline-primary-300 focus-visible:outline-2"
+              )}
               isHoverable
+              onPress={() => handleDefinitionChange(option.value)}
             >
-              {" "}
               <CardBody className="grid grid-rows-2 gap-4 items-center justify-center">
-                <div className="self-end justify-self-center w-12 h-12 flex items-center justify-center gap-2 bg-primary rounded-full">
+                <div
+                  className={cn(
+                    "self-end justify-self-center w-12 h-12 flex items-center justify-center gap-2 bg-primary rounded-full",
+                    option.value === profileData.definition && "bg-primary-300"
+                  )}
+                >
                   {option.icon}
                 </div>
                 <p className="text-center font-semibold">{option.label}</p>

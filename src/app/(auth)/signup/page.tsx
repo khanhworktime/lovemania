@@ -6,16 +6,22 @@ import { Button } from "@heroui/react";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
 import { Link, useTransitionRouter } from "next-view-transitions";
+import { createWallet, inAppWallet } from "thirdweb/wallets";
+import { useConnect, useConnectedWallets } from "thirdweb/react";
+import { client } from "@/providers/thirdweb.provider";
 
 export default function SignupPage() {
   const router = useTransitionRouter();
+  const { connect } = useConnect();
+  const wallets = useConnectedWallets();
+
   return (
-    <div className="relative flex flex-col items-center justify-between gap-y-10">
+    <div className="relative flex flex-col items-center justify-between gap-y-10 max-h-svh h-svh pb-4">
       <div />
       <Image
         src={Thumbnail}
         alt="Signup Background"
-        className="object-cover w-full"
+        className="object-cover w-[70%]"
       />
 
       <div className="flex flex-col items-center justify-center gap-y-10">
@@ -31,7 +37,22 @@ export default function SignupPage() {
             radius="full"
             className="w-full bg-primary text-primary-foreground"
             size="lg"
-            onPress={() => router.push("/onboarding/profile-name")}
+            onPress={async () => {
+              const wallet = await connect(async () => {
+                // instantiate wallet
+                const wallet = createWallet("io.metamask");
+                // connect wallet
+                await wallet.connect({
+                  client,
+                });
+                // return the wallet
+                return wallet;
+              });
+
+              if (wallet) {
+                router.push("/home");
+              }
+            }}
           >
             <div className="absolute left-2 rounded-full bg-white p-1">
               <WalletIcon />
@@ -42,6 +63,21 @@ export default function SignupPage() {
             radius="full"
             className="w-full bg-secondary-50 text-primary relative"
             size="lg"
+            onPress={async () => {
+              const wallet = await connect(async () => {
+                const wallet = inAppWallet();
+                await wallet.connect({
+                  client,
+                  strategy: "google",
+                });
+
+                return wallet;
+              });
+
+              if (wallet) {
+                router.push("/home");
+              }
+            }}
           >
             <div className="absolute left-2 rounded-full bg-white p-1">
               <GoogleIcon />

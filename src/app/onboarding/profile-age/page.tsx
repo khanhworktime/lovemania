@@ -1,6 +1,17 @@
-import { DateInput } from "@heroui/react";
+"use client";
+
+import { CalendarDate, DateInput } from "@heroui/react";
+import { useOnboarding } from "../components/onboarding.provider";
 
 export default function ProfileAgePage() {
+  const { profileData, updateProfileData } = useOnboarding();
+
+  const handleAgeChange = (dob: CalendarDate | null) => {
+    if (!dob) return;
+
+    updateProfileData({ dob });
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
@@ -14,6 +25,8 @@ export default function ProfileAgePage() {
         classNames={{
           inputWrapper: "bg-white",
         }}
+        value={profileData.dob}
+        onChange={handleAgeChange}
       />
     </div>
   );

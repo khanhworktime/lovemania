@@ -1,4 +1,8 @@
-import { Chip } from "@heroui/react";
+"use client";
+
+import { Chip, cn } from "@heroui/react";
+import { useOnboarding } from "../components/onboarding.provider";
+import { useEffect, useState } from "react";
 
 const interests = [
   {
@@ -72,6 +76,25 @@ const interests = [
 ];
 
 export default function ProfileInterestPage() {
+  const { profileData, updateProfileData } = useOnboarding();
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(
+    profileData.interests || []
+  );
+
+  useEffect(() => {
+    updateProfileData({ interests: selectedInterests });
+  }, [selectedInterests]);
+
+  const handleInterestChange = (value: string) => {
+    if (selectedInterests.includes(value)) {
+      setSelectedInterests(
+        selectedInterests.filter((interest) => interest !== value)
+      );
+    } else {
+      setSelectedInterests([...selectedInterests, value]);
+    }
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
@@ -83,10 +106,15 @@ export default function ProfileInterestPage() {
             <Chip
               key={interest.value}
               classNames={{
-                content: "font-chalet text-medium",
-                base: "h-fit py-2 px-3",
+                content: cn("font-chalet text-medium"),
+                base: cn(
+                  "h-fit py-2 px-3 bg-white border border-primary-300 cursor-pointer",
+                  selectedInterests.includes(interest.value) &&
+                    "bg-primary-300 text-white border-primary-500"
+                ),
               }}
               variant="faded"
+              onClick={() => handleInterestChange(interest.value)}
             >
               <div>{interest.label}</div>
             </Chip>

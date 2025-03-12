@@ -2,8 +2,11 @@
 
 import PhotoUploader from "@/shared-components/ui/PhotoUploader";
 import { Button } from "@heroui/react";
+import { useTransitionRouter } from "next-view-transitions";
 
 export default function ProfilePhotoPage() {
+  const router = useTransitionRouter();
+
   return (
     <div>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
@@ -24,6 +27,7 @@ export default function ProfilePhotoPage() {
           className="bg-primary text-white w-full font-chalet"
           size="lg"
           radius="full"
+          onPress={() => router.push("/home")}
         >
           Next
         </Button>

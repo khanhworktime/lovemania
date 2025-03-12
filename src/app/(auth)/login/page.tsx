@@ -9,11 +9,11 @@ export default function LoginPage() {
   const router = useTransitionRouter();
 
   return (
-    <div className="relative flex flex-col items-center justify-center gap-y-10 h-full">
+    <div className="relative flex flex-col items-center justify-center gap-y-10 h-full pb-4">
       <Image
         src={Thumbnail}
         alt="Login Background"
-        className="object-cover w-full"
+        className="object-cover w-[80%]"
       />
 
       {/* Description */}
