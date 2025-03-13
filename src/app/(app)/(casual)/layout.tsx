@@ -11,8 +11,8 @@ export default function CasualLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-secondary-50 min-h-svh max-h-svh h-svh overflow-y-auto relative pb-4">
-      {children}
+    <div className="bg-secondary-50 min-h-svh max-h-svh h-svh overflow-y-auto relative pb-4 flex flex-col">
+      <div className="flex-1">{children}</div>
       <Navbar />
     </div>
   );

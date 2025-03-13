@@ -51,7 +51,7 @@ export default function HomePage() {
             tabList: "bg-secondary-200 rounded-full",
             tab: "font-medium",
             cursor: "rounded-full",
-            panel: "px-0 pt-8 min-h-[61svh]",
+            panel: "px-0 pt-8 h-[61svh] w-full",
           }}
           onSelectionChange={setCurrentTab}
           selectedKey={currentTab}
