@@ -1,11 +1,10 @@
-import { Button, Card, CardBody, CardFooter, cn } from "@heroui/react";
-import { Heart, StarIcon, XIcon } from "lucide-react";
-import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import Image from "next/image";
-import { NoiseOverlay } from "@/shared-components/ui/NoiseOverlay";
+import { Button, Card, CardBody, CardFooter, cn } from "@heroui/react";
+import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+import { Heart, StarIcon, XIcon } from "lucide-react";
+import Image from "next/image";
+import { useRef } from "react";
 
 gsap.registerPlugin(CustomEase);
 
