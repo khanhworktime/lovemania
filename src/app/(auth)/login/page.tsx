@@ -10,11 +10,13 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex flex-col items-center justify-center gap-y-10 h-full pb-4">
-      <Image
-        src={Thumbnail}
-        alt="Login Background"
-        className="object-cover w-[80%]"
-      />
+      <div className="p-8">
+        <Image
+          src={Thumbnail}
+          alt="Login Background"
+          className="object-cover w-[80%]"
+        />
+      </div>
 
       {/* Description */}
       <div className="px-12">

@@ -14,8 +14,8 @@ export default function MobileLayout({
   }, [pathName]);
 
   return (
-    <main className="container max-w-md overflow-x-hidden mx-auto bg-background min-h-svh">
+    <div className="container max-w-md overflow-x-hidden relative mx-auto bg-background min-h-svh h-svh">
       {children}
-    </main>
+    </div>
   );
 }

@@ -13,16 +13,16 @@ import { client } from "@/providers/thirdweb.provider";
 export default function SignupPage() {
   const router = useTransitionRouter();
   const { connect } = useConnect();
-  const wallets = useConnectedWallets();
 
   return (
-    <div className="relative flex flex-col items-center justify-between gap-y-10 max-h-svh h-svh pb-4">
-      <div />
-      <Image
-        src={Thumbnail}
-        alt="Signup Background"
-        className="object-cover w-[70%]"
-      />
+    <div className="relative flex flex-col items-center justify-between gap-y-10 h-full pb-4">
+      <div className="p-8">
+        <Image
+          src={Thumbnail}
+          alt="Signup Background"
+          className="object-cover object-center flex-grow"
+        />
+      </div>
 
       <div className="flex flex-col items-center justify-center gap-y-10">
         <div className="px-12">

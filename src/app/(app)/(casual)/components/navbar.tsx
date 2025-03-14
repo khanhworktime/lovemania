@@ -4,7 +4,7 @@ import { CompassIcon, Home, MessageCircle, Plus, Users } from "lucide-react";
 
 export function Navbar() {
   return (
-    <div className="sticky bottom-0 left-0 right-0 z-50 pb-4 ">
+    <div className="fixed bottom-0 left-0 right-0 z-50 pb-4 ">
       <div className="w-fit mx-auto flex items-center justify-center gap-5 bg-white rounded-full p-2">
         <Button
           isIconOnly

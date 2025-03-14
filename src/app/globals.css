@@ -30,14 +30,17 @@
   --color-secondary-950: #762a6f;
 }
 
-/* Dark mode overrides */
-.dark {
-  /* You can adjust dark mode colors if needed */
-}
-
 body {
-  padding-bottom: calc(env(safe-area-inset-bottom));
-  padding-top: calc(0.5rem +env(safe-area-inset-top));
+  & main {
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    padding-top: calc(0.5rem + env(safe-area-inset-top));
+    padding-left: calc(0.5rem + env(safe-area-inset-left));
+    padding-right: calc(0.5rem + env(safe-area-inset-right));
+  }
 
   @apply font-poppins;
+}
+
+* {
+  overscroll-behavior: none;
 }

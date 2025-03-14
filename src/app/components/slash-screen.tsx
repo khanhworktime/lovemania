@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { useTransitionRouter } from "next-view-transitions";
+import { useConnect, useConnectedWallets } from "thirdweb/react";
 // Checking the session and redirecting to the home page
 
 export function SlashScreen() {
@@ -58,7 +59,7 @@ export function SlashScreen() {
         ease: "power2.inOut",
 
         onComplete: () => {
-          router.push("/login");
+          router.push("/home");
         },
       });
     },
@@ -68,7 +69,7 @@ export function SlashScreen() {
   );
 
   return (
-    <div
+    <main
       ref={containerRef}
       className="bg-secondary-500 h-screen flex flex-col justify-center relative opacity-0"
     >
@@ -83,6 +84,6 @@ export function SlashScreen() {
       <h1 className="name text-4xl z-10 font-bold text-center font-chalet text-white">
         lovemania
       </h1>
-    </div>
+    </main>
   );
 }
