@@ -59,7 +59,7 @@ export function SlashScreen() {
         ease: "power2.inOut",
 
         onComplete: () => {
-          router.push("/home");
+          router.push("/login");
         },
       });
     },
