@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { Button } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
+import gsap from "gsap";
 import { useRef, useState } from "react";
 
 export default function GreetingPage() {
@@ -16,7 +17,7 @@ export default function GreetingPage() {
     if (isFinal) {
       router.push("/login");
     } else {
-      setIsFinal(true);
+      playAnimation();
     }
   };
 
@@ -25,8 +26,28 @@ export default function GreetingPage() {
   const { contextSafe } = useGSAP();
 
   const playAnimation = contextSafe(() => {
-    gsap.to(".thumbnail", {
+    const timeline = gsap.timeline();
+    timeline.to(".thumbnail", {
+      opacity: 0,
+      scale: 0.5,
+      x: "-100%",
+      duration: 0.5,
+      ease: "power2.inOut",
+    });
+    timeline.set(".thumbnail", {
+      opacity: 0,
+      scale: 0.5,
+      x: "100%",
+      onComplete: () => {
+        setIsFinal(true);
+      },
+    });
+    timeline.to(".thumbnail", {
       opacity: 1,
+      scale: 1,
+      x: "0%",
+      duration: 0.5,
+      ease: "power2.inOut",
     });
   });
 
@@ -35,11 +56,11 @@ export default function GreetingPage() {
       ref={containerRef}
       className="relative flex flex-col items-center justify-center gap-y-10 h-full pb-4"
     >
-      <div className="p-8">
+      <div className="p-8 relative aspect-square flex items-center justify-center">
         <Image
           src={isFinal ? Thumbnail02 : Thumbnail01}
           alt="Login Background"
-          className="thumbnail object-cover w-[80%]"
+          className="thumbnail object-cover w-full h-full"
         />
       </div>
 
