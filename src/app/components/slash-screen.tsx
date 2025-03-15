@@ -8,10 +8,14 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { useTransitionRouter } from "next-view-transitions";
-import { useConnect, useConnectedWallets } from "thirdweb/react";
-// Checking the session and redirecting to the home page
+import { useAutoConnect } from "thirdweb/react";
+import { client } from "@/providers/thirdweb.provider";
 
 export function SlashScreen() {
+  const { data: autoConnected } = useAutoConnect({
+    client,
+  });
+
   // Upload the viewport
   useEffect(() => {
     const viewport = document.querySelector("meta[name='viewport']");
@@ -26,6 +30,8 @@ export function SlashScreen() {
 
   useGSAP(
     () => {
+      if (autoConnected === undefined) return;
+
       const timeline = gsap.timeline();
       timeline.to(containerRef.current, {
         opacity: 0,
@@ -57,14 +63,18 @@ export function SlashScreen() {
         duration: 1,
         stagger: 0.2,
         ease: "power2.inOut",
-
         onComplete: () => {
-          router.push("/login");
+          if (autoConnected) {
+            router.push("/home");
+          } else {
+            router.push("/greeting");
+          }
         },
       });
     },
     {
       scope: containerRef,
+      dependencies: [autoConnected],
     }
   );
 
