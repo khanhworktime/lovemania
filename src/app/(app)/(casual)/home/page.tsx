@@ -1,12 +1,13 @@
 "use client";
+import { FilterIcon, NewLoveIcon } from "@/assets/icons";
 import Logo from "@/assets/logos/lovemania.logo.png";
-import { BellDotIcon, BellIcon } from "lucide-react";
 import { Button, cn, Tab, Tabs } from "@heroui/react";
+import { BellDotIcon } from "lucide-react";
 import Image from "next/image";
-import { StoryLine } from "./components/StoryLine";
-import { NewsFeed } from "./components/Segments/matches";
+import { useState } from "react";
 import { Finder } from "./components/Segments/finder";
-import { Key, useState } from "react";
+import { NewsFeed } from "./components/Segments/matches";
+import { StoryLine } from "./components/StoryLine";
 
 export default function HomePage() {
   // Current tabs controllers
@@ -24,14 +25,36 @@ export default function HomePage() {
 
         {/* Notifications */}
         <div className="flex items-center gap-x-2">
-          <Button
-            variant="bordered"
-            className="size-12"
-            radius="full"
-            isIconOnly
-          >
-            <BellDotIcon />
-          </Button>
+          {currentTab === "$.0" && (
+            <Button
+              variant="bordered"
+              className="size-12"
+              radius="full"
+              isIconOnly
+            >
+              <BellDotIcon />
+            </Button>
+          )}
+          {currentTab === "$.1" && (
+            <>
+              <Button
+                variant="bordered"
+                className="size-12"
+                radius="full"
+                isIconOnly
+              >
+                <NewLoveIcon />
+              </Button>
+              <Button
+                variant="bordered"
+                className="size-12"
+                radius="full"
+                isIconOnly
+              >
+                <FilterIcon />
+              </Button>
+            </>
+          )}
         </div>
       </div>
 
