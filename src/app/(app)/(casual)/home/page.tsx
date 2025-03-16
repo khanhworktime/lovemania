@@ -1,15 +1,18 @@
 "use client";
 import { FilterIcon, NewLoveIcon } from "@/assets/icons";
 import Logo from "@/assets/logos/lovemania.logo.png";
-import { Button, cn, Tab, Tabs } from "@heroui/react";
+import { Avatar, Button, cn, Tab, Tabs } from "@heroui/react";
 import { BellDotIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { Finder } from "./components/Segments/finder";
 import { NewsFeed } from "./components/Segments/matches";
 import { StoryLine } from "./components/StoryLine";
+import { currentUser } from "@/exampleData/data";
+import { useTransitionRouter } from "next-view-transitions";
 
 export default function HomePage() {
+  const router = useTransitionRouter();
   // Current tabs controllers
   const [currentTab, setCurrentTab] = useState<string | number>("$.0");
 
@@ -18,10 +21,20 @@ export default function HomePage() {
       {/* Header */}
       <div className="flex items-center justify-between gap-x-2 px-4 pt-4 pb-2 sticky top-0 inset-x-0 z-50 bg-white/20 backdrop-blur-sm">
         {/* Logo */}
-        <div className="flex items-center gap-x-2">
-          <Image src={Logo} alt="Logo" width={35} height={35} />
-          <h1 className="text-2xl font-medium font-chalet">lovemania</h1>
-        </div>
+        {currentTab === "$.0" ? (
+          <div className="flex items-center gap-x-2">
+            <Image src={Logo} alt="Logo" width={35} height={35} />
+            <h1 className="text-2xl font-medium font-chalet">lovemania</h1>
+          </div>
+        ) : (
+          <Avatar
+            src={currentUser.image}
+            className="size-12 cursor-pointer"
+            radius="full"
+            isBordered
+            onClick={() => router.push("/profile")}
+          />
+        )}
 
         {/* Notifications */}
         <div className="flex items-center gap-x-2">

@@ -155,6 +155,17 @@ export const postTestData: IPost[] = [
   },
 ];
 
+export const currentUser: IUser = {
+  id: "0",
+  name: "Clara",
+  age: 25,
+  location: "VIETNAM",
+  interests: ["traveling", "cooking", "reading"],
+  matchesPercentage: 0,
+  image:
+    "https://s3-alpha-sig.figma.com/img/2469/ac39/644d69ec85f3953e6b180a44125072bc?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=NZ84ch59nj1kXTPBmu8IkHFLb20ylYkhoLIlhqQEC4aUyLtHPUTQw4MjoKAxgEF~xxD6AsKCHsKYA81R9HD1VwcLdC3F5tpeO0Nd8s8kvQg~YmqcFFrxD8d9il1Xf9eewIIMiNIGsPgMvuwgByH~doSiOkaosVWJcBqAMlqBzqqKZiMT1UWh4j9nYyq0dbhJ7TWlKSxvB5G5ZUO1ZDab83Rg8I6IPsZUAiI2I2CtBaGJEHakw9fjV3Ak6RKK9BLr7FUQc3-8Mkuvha1wmEaOFX~~TfZ0L8G8LcvnQ2-0W3iuxV4VYucA2jsgn0vspXyfsp~-4x9zJVcuTsYbL1x9mA__",
+};
+
 export const userTestData: IUser[] = [
   {
     id: "1",
