@@ -1,4 +1,4 @@
-import { storyLineTestData } from "./data";
+import { storyLineTestData } from "../../../../../../exampleData/data";
 import Image from "next/image";
 
 export function StoryLine() {

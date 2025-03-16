@@ -1,5 +1,5 @@
 import { Post } from "@/shared-components/ui/Post/Post";
-import { postTestData } from "../StoryLine/data";
+import { postTestData } from "../../../../../../exampleData/data";
 
 export function NewsFeed() {
   return (
