@@ -1,9 +1,9 @@
 import { Post } from "@/shared-components/ui/Post/Post";
 import { postTestData } from "../StoryLine/data";
 
-export function MatchesToOtherUsers() {
+export function NewsFeed() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 pb-24">
       {postTestData.map((post) => (
         <Post key={post.id} post={post} />
       ))}

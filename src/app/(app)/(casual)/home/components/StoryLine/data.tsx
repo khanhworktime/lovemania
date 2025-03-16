@@ -112,44 +112,44 @@ export const postTestData: IPost[] = [
   },
   {
     id: "2",
-    content: "Ping me if you wanna talk about Trump memecoins",
+    content: "Who do you think will win Euro 2020?",
     createdAt: new Date(),
     author: {
-      id: "1",
-      name: "Miranda Kehlani",
+      id: "2",
+      name: "Brandon Aminoff",
       avatar:
-        "https://s3-alpha-sig.figma.com/img/8a02/8648/ba46efd818c6a40fec5a8b546e01fa80?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=gA3-WSNddEx2nAwMOO16ZVm50E6CVwv6B8KtykKN8pCT-Uz6LxhbSdOspDofZTbltw84RLXsu3OOeYGuFOaXRjYevlp5J7tzVIDzLuxw6W40DFbbsswEapDKwux4Yd9O~4hwUKGHVGbkGOMUu6TbUuKFjSr5t0s912GXNWJ4yoDgUixXDQSLwLmAl99007Zp-S9RlpArWrV5rnkAfW7X2Fz19wWsi-b2dbA22XqmV7bLhV5xgyDkYvMVbj663VXWFdsO7tpkAcnBTDjuyAX1R26L-5LVnOf6-KWqJCDN~Zo0rOWc~8iVlsqHy5mqpOvagEPEzFzHNaRWvAjlEPeb6w__",
-      location: "VIETNAM",
+        "https://s3-alpha-sig.figma.com/img/bdee/9c5b/82d3af637f56f526634d05993f85c521?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=SmRI82ckyGq-B~eK55iiM-26jevsrFcfYCwaIGgtXPAH7pXevpIxAXjPJwvzdGFPuXOR2KYDoMh3T2sE~w4YNQ2-KjfRu90n2izM8Ev2CQAbJkf3zuy91yEVpOYrC4t8JV7CsJlluUCnL5IsOn3isp5ldVWn1T-jss3gJX3Xpxqa3GXgtmYnyEv047EI1b-itslUEcEAFQocqnZTxjVp4g6Epg584fCzwbyVG67P6~vtKEK~KXnoRhW87-H~Dc0YqE4vpTQl4cfTi9uuufQ1LdQAr-iEZTASYOh90AO7NBTXphzmSU3hFY29OB-fY4avCDw52xLuT106qTbZVpdACw__",
+      location: "HAMBURG",
     },
     image:
-      "https://s3-alpha-sig.figma.com/img/131b/d108/49fb33a7941fdea941ae87ed11c103d3?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QDrnPcwOlug5K4IdMe-KtGePBv4kQouYxGWbc54fBd8Sl3RF8uZ-XeHWyDwXFDOUuch1yJj8BU4yVceh19igxJBo10ZP~tD6E0D630Lne2kULPIxuybFd~84uSS0bW0CBRchkIIioY~vZbhvAodSNHD97e5QBVnLX5X8kxg5E8r-ovKIfIfCVIKGBIcR4u1xgNb12PjE8ygY1BmDdvkbQZa-Mw65UWffDIk26CT5ItXxa01p6vLh0iZP6wIeSQaUvO5gXW6S0eY~~5vNWcg6ioMi6PLDLY1FjH1av8gLoqg69j9m3XC9u3EChCDKQwLdeopD5KPcXjMiGk75sQbjcw__",
+      "https://s3-alpha-sig.figma.com/img/9880/e0eb/a7663e38645e173c971cc65186b3aa3f?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ahZJ2p8P-PGmS0plddbSbganCcTQDmuVr7cfTOL8bquQeNIpe2q-X2vXbQvjc3Aa3TMhE3miWY8brRJXPgXxTu8gCjc7odGsH830utEB7Y3iDN4Re0TVqsKvq9ZyPp7uygiVoUQqnBOyyRnh4m6XFSvV2jgI1FmuLOOqclvAjoFBRFF0b2T71Sf0fCQIPayariakfUy5X7sheWPL9-DmzgEjXDrBrgcXYVm8eVqt6986L09WOv6AoTOb9Gyo9pebxHEXbiYLk5vfFqotGiFGzSVVFcViK0Im8giUKQI-uAqJqK5E6eXk~zx0vtx5IfMLjZmPjRPQk3ggbhesL8m~7Q__",
   },
   {
     id: "3",
-    content: "Ping me if you wanna talk about Trump memecoins",
+    content: "So lonely here guys, wanna talk with me???",
     createdAt: new Date(),
     author: {
-      id: "1",
-      name: "Miranda Kehlani",
+      id: "3",
+      name: "Anna",
       avatar:
-        "https://s3-alpha-sig.figma.com/img/8a02/8648/ba46efd818c6a40fec5a8b546e01fa80?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=gA3-WSNddEx2nAwMOO16ZVm50E6CVwv6B8KtykKN8pCT-Uz6LxhbSdOspDofZTbltw84RLXsu3OOeYGuFOaXRjYevlp5J7tzVIDzLuxw6W40DFbbsswEapDKwux4Yd9O~4hwUKGHVGbkGOMUu6TbUuKFjSr5t0s912GXNWJ4yoDgUixXDQSLwLmAl99007Zp-S9RlpArWrV5rnkAfW7X2Fz19wWsi-b2dbA22XqmV7bLhV5xgyDkYvMVbj663VXWFdsO7tpkAcnBTDjuyAX1R26L-5LVnOf6-KWqJCDN~Zo0rOWc~8iVlsqHy5mqpOvagEPEzFzHNaRWvAjlEPeb6w__",
-      location: "VIETNAM",
+        "https://s3-alpha-sig.figma.com/img/2abc/9621/62a5490bdd30048513796d066a106cde?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Ln~B3h9XZwyq76a4gBIA2jlxOFqTmKLaNLlPO6a3z3QrfM2alpJT1dnGbByjqRX4B9zn6WfUYpYOwurHJPa5vjcE3PIZj4J4VpON0clArMVqj9nUwJUSafWvDP67~-9w23uJVHG-0bsP1pRzjV4UFtOqctraVw7fginyZ4iqlwgTc6o8rS81~UQWy6Lf8Ky66wZs7JKgQ8AMG9DabSGk83VPwnwq6c-OxwKzc4Bl2EZIiOrD1D48EONifWo-vY5f2EjWwHI9yrnRa2OLM1VLHFhpecWThLLT7Kp7LpTJoOQ2GA8mz99uuym4KBe11wM961zK9IhwuT3Z0vu~~Dy6Aw__",
+      location: "USA",
     },
     image:
-      "https://s3-alpha-sig.figma.com/img/131b/d108/49fb33a7941fdea941ae87ed11c103d3?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QDrnPcwOlug5K4IdMe-KtGePBv4kQouYxGWbc54fBd8Sl3RF8uZ-XeHWyDwXFDOUuch1yJj8BU4yVceh19igxJBo10ZP~tD6E0D630Lne2kULPIxuybFd~84uSS0bW0CBRchkIIioY~vZbhvAodSNHD97e5QBVnLX5X8kxg5E8r-ovKIfIfCVIKGBIcR4u1xgNb12PjE8ygY1BmDdvkbQZa-Mw65UWffDIk26CT5ItXxa01p6vLh0iZP6wIeSQaUvO5gXW6S0eY~~5vNWcg6ioMi6PLDLY1FjH1av8gLoqg69j9m3XC9u3EChCDKQwLdeopD5KPcXjMiGk75sQbjcw__",
+      "https://s3-alpha-sig.figma.com/img/2abc/9621/62a5490bdd30048513796d066a106cde?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Ln~B3h9XZwyq76a4gBIA2jlxOFqTmKLaNLlPO6a3z3QrfM2alpJT1dnGbByjqRX4B9zn6WfUYpYOwurHJPa5vjcE3PIZj4J4VpON0clArMVqj9nUwJUSafWvDP67~-9w23uJVHG-0bsP1pRzjV4UFtOqctraVw7fginyZ4iqlwgTc6o8rS81~UQWy6Lf8Ky66wZs7JKgQ8AMG9DabSGk83VPwnwq6c-OxwKzc4Bl2EZIiOrD1D48EONifWo-vY5f2EjWwHI9yrnRa2OLM1VLHFhpecWThLLT7Kp7LpTJoOQ2GA8mz99uuym4KBe11wM961zK9IhwuT3Z0vu~~Dy6Aw__",
   },
   {
     id: "4",
-    content: "Ping me if you wanna talk about Trump memecoins",
+    content: "Share with me the type of girl that everyone likes the most! 😆",
     createdAt: new Date(),
     author: {
-      id: "1",
-      name: "Miranda Kehlani",
+      id: "5",
+      name: "Parody Elon",
       avatar:
-        "https://s3-alpha-sig.figma.com/img/8a02/8648/ba46efd818c6a40fec5a8b546e01fa80?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=gA3-WSNddEx2nAwMOO16ZVm50E6CVwv6B8KtykKN8pCT-Uz6LxhbSdOspDofZTbltw84RLXsu3OOeYGuFOaXRjYevlp5J7tzVIDzLuxw6W40DFbbsswEapDKwux4Yd9O~4hwUKGHVGbkGOMUu6TbUuKFjSr5t0s912GXNWJ4yoDgUixXDQSLwLmAl99007Zp-S9RlpArWrV5rnkAfW7X2Fz19wWsi-b2dbA22XqmV7bLhV5xgyDkYvMVbj663VXWFdsO7tpkAcnBTDjuyAX1R26L-5LVnOf6-KWqJCDN~Zo0rOWc~8iVlsqHy5mqpOvagEPEzFzHNaRWvAjlEPeb6w__",
-      location: "VIETNAM",
+        "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fi~XA7G2VOiyxi1ShqdIg94eDQ4oqLWJ4lunAuEgiTmPPhmA2V6PsetOVZLXnOhioqsNvbt70JYKiFBZiaJnz8LUfkgwUu7mLJIVxAj45PiiBEi~FyWAuIUsH6aA7sbTqdjb~EU2ehRcsaaGFOxuJgcUFprR5Sx~kkvy3UojSVcd8nHwncTMEtroYIOo5JlrAlntHxyh29wbjb5uG6ynoIXfPsRgaGIOyGFBiT5~TFwvs9rANNvvTIGCLPEzV~B5HQUt4WPnvalTNtHdbqNHFClgIoT3e6VkE5mVzIzwLxIibjJ4TSdMNhVrD9o~yKOigY~Fw-BUi7kGWuALb7ifHA__",
+      location: "USA",
     },
     image:
-      "https://s3-alpha-sig.figma.com/img/131b/d108/49fb33a7941fdea941ae87ed11c103d3?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QDrnPcwOlug5K4IdMe-KtGePBv4kQouYxGWbc54fBd8Sl3RF8uZ-XeHWyDwXFDOUuch1yJj8BU4yVceh19igxJBo10ZP~tD6E0D630Lne2kULPIxuybFd~84uSS0bW0CBRchkIIioY~vZbhvAodSNHD97e5QBVnLX5X8kxg5E8r-ovKIfIfCVIKGBIcR4u1xgNb12PjE8ygY1BmDdvkbQZa-Mw65UWffDIk26CT5ItXxa01p6vLh0iZP6wIeSQaUvO5gXW6S0eY~~5vNWcg6ioMi6PLDLY1FjH1av8gLoqg69j9m3XC9u3EChCDKQwLdeopD5KPcXjMiGk75sQbjcw__",
+      "https://s3-alpha-sig.figma.com/img/3e36/3294/d000148ee952d4d19b62e6113a9369ea?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=p5p1yLb4j6WTJVZXw4pt9acuimqsxn7t3-gALFmVUkdAI2z9~gyRoMJUUin36YTsWgI2zyP~qN72pjWJwht-Lj9MMPJDKCxAdbRoksSAi8oVFA52bKOsyM4PHk2u39DrQztRJ8osygW9~g8RbxYrM6L3lJRcN9fNpAGZEpnSg-B6rpM3hncPhGQNwo-gnPjwT4bnsigtjHQwMZoM6uXy1hykviyyudApkc1bBlb2PpvCvZh3vbM2rj5e7RlUeKb92dmRoJqt0IRRueWcUukyUlplBuChzfg67SSWgo9rGXzRVaRtWoOrypLqO3C23mrCw5cgNdm-7ZfTeCAMFYEBfg__",
   },
 ];

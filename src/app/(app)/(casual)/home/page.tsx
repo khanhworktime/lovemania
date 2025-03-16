@@ -4,7 +4,7 @@ import { BellDotIcon, BellIcon } from "lucide-react";
 import { Button, cn, Tab, Tabs } from "@heroui/react";
 import Image from "next/image";
 import { StoryLine } from "./components/StoryLine";
-import { MatchesToOtherUsers } from "./components/Segments/matches";
+import { NewsFeed } from "./components/Segments/matches";
 import { Finder } from "./components/Segments/finder";
 import { Key, useState } from "react";
 
@@ -57,7 +57,7 @@ export default function HomePage() {
           selectedKey={currentTab}
         >
           <Tab value="matches" title="Your friends">
-            <MatchesToOtherUsers />
+            <NewsFeed />
           </Tab>
           <Tab value="finder" title="Find your love">
             <Finder />
