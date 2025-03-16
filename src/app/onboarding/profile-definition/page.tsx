@@ -1,74 +1,115 @@
 "use client";
 
 import { FemaleIcon, GenderIcon, MaleIcon, RocketIcon } from "@/assets/icons";
-import { Card, CardBody, cn } from "@heroui/react";
+import { Button } from "@heroui/react";
 import { useOnboarding } from "../components/onboarding.provider";
+import GenderSelection from "./components/GenderSelection";
+import { useEffect, useState } from "react";
+import { ArrowRightIcon } from "@/assets/icons";
+import { onboardingSteps } from "../steps";
+import { useTransitionRouter } from "next-view-transitions";
 
 const definitionOptions = [
   {
     label: "Man",
-    value: "foodie",
+    value: "man",
     icon: <MaleIcon color="white" className="w-8 h-8" />,
+    isAbleToModify: false,
   },
   {
     label: "Woman",
     value: "woman",
     icon: <FemaleIcon color="white" className="w-8 h-8" />,
+    isAbleToModify: false,
   },
   {
     label: "Enter your Gender",
-    value: "custom",
+    value: "genderCustom",
     icon: <GenderIcon color="white" className="w-6 h-6" />,
+    isAbleToModify: true,
   },
   {
     label: "You can be everything",
-    value: "none",
+    value: "anything",
     icon: <RocketIcon className="w-12 h-12" />,
+    isAbleToModify: true,
   },
 ];
 
 export default function ProfileDefinitionPage() {
+  const router = useTransitionRouter();
   const { profileData, updateProfileData } = useOnboarding();
 
-  const handleDefinitionChange = (value: string) => {
-    updateProfileData({ definition: value });
+  const [currentSelection, setCurrentSelection] = useState<{
+    value: string;
+    description: string;
+  }>({
+    value: "",
+    description: "",
+  });
+
+  useEffect(() => {
+    setCurrentSelection({
+      value: profileData.definition,
+      description: profileData.definitionDescription,
+    });
+  }, [profileData.definition]);
+
+  const syncProfileData = () => {
+    updateProfileData({
+      definition: currentSelection.value,
+      definitionDescription: currentSelection.description,
+    });
   };
 
   return (
-    <div>
+    <>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
         You Define Who You Are
       </h1>
       <div className="grid grid-cols-2 gap-x-4 gap-y-6">
         {definitionOptions.map((option) => {
           return (
-            <Card
-              shadow="sm"
-              isPressable
+            <GenderSelection
               key={option.value}
-              className={cn(
-                "flex items-center gap-2 aspect-square",
-                option.value === profileData.definition &&
-                  "outline-2 outline-primary-300 focus-visible:outline-2"
-              )}
-              isHoverable
-              onPress={() => handleDefinitionChange(option.value)}
-            >
-              <CardBody className="grid grid-rows-2 gap-4 items-center justify-center">
-                <div
-                  className={cn(
-                    "self-end justify-self-center w-12 h-12 flex items-center justify-center gap-2 bg-primary rounded-full",
-                    option.value === profileData.definition && "bg-primary-300"
-                  )}
-                >
-                  {option.icon}
-                </div>
-                <p className="text-center font-semibold">{option.label}</p>
-              </CardBody>
-            </Card>
+              onChange={(value) => {
+                setCurrentSelection((prev) => ({
+                  ...prev,
+                  description: value,
+                }));
+              }}
+              active={option.value === currentSelection.value}
+              setActive={() => {
+                setCurrentSelection({
+                  value: option.value,
+                  description: option.value,
+                });
+              }}
+              icon={option.icon}
+              isAbleToModify={option.isAbleToModify}
+              placeholder={option.label}
+              defaultValue={
+                option.value === currentSelection.value
+                  ? currentSelection.description
+                  : ""
+              }
+            />
           );
         })}
       </div>
-    </div>
+      <Button
+        size="lg"
+        radius="full"
+        isIconOnly
+        className="bg-primary shadow absolute bottom-4 right-4 translate-y-[calc(24px+85%)]"
+        onPress={() => {
+          syncProfileData();
+          router.push(`/onboarding/${onboardingSteps[4]}`);
+        }}
+        isDisabled={profileData.definition === ""}
+      >
+        <ArrowRightIcon color="#fff" />
+      </Button>
+    </>
   );
 }

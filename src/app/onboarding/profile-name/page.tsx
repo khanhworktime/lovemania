@@ -1,9 +1,14 @@
 "use client";
 
-import { Input } from "@heroui/react";
+import { Button, Input } from "@heroui/react";
 import { useOnboarding } from "../components/onboarding.provider";
+import { ArrowRightIcon } from "@/assets/icons";
+import { onboardingSteps } from "../steps";
+import { useTransitionRouter } from "next-view-transitions";
 
 export default function ProfileNamePage() {
+  const router = useTransitionRouter();
+
   const { profileData, updateProfileData } = useOnboarding();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,7 +16,7 @@ export default function ProfileNamePage() {
   };
 
   return (
-    <div>
+    <>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
         What&apos;s your name?
       </h1>
@@ -28,6 +33,19 @@ export default function ProfileNamePage() {
         value={profileData.name}
         onChange={handleNameChange}
       />
-    </div>
+
+      <Button
+        size="lg"
+        radius="full"
+        isIconOnly
+        className="bg-primary shadow absolute bottom-4 right-4 translate-y-[calc(24px+85%)]"
+        onPress={() => {
+          router.push(`/onboarding/${onboardingSteps[2]}`);
+        }}
+        isDisabled={profileData.name.length === 0}
+      >
+        <ArrowRightIcon color="#fff" />
+      </Button>
+    </>
   );
 }

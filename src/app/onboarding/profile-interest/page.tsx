@@ -1,8 +1,12 @@
 "use client";
 
-import { Chip, cn } from "@heroui/react";
+import { Button, Chip, cn } from "@heroui/react";
 import { useOnboarding } from "../components/onboarding.provider";
 import { useEffect, useState } from "react";
+
+import { ArrowRightIcon } from "@/assets/icons";
+import { onboardingSteps } from "../steps";
+import { useTransitionRouter } from "next-view-transitions";
 
 const interests = [
   {
@@ -76,6 +80,8 @@ const interests = [
 ];
 
 export default function ProfileInterestPage() {
+  const router = useTransitionRouter();
+
   const { profileData, updateProfileData } = useOnboarding();
   const [selectedInterests, setSelectedInterests] = useState<string[]>(
     profileData.interests || []
@@ -91,12 +97,14 @@ export default function ProfileInterestPage() {
         selectedInterests.filter((interest) => interest !== value)
       );
     } else {
-      setSelectedInterests([...selectedInterests, value]);
+      if (selectedInterests.length < 5) {
+        setSelectedInterests([...selectedInterests, value]);
+      }
     }
   };
 
   return (
-    <div>
+    <>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
         Select up to 5 interests
       </h1>
@@ -105,6 +113,7 @@ export default function ProfileInterestPage() {
           return (
             <Chip
               key={interest.value}
+              className="transition-all duration-300"
               classNames={{
                 content: cn("font-chalet text-medium"),
                 base: cn(
@@ -121,6 +130,18 @@ export default function ProfileInterestPage() {
           );
         })}
       </div>
-    </div>
+      <Button
+        size="lg"
+        radius="full"
+        isIconOnly
+        className="bg-primary shadow absolute bottom-4 right-4 translate-y-[calc(24px+85%)]"
+        onPress={() => {
+          router.push(`/onboarding/${onboardingSteps[5]}`);
+        }}
+        isDisabled={selectedInterests.length === 0}
+      >
+        <ArrowRightIcon color="#fff" />
+      </Button>
+    </>
   );
 }

@@ -5,8 +5,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 interface ProfileFormData {
   name: string;
-  dob: CalendarDate;
+  dob: CalendarDate | null;
   definition: string;
+  definitionDescription: string;
   interests: string[];
   photos: string[];
 }
@@ -18,8 +19,9 @@ interface OnboardingContextType {
 
 const defaultProfileData: ProfileFormData = {
   name: "",
-  dob: new CalendarDate(2000, 1, 1),
-  definition: "",
+  dob: null,
+  definition: "man",
+  definitionDescription: "man",
   interests: [],
   photos: [],
 };
