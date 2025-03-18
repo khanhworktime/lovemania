@@ -9,5 +9,5 @@ export default function ProfileLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="bg-[#fcf5fa] h-svh">{children}</div>;
+  return <div className="bg-[#fcf5fa] min-h-svh">{children}</div>;
 }
