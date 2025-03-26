@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function StoryLine() {
   return (
-    <div className="max-w-full overflow-x-auto pb-2 px-4 hidden-scrollbar">
+    <div className="max-w-full overflow-x-auto pb-2 px-4 ">
       <div className="flex gap-3">
         {storyLineTestData.map((story) => (
           <div key={story.id} className="flex flex-col items-center gap-y-1.5">

@@ -7,7 +7,7 @@ import {
   MatchesPeopleOutlineIcon,
 } from "@/assets/icons";
 import { Button } from "@heroui/react";
-import { CompassIcon, MessageCircle, PlusIcon, Users2 } from "lucide-react";
+import { MessageCircle, PlusIcon, Wallet } from "lucide-react";
 import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 const navItems = [
@@ -18,10 +18,10 @@ const navItems = [
     disabled: false,
   },
   {
-    icon: CompassIcon,
-    activeIcon: CompassIcon,
-    href: "/discover",
-    disabled: true,
+    icon: Wallet,
+    activeIcon: Wallet,
+    href: "/wallet",
+    disabled: false,
   },
   {
     icon: PlusIcon,
@@ -38,8 +38,8 @@ const navItems = [
   {
     icon: MessageCircle,
     activeIcon: MessageCircle,
-    href: "/chat",
-    disabled: true,
+    href: "/messages",
+    disabled: false,
   },
 ];
 
@@ -49,7 +49,7 @@ export function Navbar() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 pb-4 ">
-      <div className="w-fit mx-auto flex items-center justify-center gap-5 bg-white rounded-full p-2">
+      <div className="w-fit mx-auto flex items-center justify-center gap-5 bg-white rounded-full p-2 drop-shadow-lg">
         {navItems.map((item) => {
           const isActive = pathname.includes(item.href);
           return (

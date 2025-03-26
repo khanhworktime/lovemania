@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 
 export function UserPersonalStatistic() {
   return (
-    <div className="max-w-full overflow-x-auto pb-2 px-4 hidden-scrollbar">
+    <div className="max-w-full overflow-x-auto pb-2 px-4 ">
       <div className="flex gap-4">
         {/* Likes */}
         <div className="flex flex-col items-center gap-y-1.5">

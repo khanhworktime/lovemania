@@ -2,21 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .hidden-scrollbar {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}
-
 :root {
   /* Primary Colors */
   --color-primary-50: #f8edf8;
   --color-primary-100: #f0dcf0;
-  --color-primary-200: #e2b9e2;
+  --color-primary-200: #8d4f8d;
   --color-primary-300: #d396d4;
   --color-primary-400: #c573c6;
   --color-primary-500: #b650b8;
@@ -48,9 +38,16 @@ body {
     padding-right: calc(0.5rem + env(safe-area-inset-right));
   }
 
+  transition: background-color 0.2s ease-in-out;
+
   @apply font-poppins;
 }
 
 * {
   overscroll-behavior: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

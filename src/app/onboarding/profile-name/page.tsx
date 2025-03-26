@@ -38,7 +38,7 @@ export default function ProfileNamePage() {
         size="lg"
         radius="full"
         isIconOnly
-        className="bg-primary shadow absolute bottom-4 right-4 translate-y-[calc(24px+85%)]"
+        className="bg-primary shadow absolute bottom-4 right-4 translate-y-[calc(24px+85%)] z-20"
         onPress={() => {
           router.push(`/onboarding/${onboardingSteps[2]}`);
         }}

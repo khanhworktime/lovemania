@@ -2,6 +2,8 @@ import { IPost } from "@/interfaces/post.model";
 import { IStoryLine } from "@/interfaces/storyLine.model";
 import { IUser } from "@/interfaces/user.model";
 
+import { IConversation, IMessage } from "@/interfaces/message.model";
+
 export const storyLineTestData: IStoryLine[] = [
   {
     id: 1,
@@ -175,7 +177,7 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 80,
     image:
-      "https://s3-alpha-sig.figma.com/img/738e/b596/db2e9182ab809806015b8b2a724f9a22?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CrcVBBBPjUFm~kTP9-r2saiuhhb~KQr4zGYy7cwTQjVfip~WkZ5i7oNMkbczobH-pb~9K5r6eIVprH12zEE6B0-yG9z0bMNPAVlZFciHGyi03B~UkLmLWiiu~kvH5iEOWcGkeI24n-dsKr9amLSWQIj7e9IMrbE-ZPLpvea09LMNRD0cIhbmcJSoLt7Tf2m4ZRdW2J~7E5sTHFpnADBnYDExP-Ik867KDNHPIMzhS~yb92C9Gd1EFZKLcXIcmbkRbt0t9ms2nwdx03iI77~ZmKBTPrYrplJbpaLaKmTRV0LlbIYxgv~-Qwom~zix-TXDgO3cQa06aeFENoil4iystg__",
+      "https://s3-alpha-sig.figma.com/img/1257/ecc5/d747f6ffe0f4097ada4a6bcf6d9e09bd?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=EUoeh5tGePgs3zuz1J2toXBUDDoSJv65NgpBelHYdWJ1ZaSKWMtAb0QpI2yxszvXaByScLfrS5iR~Ymso7pynEqj7gnLsNcLGFWAB2PZUFaCalFPS0Lf-o-fct7SjtXE9AmZF8yhU3ByYJjkE9Ak7FHNJsIpRVxxYvHUdZQ~mlMTXg33X5ZRiVWx6LsQyetNU2QOixvmuBOLEroS~vRvNwSqjIjj0BSFB1QN~YbgjZ9lmWqsHrsMu7LEF7iy1XHrVl3nOymeWZw6olfVCfFWATHQqIaLcRAUw3ROarLCPXi9wXTHGNLanOPxvGvmEW7HPr1sgs9dSSwhHB~c35ExSw__",
   },
   {
     id: "2",
@@ -186,7 +188,7 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 75,
     image:
-      "https://s3-alpha-sig.figma.com/img/bdee/9c5b/82d3af637f56f526634d05993f85c521?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=SmRI82ckyGq-B~eK55iiM-26jevsrFcfYCwaIGgtXPAH7pXevpIxAXjPJwvzdGFPuXOR2KYDoMh3T2sE~w4YNQ2-KjfRu90n2izM8Ev2CQAbJkf3zuy91yEVpOYrC4t8JV7CsJlluUCnL5IsOn3isp5ldVWn1T-jss3gJX3Xpxqa3GXgtmYnyEv047EI1b-itslUEcEAFQocqnZTxjVp4g6Epg584fCzwbyVG67P6~vtKEK~KXnoRhW87-H~Dc0YqE4vpTQl4cfTi9uuufQ1LdQAr-iEZTASYOh90AO7NBTXphzmSU3hFY29OB-fY4avCDw52xLuT106qTbZVpdACw__",
+      "https://s3-alpha-sig.figma.com/img/e897/bc01/416a1ad9e5862df12c5876b8fdaee1a6?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=pFgikxL9470x57nM7Pn3SkHxCnssEvasQYzr5~kISsIT3F12BGUvVYmJPJ7~NeRbgytBxDKXWdJB-wWmkNqWq01iYmYhIN9QIIrW7H3rwWYiPTTMqsitnIK9og5ppmIWg00EnaNI-hPD2iEXGy2hdy4jcNfWOD9Rj9A1GEkGjYXZkZrt7laU41mWmf0Yj4zgd7X6mWbR1mZzXzRNiBEVJ1PJJVNnOdc1P3heX~tOEQgWrCrjl12916Oi4SLDeHBmB1X77uIG-XTsUFqasb1yFReqSAIzpSDUT2Qu1CK79Nf9H31Wl9MhE9apjwi5BmYEm3GSOXcZ9OBtqf0DLlXD5Q__",
   },
   {
     id: "3",
@@ -196,7 +198,7 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 60,
     image:
-      "https://s3-alpha-sig.figma.com/img/2abc/9621/62a5490bdd30048513796d066a106cde?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Ln~B3h9XZwyq76a4gBIA2jlxOFqTmKLaNLlPO6a3z3QrfM2alpJT1dnGbByjqRX4B9zn6WfUYpYOwurHJPa5vjcE3PIZj4J4VpON0clArMVqj9nUwJUSafWvDP67~-9w23uJVHG-0bsP1pRzjV4UFtOqctraVw7fginyZ4iqlwgTc6o8rS81~UQWy6Lf8Ky66wZs7JKgQ8AMG9DabSGk83VPwnwq6c-OxwKzc4Bl2EZIiOrD1D48EONifWo-vY5f2EjWwHI9yrnRa2OLM1VLHFhpecWThLLT7Kp7LpTJoOQ2GA8mz99uuym4KBe11wM961zK9IhwuT3Z0vu~~Dy6Aw__",
+      "https://s3-alpha-sig.figma.com/img/191a/8594/3c2a441579e62bdf84ae773361cba7fc?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=tB9MytP9fEa-3WFDHakOaIdX9bTHuHkj2o8SHSUXg8CPMk6YUh4xvYWG6fuBFzIR54f5skX6X1FXTc2Wks6dNlixqS9yNuu2f7W3AH6LLwiNYWxoBur43LjsdiWuDfye5BAJE0xhv7v~vfaYCuu1jEd8bhnk2WLCKzmckMWoHi4brxaPO0DYobbo2fFO7PViTbd9FFafTpQB9QnWpaCqAvF8MwICvCZE7XxTLW-n6zLxqsuibTW0e-eU8vWH18LWSFEImYUYmx86hgDDdYXquG3WXjiZvEWy47rPWmiVp0VZd2~kquU5nGcFLaWKSLlpNdqwm61DsyndC-gDY5JKQg__",
   },
   {
     id: "4",
@@ -206,7 +208,7 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 50,
     image:
-      "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fi~XA7G2VOiyxi1ShqdIg94eDQ4oqLWJ4lunAuEgiTmPPhmA2V6PsetOVZLXnOhioqsNvbt70JYKiFBZiaJnz8LUfkgwUu7mLJIVxAj45PiiBEi~FyWAuIUsH6aA7sbTqdjb~EU2ehRcsaaGFOxuJgcUFprR5Sx~kkvy3UojSVcd8nHwncTMEtroYIOo5JlrAlntHxyh29wbjb5uG6ynoIXfPsRgaGIOyGFBiT5~TFwvs9rANNvvTIGCLPEzV~B5HQUt4WPnvalTNtHdbqNHFClgIoT3e6VkE5mVzIzwLxIibjJ4TSdMNhVrD9o~yKOigY~Fw-BUi7kGWuALb7ifHA__",
+      "https://s3-alpha-sig.figma.com/img/cfd1/d208/e55c89f7f064a81fab5a5894dc819723?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CfHQpBF6~dGTZFsWxvi90LtEKdCxmjdMciYLL2BVN8uxoBYvE3bnopCIOaHpl8jCs8T7EzXwXRc-gyufZV-T-UvucyfqI3IRSUm2MDVFLIGvp2KuHwB92JWikj3lWwts-M1N83bOVzvW6q6rUmtspetRjkWhP88CZGj~2pAYebGQnhSbR5m5v0btE3A4ejTyomle3eWO9-mrd~VzJy-xn-2ZtccVbDLwHsISzvlve02ankEZaySmLZTJODiL6-qmzbRGsdgZgIOCFP~CnURzm35rqCWKh8uLg2sZYMGzpnbzzD9vdLWyhK~8fWycyUAyhNPONU3Gl5e~XBo0nTWQqw__",
   },
   {
     id: "5",
@@ -226,7 +228,7 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 70,
     image:
-      "https://s3-alpha-sig.figma.com/img/9123/c4b0/15f0eca05d78fe0e23b672e1207791f9?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=OmEkwJYeHdoCkr-QRbVT~qrsU-9kZTx~5fc3BPmYzURwX6kWXVjF5uw3HZ3EbWoa77tH0KKMPEB042uA2avlkRSE5WxdgnHH2s8bsGWL6rj3d2C8oe1dDa49eyilEniC-2mLxp8sq15CvutpwfCl48CPQnb-jphgSgUt6F87L4H0QVylqcekV3~91Gb9BhZVFLrJKZ9ZbjaO6~bLPuLy4Hd-6QGvLORANB9JjSkGBJqv5beZ8EwHgTBPwte7x3rq6ZzFXcMegM5PjUd2tcOFZ1Cq3Khvus2XJpvR6RSyYAWIk6vTNotGhECpBVKH5vh6ouOULcEFX50JUq4wTeyOlg__",
+      "https://s3-alpha-sig.figma.com/img/9123/c4b0/15f0eca05d78fe0e23b672e1207791f9?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=nUrSgsZQwDguLxhg2LXOc5~zHsF9YFz0-P09cO7SY12o9GYsNocJ6sPwQzEZ-IPK2e0goWYWlFe4QBfHQR5XrwmD2E4IC~ujlqFJDExShrMte7TSnrdvAlRhdCG1z0p~U2pZUk53TxnDHzbFhCTp5b93NAvCsudHR6-jiq6B2iwU0Qjnfe1Ff27mkj~TWEnBLaPGY~-gvGlnIzDhrJmgQdnEuYwD-j7dIoX6SSxUdmUue6WrrPrvlNimyjunTwOAPlksq~oLv3kzdgNrdauKHe66Xj0xmBI42MNOglNVTKEsRe49tkxS5TKSazts7uMTy2xpFdNBT6fQTAXQPQprMA__",
   },
   {
     id: "7",
@@ -247,5 +249,131 @@ export const userTestData: IUser[] = [
     matchesPercentage: 85,
     image:
       "https://s3-alpha-sig.figma.com/img/46ae/4423/ac7b3f93af2508943645cbc3d35fdc62?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HsHhmJ3mzLZ18DxROIrQgMvnU2Nkz6Z6WDPA8rfSLqcSBgcEd77MgwZI0ubOqCaGRofMaU~kfiTXPhYIWO4GJ0-QHmWKEBe6weEFoCDhrDlXhfVfpxvaQds~Wj~Q~DdD-L4o77LjGF3uLR98Ti-XgpXQYwQxa0u45LRsdInq4q4mlq09dji1uk8bC6iWtNb6urwF7-W6Ck2IqnUUIBuJPYCioBh-yVUlTcBXb4mLVbsHSiFfyMTF~sOYSsHYgfwCmB35o-Hb~J1YeZIDiZpCZkr68oIc5nNuOtnbwdf7rh5n6bFq2mSUtg3lVUOsPXH7ZsM07gALQ1e-7g0stJJWUA__",
+  },
+];
+
+export const conversationTestData: IConversation[] = [
+  {
+    id: "msg-1",
+    from: userTestData[0], // Eddie
+    latestMessage: {
+      content: "Hey! How are you doing?",
+      createdAt: new Date("2025-03-20T10:30:00"),
+    },
+    unread: true,
+  },
+  {
+    id: "msg-2",
+    from: userTestData[5], // BaoBao
+    latestMessage: {
+      content: "Nice to meet you!",
+      createdAt: new Date("2025-03-20T09:15:00"),
+    },
+    unread: false,
+  },
+  {
+    id: "msg-3",
+    from: userTestData[2], // Chris
+    latestMessage: {
+      content: "Would you like to grab coffee sometime?",
+      createdAt: new Date("2025-03-19T18:45:00"),
+    },
+    unread: true,
+  },
+  {
+    id: "msg-4",
+    from: userTestData[3], // Finn
+    latestMessage: {
+      content: "I love your travel photos!",
+      createdAt: new Date("2025-03-19T15:20:00"),
+    },
+    unread: false,
+  },
+];
+
+export const messageDetailTestData: IMessage[] = [
+  {
+    id: "msg-detail-1",
+    content: "Hi Nadia, Baobao here! 👋",
+    createdAt: new Date("2025-03-20T17:34:00"),
+    sender: userTestData[5], // BaoBao
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-2",
+    content: "Hey Baobao, Nice to meet you! 😊",
+    createdAt: new Date("2025-03-20T17:35:00"),
+    sender: currentUser, // Current User
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-3",
+    content: "You too! Seems we have some things in common here",
+    createdAt: new Date("2025-03-20T17:36:00"),
+    sender: userTestData[5], // BaoBao
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-4",
+    content: "So what song are you currently listening to?",
+    createdAt: new Date("2025-03-20T17:00:00"),
+    sender: currentUser, // Current User
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-5",
+    content: "Been listening to John Mayer's new song, Last Train Home",
+    createdAt: new Date("2025-03-20T17:01:00"),
+    sender: userTestData[5], // BaoBao
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-6",
+    content: "Oh nice! I love John Mayer too",
+    createdAt: new Date("2025-03-20T17:02:00"),
+    sender: currentUser, // Current User
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-7",
+    content: "What's your favorite album of his?",
+    createdAt: new Date("2025-03-20T17:03:00"),
+    sender: userTestData[5], // BaoBao
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-8",
+    content: "Continuum is definitely my favorite! You?",
+    createdAt: new Date("2025-03-20T17:04:00"),
+    sender: currentUser, // Current User
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-9",
+    content: "Same here! Gravity is such a masterpiece",
+    createdAt: new Date("2025-03-20T17:05:00"),
+    sender: userTestData[5], // BaoBao
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-10",
+    content: "Would you like to go to his concert together sometime?",
+    createdAt: new Date("2025-03-20T17:06:00"),
+    sender: currentUser, // Current User
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-11",
+    content: "That would be amazing! Let's plan for it! 🎸",
+    createdAt: new Date("2025-03-20T17:07:00"),
+    sender: userTestData[5], // BaoBao
+    conversationId: "msg-2",
+  },
+  {
+    id: "msg-detail-12",
+    content: "Nice to meet you!",
+    createdAt: new Date("2025-03-20T17:08:00"),
+    sender: userTestData[5], // BaoBao
+    conversationId: "msg-2",
   },
 ];
