@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lovemania - Web3 Dating Platform 💘
 
-## Getting Started
+## 🌟 Overview
 
-First, run the development server:
+Lovemania is a revolutionary Web3 dating platform built on SOMNIA blockchain, combining decentralized technology with modern dating experiences. Our platform leverages blockchain technology, AI-powered matchmaking, and community governance to create meaningful connections in the Web3 space.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔐 Soulbound Profiles (SBTs)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Unique, non-transferable profile tokens
+- Eliminates bots and catfishing
+- Authentic user verification
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 💝 SocialFi & NFT Gifting
 
-## Learn More
+- On-chain social interactions
+- NFT gift exchanges
+- Engagement-based social features
 
-To learn more about Next.js, take a look at the following resources:
+### 🤖 AI-Powered Matchmaking
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Smart matching algorithms
+- On-chain engagement analysis
+- Social graph-based recommendations
+- Behavioral data integration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚡ Technical Highlights
 
-## Deploy on Vercel
+- Built on SOMNIA blockchain
+- 400,000+ TPS (Transactions Per Second)
+- Sub-second finality
+- Seamless user experience
+- Cost-efficient transactions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Getting Started
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Prerequisites
+
+- Web3 wallet
+- Modern web browser
+- Mobile device for PWA support
+
+### Installation
+
+1. Visit [Lovemania.io](https://www.lovemania.io)
+2. Connect your Web3 wallet
+3. Create your Soulbound Profile
+4. Start exploring matches!
+
+## 📱 Availability
+
+- PWA (Progressive Web App) - Available Now
+- Mobile App - Coming Soon
+
+## 🔗 Links
+
+- [Website](https://www.lovemania.io)
+- [Twitter/X](https://x.com/lovemania_0x)
+
+## 📧 Contact
+
+For inquiries, reach out to us at: devtumilabs@gmail.com
+
+## 🛠️ Built with Love by TumiLabs
+
+© 2025 TumiLabs. All rights reserved.
+
+---
+
+&lt;div align="center"&gt; &lt;strong&gt;Ready to Meet Your Web3 Soulmate? 💘&lt;/strong&gt; &lt;/div&gt;
