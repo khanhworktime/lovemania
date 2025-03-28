@@ -1,10 +1,13 @@
 "use client";
 
+import { basicClient } from "@/providers/thirdweb.provider";
 import PhotoUploader from "@/shared-components/ui/PhotoUploader";
 import { Button } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
+import { useEffect, useState } from "react";
+import { upload } from "thirdweb/storage";
 import { useOnboarding } from "../components/onboarding.provider";
-import { useState, useEffect } from "react";
+import { getFileFromBase64 } from "@/utils/converBase64toFile";
 
 export default function ProfilePhotoPage() {
   const router = useTransitionRouter();
@@ -28,7 +31,30 @@ export default function ProfilePhotoPage() {
     }
   };
 
-  console.log(photos);
+  // Upload photos to IPFS
+
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleImageUpload = async () => {
+    const image = getFileFromBase64(photos[0], "imageTest");
+    setIsUploading(true);
+    const result = await upload({
+      client: basicClient,
+      files: [image],
+      metadata: {
+        name: image.name,
+        description: "This is a test image",
+        image: image.name,
+      },
+    });
+
+    setIsUploading(false);
+    if (!result) return;
+
+    updateProfileData({ photosIpfs: [result] });
+  };
+
+  const isDisabled = !photos[0] || isUploading;
 
   return (
     <>
@@ -38,6 +64,7 @@ export default function ProfilePhotoPage() {
       <div className="grid-cols-3 grid gap-2">
         <div className="col-span-2 row-span-2">
           <PhotoUploader
+            initialImage={photos[0]}
             onImageChange={(photo) => handlePhotoUpload(photo, 0)}
           />
         </div>
@@ -52,10 +79,14 @@ export default function ProfilePhotoPage() {
           className="w-full font-chalet"
           size="lg"
           radius="full"
-          onPress={() => router.push("/home")}
-          disabled={!photos[0]}
+          onPress={async () => {
+            await handleImageUpload();
+            router.push(`/onboarding/profile-finalize`);
+          }}
+          disabled={isDisabled}
           variant="solid"
-          color={!photos[0] ? "default" : "primary"}
+          color={isDisabled ? "default" : "primary"}
+          isLoading={isUploading}
         >
           Next
         </Button>

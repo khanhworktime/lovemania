@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRightIcon, ChevronLeftIcon } from "@/assets/icons";
+import { ChevronLeftIcon } from "@/assets/icons";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
 import {
   Button,
@@ -14,8 +14,8 @@ import {
 } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
-import { onboardingSteps } from "../steps";
 import { useConnectedWallets } from "thirdweb/react";
+import { onboardingSteps } from "../steps";
 
 export default function Onboarding({
   children,
@@ -103,22 +103,24 @@ export default function Onboarding({
       )}
 
       <div className="flex-grow relative">{children}</div>
-      <div className="sticky bottom-0 space-y-4">
-        <div className="flex justify-between items-end gap-2">
-          <span className="font-bold text-lg font-chalet">
-            {currentStep}
-            <span className="text-secondary-300">/5</span>
-          </span>
+      {currentStep !== onboardingSteps["profile-finalize"] && (
+        <div className="sticky bottom-0 space-y-4">
+          <div className="flex justify-between items-end gap-2">
+            <span className="font-bold text-lg font-chalet">
+              {currentStep}
+              <span className="text-secondary-300">/5</span>
+            </span>
+          </div>
+          <Progress
+            aria-label="Onboarding progress"
+            value={(currentStep / 5) * 100}
+            classNames={{
+              indicator: "bg-secondary",
+              track: "bg-secondary-200",
+            }}
+          />
         </div>
-        <Progress
-          aria-label="Onboarding progress"
-          value={(currentStep / 5) * 100}
-          classNames={{
-            indicator: "bg-secondary",
-            track: "bg-secondary-200",
-          }}
-        />
-      </div>
+      )}
     </div>
   );
 }

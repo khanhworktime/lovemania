@@ -4,9 +4,9 @@ import Thumbnail01 from "@/assets/backgrounds/login-1.background.png";
 import Thumbnail02 from "@/assets/backgrounds/login-2.background.png";
 import { useGSAP } from "@gsap/react";
 import { Button } from "@heroui/react";
+import gsap from "gsap";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
-import gsap from "gsap";
 import { useRef, useState } from "react";
 
 export default function GreetingPage() {

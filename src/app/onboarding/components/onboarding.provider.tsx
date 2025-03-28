@@ -1,15 +1,17 @@
 "use client";
 
 import { CalendarDate } from "@internationalized/date";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
+import { useSessionStorage } from "usehooks-ts";
 
 interface ProfileFormData {
   name: string;
-  dob: CalendarDate | null;
+  dob: string | null;
   definition: string;
   definitionDescription: string;
   interests: string[];
   photos: string[];
+  photosIpfs: string[];
 }
 
 interface OnboardingContextType {
@@ -24,6 +26,7 @@ const defaultProfileData: ProfileFormData = {
   definitionDescription: "man",
   interests: [],
   photos: [],
+  photosIpfs: [],
 };
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -43,8 +46,10 @@ export function OnboardingProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [profileData, setProfileData] =
-    useState<ProfileFormData>(defaultProfileData);
+  const [profileData, setProfileData] = useSessionStorage<ProfileFormData>(
+    "profileData",
+    defaultProfileData
+  );
 
   const updateProfileData = (data: Partial<ProfileFormData>) => {
     setProfileData((prev) => ({

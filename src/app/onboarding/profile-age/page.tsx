@@ -1,27 +1,38 @@
 "use client";
 
-import { Button, CalendarDate, DateInput } from "@heroui/react";
+import { Button, DateInput, DateValue } from "@heroui/react";
 import { useOnboarding } from "../components/onboarding.provider";
 import { ArrowRightIcon } from "lucide-react";
 import { onboardingSteps } from "../steps";
 import { useTransitionRouter } from "next-view-transitions";
 import moment from "moment";
+import { CalendarDate } from "@internationalized/date";
 
 export default function ProfileAgePage() {
   const router = useTransitionRouter();
 
   const { profileData, updateProfileData } = useOnboarding();
 
-  const handleAgeChange = (dob: CalendarDate | null) => {
+  const handleAgeChange = (dob: DateValue | null) => {
     if (!dob) return;
 
-    updateProfileData({ dob });
+    updateProfileData({
+      dob: moment(dob).add(-1, "month").format("YYYY-MM-DD"),
+    });
   };
 
   const isAgeValid = profileData.dob
     ? moment().diff(moment(profileData.dob), "years") >= 18 &&
       moment().diff(moment(profileData.dob), "years") <= 100
     : false;
+
+  const transformedDob = profileData.dob
+    ? {
+        year: moment(profileData.dob).year(),
+        month: moment(profileData.dob).month() + 1,
+        day: moment(profileData.dob).date(),
+      }
+    : null;
 
   return (
     <>
@@ -37,7 +48,15 @@ export default function ProfileAgePage() {
         classNames={{
           inputWrapper: "bg-white",
         }}
-        value={profileData.dob}
+        value={
+          transformedDob
+            ? new CalendarDate(
+                transformedDob.year,
+                transformedDob.month,
+                transformedDob.day
+              )
+            : null
+        }
         onChange={handleAgeChange}
       />
       <Button

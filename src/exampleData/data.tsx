@@ -3,6 +3,7 @@ import { IStoryLine } from "@/interfaces/storyLine.model";
 import { IUser } from "@/interfaces/user.model";
 
 import { IConversation, IMessage } from "@/interfaces/message.model";
+import { IToken } from "@/interfaces/token.model";
 
 export const storyLineTestData: IStoryLine[] = [
   {
@@ -375,5 +376,24 @@ export const messageDetailTestData: IMessage[] = [
     createdAt: new Date("2025-03-20T17:08:00"),
     sender: userTestData[5], // BaoBao
     conversationId: "msg-2",
+  },
+];
+
+export const tokens: IToken[] = [
+  {
+    name: "STT",
+    symbol: "STT",
+    image: "https://somnia.network/favicon.ico",
+  },
+  {
+    name: "Ethereum",
+    symbol: "ETH",
+    image: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png",
+  },
+  {
+    name: "Tether",
+    symbol: "USDT",
+    image:
+      "https://smithii.io/wp-content/uploads/2023/04/png-transparent-usdt-cryptocurrencies-icon-thumbnail.png",
   },
 ];

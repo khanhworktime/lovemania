@@ -7,11 +7,13 @@ import { XIcon } from "lucide-react";
 interface PhotoUploaderProps {
   initialImage?: string;
   onImageChange?: (imageData: string | null) => void;
+  onImageFileChange?: (file: File | null) => void;
 }
 
 const PhotoUploader: React.FC<PhotoUploaderProps> = ({
   initialImage,
   onImageChange,
+  onImageFileChange,
 }) => {
   const [image, setImage] = useState<string | null>(initialImage || null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -19,6 +21,7 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+
       const reader = new FileReader();
       reader.onload = (e) => {
         const imageData = e.target?.result as string;
@@ -26,6 +29,7 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = ({
         onImageChange?.(imageData);
       };
       reader.readAsDataURL(file);
+      onImageFileChange?.(file);
     }
   };
 
@@ -36,6 +40,7 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = ({
   const handleDelete = () => {
     setImage(null);
     onImageChange?.(null);
+    onImageFileChange?.(null);
   };
 
   return (

@@ -9,11 +9,11 @@ import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { useTransitionRouter } from "next-view-transitions";
 import { useAutoConnect } from "thirdweb/react";
-import { client } from "@/providers/thirdweb.provider";
+import { basicClient } from "@/providers/thirdweb.provider";
 
 export function SlashScreen() {
   const { data: autoConnected } = useAutoConnect({
-    client,
+    client: basicClient,
   });
 
   // Upload the viewport

@@ -6,7 +6,12 @@ const nextConfig = {
   //   return config;
   // },
   images: {
-    remotePatterns: [{ hostname: "s3-alpha-sig.figma.com" }],
+    remotePatterns: [
+      { hostname: "s3-alpha-sig.figma.com" },
+      { hostname: "s2.coinmarketcap.com" },
+      { hostname: "somnia.network", protocol: "https" },
+      { hostname: "smithii.io", protocol: "https" },
+    ],
   },
 };
 

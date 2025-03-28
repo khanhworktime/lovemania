@@ -1,10 +1,10 @@
 "use client";
 
-import { Button, Input } from "@heroui/react";
-import { useOnboarding } from "../components/onboarding.provider";
 import { ArrowRightIcon } from "@/assets/icons";
-import { onboardingSteps } from "../steps";
+import { Button, Input } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
+import { useOnboarding } from "../components/onboarding.provider";
+import { onboardingSteps } from "../steps";
 
 export default function ProfileNamePage() {
   const router = useTransitionRouter();
@@ -33,7 +33,6 @@ export default function ProfileNamePage() {
         value={profileData.name}
         onChange={handleNameChange}
       />
-
       <Button
         size="lg"
         radius="full"
