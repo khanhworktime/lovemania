@@ -50,8 +50,8 @@ export default function LoginPage() {
         return;
       }
 
-      setIsLoading(false);
-      router.push("/home");
+      // setIsLoading(false);
+      // router.push("/home");
     }
   };
 
