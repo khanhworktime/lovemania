@@ -47,11 +47,12 @@ export default function LoginPage() {
       if (sbt.length === 0) {
         setIsLoading(false);
         router.push("/onboarding/profile-name");
+        return;
       }
-    }
 
-    setIsLoading(false);
-    router.push("/home");
+      setIsLoading(false);
+      router.push("/home");
+    }
   };
 
   return (
