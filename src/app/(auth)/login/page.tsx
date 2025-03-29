@@ -32,23 +32,25 @@ export default function LoginPage() {
 
     // SBT setup
     if (wallet) {
-      const account = wallet.getAccount();
-      if (!account) {
-        setIsLoading(false);
-        router.push("/onboarding/profile-name");
-        return;
-      }
+      setIsLoading(false);
+      router.push("/onboarding/profile-name");
+      // const account = wallet.getAccount();
+      // if (!account) {
+      //   setIsLoading(false);
+      //   router.push("/onboarding/profile-name");
+      //   return;
+      // }
 
-      const sbt = await getOwnedNFTs({
-        contract: getNftProfileContract({ client: basicClient }),
-        owner: account.address,
-      });
+      // const sbt = await getOwnedNFTs({
+      //   contract: getNftProfileContract({ client: basicClient }),
+      //   owner: account.address,
+      // });
 
-      if (sbt.length === 0) {
-        setIsLoading(false);
-        router.push("/onboarding/profile-name");
-        return;
-      }
+      // if (sbt.length === 0) {
+      //   setIsLoading(false);
+      //   router.push("/onboarding/profile-name");
+      //   return;
+      // }
 
       // setIsLoading(false);
       // router.push("/home");
