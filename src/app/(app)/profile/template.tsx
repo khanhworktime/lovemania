@@ -1,4 +1,5 @@
 "use client";
+import { OnboardingProvider } from "@/app/onboarding/components/onboarding.provider";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
 
 export default function ProfileTemplate({
@@ -8,5 +9,5 @@ export default function ProfileTemplate({
 }) {
   useBodyAppColor("#F9FAFB");
 
-  return <>{children}</>;
+  return <OnboardingProvider>{children}</OnboardingProvider>;
 }

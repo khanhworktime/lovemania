@@ -16,6 +16,7 @@ import { useTransitionRouter } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { useConnectedWallets } from "thirdweb/react";
 import { onboardingSteps } from "../steps";
+import { useOnboarding } from "./onboarding.provider";
 
 export default function Onboarding({
   children,
@@ -47,6 +48,8 @@ export default function Onboarding({
       router.push(`/onboarding/${onboardingSteps[currentStep - 1]}`);
     }
   };
+
+  const { updateProfileData } = useOnboarding();
 
   return (
     <div className="flex flex-col gap-6 h-full">
@@ -87,6 +90,15 @@ export default function Onboarding({
                   <Button
                     color="danger"
                     onPress={async () => {
+                      updateProfileData({
+                        name: "",
+                        dob: null,
+                        definition: "",
+                        definitionDescription: "",
+                        interests: [],
+                        photos: [],
+                        photosIpfs: [],
+                      });
                       for (const wallet of connectedWallets) {
                         await wallet.disconnect();
                       }

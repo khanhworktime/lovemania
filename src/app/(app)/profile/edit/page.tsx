@@ -9,11 +9,22 @@ import { useForm } from "@tanstack/react-form";
 import { profileValidator, type Profile } from "@/validators/profile.validator";
 import { parseDate } from "@internationalized/date";
 import { TypeOf } from "zod";
-
+import { getOwnedNFTs } from "thirdweb/extensions/erc721";
+import { basicClient } from "@/providers/thirdweb.provider";
+import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
+import { getNftProfileContract } from "@/services/contracts/nftProfile";
+import { useState, useEffect } from "react";
+import { NFT } from "thirdweb";
+import moment from "moment";
+import { resolveScheme } from "thirdweb/storage";
+import { useProfileSBT } from "@/hooks/UseProfile";
 // const profileDonePercentage = 70;
 
 export default function EditProfilePage() {
   const router = useTransitionRouter();
+
+  const account = useGetCurrentUser();
+  const { sbt, isLoading } = useProfileSBT();
 
   const formControl = useForm({
     defaultValues: {
@@ -35,6 +46,22 @@ export default function EditProfilePage() {
     },
   });
 
+  useEffect(() => {
+    if (sbt) {
+      formControl.setFieldValue("name", sbt.metadata.name ?? "");
+      formControl.setFieldValue(
+        "gender",
+        sbt.metadata.properties?.gender as string
+      );
+      formControl.setFieldValue(
+        "birthday",
+        sbt.metadata.properties?.birthday
+          ? moment(sbt.metadata.properties?.birthday).add(1, "day").toDate()
+          : null
+      );
+    }
+  }, [sbt]);
+
   return (
     <div className="h-fit flex flex-col gap-y-6 [&>*]:px-4 relative">
       <div className="flex justify-between items-center gap-x-2 pt-4 pb-2 sticky top-0 inset-x-0 z-50 bg-white/20 backdrop-blur-sm">
@@ -55,7 +82,14 @@ export default function EditProfilePage() {
 
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-2 row-span-2">
-          <PhotoUploader />
+          {sbt?.metadata.image && (
+            <PhotoUploader
+              initialImage={resolveScheme({
+                client: basicClient,
+                uri: sbt?.metadata.image,
+              })}
+            />
+          )}
         </div>
         <PhotoUploader />
         <PhotoUploader />

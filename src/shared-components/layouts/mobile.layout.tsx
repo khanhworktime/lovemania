@@ -1,6 +1,5 @@
 import { env } from "@/constants/env";
 import { somniaChain } from "@/constants/somniaChain";
-import { somniaWallet } from "@/constants/somniaWallet";
 import { basicClient } from "@/providers/thirdweb.provider";
 
 import { AutoConnect } from "thirdweb/react";

@@ -1,35 +1,37 @@
 "use client";
-import { currentUser, tokens } from "@/exampleData/data";
+import { tokens } from "@/exampleData/data";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
+import { useProfileSBT } from "@/hooks/UseProfile";
+import { basicClient } from "@/providers/thirdweb.provider";
 import { WalletShortcut } from "@/shared-components/ui/Wallet/WalletShortcut";
-import { TokenItem } from "./components/TokenItem";
-import {
-  Avatar,
-  Badge,
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-} from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import {
   ChevronLeftIcon,
   ChevronRight,
   ChevronUp,
   Download,
   Send,
-  ShoppingBag,
   ShoppingCart,
 } from "lucide-react";
 import { useTransitionRouter } from "next-view-transitions";
+import { resolveScheme } from "thirdweb/storage";
+import { TokenItem } from "./components/TokenItem";
 
 export default function WalletPage() {
   // Page transitions
   const router = useTransitionRouter();
   useBodyAppColor("#4B164C");
-
   // Balance
-
+  const { sbt } = useProfileSBT();
+  const profile = {
+    image: sbt?.metadata.image
+      ? resolveScheme({
+          client: basicClient,
+          uri: sbt?.metadata.image || "",
+        })
+      : null,
+    name: sbt?.metadata.name,
+  };
   return (
     <div className="flex-1 relative h-screen w-full flex flex-col items-stretch">
       <div className="flex justify-between items-start gap-x-2 pt-4 pb-2 px-6 sticky top-0 inset-x-0 z-50  backdrop-blur-sm text-white">
@@ -43,15 +45,17 @@ export default function WalletPage() {
           <ChevronLeftIcon />
         </Button>
         <div className="flex flex-col flex-grow items-center">
-          <Avatar src={currentUser?.image} className="size-16" radius="full" />
+          <Avatar
+            src={profile.image || undefined}
+            className="size-16"
+            radius="full"
+          />
           <WalletShortcut
             classNames={{
               button: "text-white",
             }}
           />
-          <h2 className="text-white text-lg font-medium">
-            {currentUser?.name}
-          </h2>
+          <h2 className="text-white text-lg font-medium">{profile.name}</h2>
         </div>
         <div className="size-[40px]" />
       </div>

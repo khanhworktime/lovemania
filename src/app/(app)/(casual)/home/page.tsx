@@ -1,20 +1,33 @@
 "use client";
 import { FilterIcon, NewLoveIcon } from "@/assets/icons";
 import Logo from "@/assets/logos/lovemania.logo.png";
+import { useProfileSBT } from "@/hooks/UseProfile";
+import { basicClient } from "@/providers/thirdweb.provider";
 import { Avatar, Button, cn, Tab, Tabs } from "@heroui/react";
 import { BellDotIcon } from "lucide-react";
+import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
 import { useState } from "react";
+import { resolveScheme } from "thirdweb/storage";
 import { Finder } from "./components/Segments/finder";
 import { NewsFeed } from "./components/Segments/matches";
 import { StoryLine } from "./components/StoryLine";
-import { currentUser } from "@/exampleData/data";
-import { useTransitionRouter } from "next-view-transitions";
 
 export default function HomePage() {
   const router = useTransitionRouter();
   // Current tabs controllers
   const [currentTab, setCurrentTab] = useState<string | number>("$.0");
+
+  const { sbt, isLoading } = useProfileSBT();
+
+  const profile = {
+    image: sbt?.metadata.image
+      ? resolveScheme({
+          client: basicClient,
+          uri: sbt?.metadata.image || "",
+        })
+      : null,
+  };
 
   return (
     <div className="flex flex-col gap-y-4 ">
@@ -27,13 +40,15 @@ export default function HomePage() {
             <h1 className="text-2xl font-medium font-chalet">lovemania</h1>
           </div>
         ) : (
-          <Avatar
-            src={currentUser.image}
-            className="size-12 cursor-pointer"
-            radius="full"
-            isBordered
-            onClick={() => router.push("/profile")}
-          />
+          profile.image && (
+            <Avatar
+              src={profile.image}
+              className="size-12 cursor-pointer"
+              radius="full"
+              isBordered
+              onClick={() => router.push("/profile")}
+            />
+          )
         )}
 
         {/* Notifications */}

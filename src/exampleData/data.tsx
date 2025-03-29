@@ -7,28 +7,15 @@ import { IToken } from "@/interfaces/token.model";
 
 export const storyLineTestData: IStoryLine[] = [
   {
-    id: 1,
-    userId: "1",
-    userName: "My Story",
-    userAvatar:
-      "https://s3-alpha-sig.figma.com/img/738e/b596/db2e9182ab809806015b8b2a724f9a22?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CrcVBBBPjUFm~kTP9-r2saiuhhb~KQr4zGYy7cwTQjVfip~WkZ5i7oNMkbczobH-pb~9K5r6eIVprH12zEE6B0-yG9z0bMNPAVlZFciHGyi03B~UkLmLWiiu~kvH5iEOWcGkeI24n-dsKr9amLSWQIj7e9IMrbE-ZPLpvea09LMNRD0cIhbmcJSoLt7Tf2m4ZRdW2J~7E5sTHFpnADBnYDExP-Ik867KDNHPIMzhS~yb92C9Gd1EFZKLcXIcmbkRbt0t9ms2nwdx03iI77~ZmKBTPrYrplJbpaLaKmTRV0LlbIYxgv~-Qwom~zix-TXDgO3cQa06aeFENoil4iystg__",
-    storyLine: [
-      {
-        image:
-          "https://s3-alpha-sig.figma.com/img/738e/b596/db2e9182ab809806015b8b2a724f9a22?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CrcVBBBPjUFm~kTP9-r2saiuhhb~KQr4zGYy7cwTQjVfip~WkZ5i7oNMkbczobH-pb~9K5r6eIVprH12zEE6B0-yG9z0bMNPAVlZFciHGyi03B~UkLmLWiiu~kvH5iEOWcGkeI24n-dsKr9amLSWQIj7e9IMrbE-ZPLpvea09LMNRD0cIhbmcJSoLt7Tf2m4ZRdW2J~7E5sTHFpnADBnYDExP-Ik867KDNHPIMzhS~yb92C9Gd1EFZKLcXIcmbkRbt0t9ms2nwdx03iI77~ZmKBTPrYrplJbpaLaKmTRV0LlbIYxgv~-Qwom~zix-TXDgO3cQa06aeFENoil4iystg__",
-      },
-    ],
-  },
-  {
     id: 2,
     userId: "2",
     userName: "Selena",
     userAvatar:
-      "https://s3-alpha-sig.figma.com/img/7905/b70b/9309994802ad82f715678dba7b3f15af?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=GwkUez0aUYFoQyIqVD~Q3ZhhXTUuY0P-Q-MelotFPtUasCbwO-pRLrhNPZ~oIAT2QpaQQkyHNal2MHpS9ejcs~SRBegQ-dzXBSocvyUkqjmNLiKYk8zsZ7VhXvCf9EuokEvkQSakElyHr70rLHqMF~rdcutokHlwgHu0lFMZvQD5Rlx7lD1GmWdSlS7whgwuA1k0caAF2A-EqFERkZphK-fm~eaESV60mmwLMR7Ryl3cVB7Z-FfQlWUGVZEQExmjmPJQzmFHI5eDIGmAwj6F3xRd2G84wD5B2ACB1FGzXmIqrhh1n33S9Ovmg~Xt17vhRBIVXsiTrWwj-sOabS08-Q__",
+      "https://s3-alpha-sig.figma.com/img/7905/b70b/9309994802ad82f715678dba7b3f15af?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=p85AlXWRRT04mS4ORkes0TLS7QGWaoBH0T-lArsAIQUtYaXowd3-moAI~UEhS8airE6ACemtetTyvvQiWS3FSUxl9EEdGBRP~Vz3Ipck0LwVVVBqW5oWZWja8x7UlWOkN52xN7G~dYUS5BORhztRXV7KZdon1rHIP3v-EXThgchjEM5uS-WCtsuBu4XQHREpKxwrvASksmKK5kJkJK4tk1CzodlCwIR1j4pU4gUZH30Z0FpPgqYFJxE3HUxrw~LQZEZVxv~OqkevAO2qOv~zf4R5kaV3HCJanC-t1V3JA6AHmReCsq6OsUgPwrwO34roAvI~786~tusUE0bJAYEwmw__",
     storyLine: [
       {
         image:
-          "https://s3-alpha-sig.figma.com/img/7905/b70b/9309994802ad82f715678dba7b3f15af?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=GwkUez0aUYFoQyIqVD~Q3ZhhXTUuY0P-Q-MelotFPtUasCbwO-pRLrhNPZ~oIAT2QpaQQkyHNal2MHpS9ejcs~SRBegQ-dzXBSocvyUkqjmNLiKYk8zsZ7VhXvCf9EuokEvkQSakElyHr70rLHqMF~rdcutokHlwgHu0lFMZvQD5Rlx7lD1GmWdSlS7whgwuA1k0caAF2A-EqFERkZphK-fm~eaESV60mmwLMR7Ryl3cVB7Z-FfQlWUGVZEQExmjmPJQzmFHI5eDIGmAwj6F3xRd2G84wD5B2ACB1FGzXmIqrhh1n33S9Ovmg~Xt17vhRBIVXsiTrWwj-sOabS08-Q__",
+          "https://s3-alpha-sig.figma.com/img/7905/b70b/9309994802ad82f715678dba7b3f15af?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=p85AlXWRRT04mS4ORkes0TLS7QGWaoBH0T-lArsAIQUtYaXowd3-moAI~UEhS8airE6ACemtetTyvvQiWS3FSUxl9EEdGBRP~Vz3Ipck0LwVVVBqW5oWZWja8x7UlWOkN52xN7G~dYUS5BORhztRXV7KZdon1rHIP3v-EXThgchjEM5uS-WCtsuBu4XQHREpKxwrvASksmKK5kJkJK4tk1CzodlCwIR1j4pU4gUZH30Z0FpPgqYFJxE3HUxrw~LQZEZVxv~OqkevAO2qOv~zf4R5kaV3HCJanC-t1V3JA6AHmReCsq6OsUgPwrwO34roAvI~786~tusUE0bJAYEwmw__",
       },
     ],
   },
@@ -37,11 +24,11 @@ export const storyLineTestData: IStoryLine[] = [
     userId: "3",
     userName: "Simon",
     userAvatar:
-      "https://s3-alpha-sig.figma.com/img/0130/d345/6ebd49db57fd88c39f7795f97c76b681?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fLHQnTLN~vvPxK0WhW4T6xHbh0IefllV9~Pk82nF~EP0LxKZ8a1uCGgXqrH6cwmycxNmhTJtk2ZCJs~4Fn7m9KtdWqSqMx0eh6QP75N-L0PIhGFfJ7KYDY0uSp5S0ZF-WP7Vz5p6Ae9KKryV4HjVRw5-abJx-avYlrNwTxlZuT~D1pQSwmqZNPEQDnTlNxxEovYS688gSuO~B~7uBX78c87UWgBa5tX-wK0QcG8ZASbWmrI41nzNl~S9DkQ2AjEi3I4heqYpwQCklWqGJxAX5zwb2JBzENfPQpYX9zYU6tnV5xigtQ2SKizi-E5n~rek44Vx38AS6NUe5xyvf0LwZQ__",
+      "https://s3-alpha-sig.figma.com/img/0130/d345/6ebd49db57fd88c39f7795f97c76b681?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h5HBE6wVLB4iJcX48eFNaXcetNn-GHTGLsKtt0WWJL43z1was2j~82Fp0E~NgE3IVEBUfXE7~-mV9rD~ipE9K3cY0MRmTPpRdbsFKmU-ZO4ULbHRZzbE5dmr2OqEbx17FMozvzVPHwVyFiz3pZOwrcP9dVOccz0LnOC1gmUj-np3uTFSbLWt1Vo2zUSv8uxNDDGPYvDxy9g9~CP~srotFjjVx9KuKB55mTOaBUJZgErqMHn98K7ogmnfiVJtDG0CmWh3o1ke0I7h8r7fHwk2tJTyjr3kWWkmZAOlHwhu6UnMDpPpmbCEH8JRnzpWHZmZoIe9q6LxGLI0BeWgj4~LMw__",
     storyLine: [
       {
         image:
-          "https://s3-alpha-sig.figma.com/img/0130/d345/6ebd49db57fd88c39f7795f97c76b681?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fLHQnTLN~vvPxK0WhW4T6xHbh0IefllV9~Pk82nF~EP0LxKZ8a1uCGgXqrH6cwmycxNmhTJtk2ZCJs~4Fn7m9KtdWqSqMx0eh6QP75N-L0PIhGFfJ7KYDY0uSp5S0ZF-WP7Vz5p6Ae9KKryV4HjVRw5-abJx-avYlrNwTxlZuT~D1pQSwmqZNPEQDnTlNxxEovYS688gSuO~B~7uBX78c87UWgBa5tX-wK0QcG8ZASbWmrI41nzNl~S9DkQ2AjEi3I4heqYpwQCklWqGJxAX5zwb2JBzENfPQpYX9zYU6tnV5xigtQ2SKizi-E5n~rek44Vx38AS6NUe5xyvf0LwZQ__",
+          "https://s3-alpha-sig.figma.com/img/0130/d345/6ebd49db57fd88c39f7795f97c76b681?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h5HBE6wVLB4iJcX48eFNaXcetNn-GHTGLsKtt0WWJL43z1was2j~82Fp0E~NgE3IVEBUfXE7~-mV9rD~ipE9K3cY0MRmTPpRdbsFKmU-ZO4ULbHRZzbE5dmr2OqEbx17FMozvzVPHwVyFiz3pZOwrcP9dVOccz0LnOC1gmUj-np3uTFSbLWt1Vo2zUSv8uxNDDGPYvDxy9g9~CP~srotFjjVx9KuKB55mTOaBUJZgErqMHn98K7ogmnfiVJtDG0CmWh3o1ke0I7h8r7fHwk2tJTyjr3kWWkmZAOlHwhu6UnMDpPpmbCEH8JRnzpWHZmZoIe9q6LxGLI0BeWgj4~LMw__",
       },
     ],
   },
@@ -50,11 +37,11 @@ export const storyLineTestData: IStoryLine[] = [
     userId: "4",
     userName: "Fabian",
     userAvatar:
-      "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fi~XA7G2VOiyxi1ShqdIg94eDQ4oqLWJ4lunAuEgiTmPPhmA2V6PsetOVZLXnOhioqsNvbt70JYKiFBZiaJnz8LUfkgwUu7mLJIVxAj45PiiBEi~FyWAuIUsH6aA7sbTqdjb~EU2ehRcsaaGFOxuJgcUFprR5Sx~kkvy3UojSVcd8nHwncTMEtroYIOo5JlrAlntHxyh29wbjb5uG6ynoIXfPsRgaGIOyGFBiT5~TFwvs9rANNvvTIGCLPEzV~B5HQUt4WPnvalTNtHdbqNHFClgIoT3e6VkE5mVzIzwLxIibjJ4TSdMNhVrD9o~yKOigY~Fw-BUi7kGWuALb7ifHA__",
+      "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iQYYEFgun9warzF-pPzJCNKMgHCL3d6wAhIDnRj0Zh9W~hdyh6P-gIodRuBO-HqiUuf0PnzuBTA345Xx1wLeLgEbZ1Gc~uzLq8Y~~EPUvGmkFRHNMzXLj1GJ6yfF~ST5HVO7-76WTAMDk5gFsLRoP3FlGgnoSdksTnfbWK5isRuLhNo0j9hqam5zmetJrGLx9YWvDgATQAA5ROCeRJw04M46YZHfPvNB7b2211q9MC4IpGpf5QvBFx~P2XOMTuJmiAzgJXLMmZel7ia359bdYE1R3QcndSDZjktD41Ci~xQFpeKwC~Xpu1z2sD~9Mw-E09GphGw44hClhtPKiWxUhQ__",
     storyLine: [
       {
         image:
-          "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fi~XA7G2VOiyxi1ShqdIg94eDQ4oqLWJ4lunAuEgiTmPPhmA2V6PsetOVZLXnOhioqsNvbt70JYKiFBZiaJnz8LUfkgwUu7mLJIVxAj45PiiBEi~FyWAuIUsH6aA7sbTqdjb~EU2ehRcsaaGFOxuJgcUFprR5Sx~kkvy3UojSVcd8nHwncTMEtroYIOo5JlrAlntHxyh29wbjb5uG6ynoIXfPsRgaGIOyGFBiT5~TFwvs9rANNvvTIGCLPEzV~B5HQUt4WPnvalTNtHdbqNHFClgIoT3e6VkE5mVzIzwLxIibjJ4TSdMNhVrD9o~yKOigY~Fw-BUi7kGWuALb7ifHA__",
+          "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iQYYEFgun9warzF-pPzJCNKMgHCL3d6wAhIDnRj0Zh9W~hdyh6P-gIodRuBO-HqiUuf0PnzuBTA345Xx1wLeLgEbZ1Gc~uzLq8Y~~EPUvGmkFRHNMzXLj1GJ6yfF~ST5HVO7-76WTAMDk5gFsLRoP3FlGgnoSdksTnfbWK5isRuLhNo0j9hqam5zmetJrGLx9YWvDgATQAA5ROCeRJw04M46YZHfPvNB7b2211q9MC4IpGpf5QvBFx~P2XOMTuJmiAzgJXLMmZel7ia359bdYE1R3QcndSDZjktD41Ci~xQFpeKwC~Xpu1z2sD~9Mw-E09GphGw44hClhtPKiWxUhQ__",
       },
     ],
   },
@@ -63,98 +50,13 @@ export const storyLineTestData: IStoryLine[] = [
     userId: "44",
     userName: "Fabians",
     userAvatar:
-      "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fi~XA7G2VOiyxi1ShqdIg94eDQ4oqLWJ4lunAuEgiTmPPhmA2V6PsetOVZLXnOhioqsNvbt70JYKiFBZiaJnz8LUfkgwUu7mLJIVxAj45PiiBEi~FyWAuIUsH6aA7sbTqdjb~EU2ehRcsaaGFOxuJgcUFprR5Sx~kkvy3UojSVcd8nHwncTMEtroYIOo5JlrAlntHxyh29wbjb5uG6ynoIXfPsRgaGIOyGFBiT5~TFwvs9rANNvvTIGCLPEzV~B5HQUt4WPnvalTNtHdbqNHFClgIoT3e6VkE5mVzIzwLxIibjJ4TSdMNhVrD9o~yKOigY~Fw-BUi7kGWuALb7ifHA__",
+      "https://s3-alpha-sig.figma.com/img/e48c/9525/2d2942319899d7806e984cd444389e8a?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h8lCYQLZCTQrSQgGXDs0ioo~3SdaERRfwB-w8S5TIFgMZz3l5DEei4DCyG87BSNU4CsuOboievfx8fOYJqEU0qxEEq9-O8sNu0k59vSNAjbuwpnlpVQ-C6bu~ZDdq8zOXduRDML4L0AOIKdd0sAJo7tTPvWKLbuoT8VqCTSXCpLl-4VrPi2jJecYUR5MJ6u7c60L-ml0N4MQJYF2yyLpHruCj6LkKbRxO~IUvtltyUmzDe4S-UE01jFmUioNFdWB0nSLWWK0DjSU3x17tZEuJeZYB9cgfzIJzZa7qCinm0NFclPW34LbLyKs7iBieD9-b6yC4VOxQ2cG29xxBw3Yww__",
     storyLine: [
       {
         image:
-          "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fi~XA7G2VOiyxi1ShqdIg94eDQ4oqLWJ4lunAuEgiTmPPhmA2V6PsetOVZLXnOhioqsNvbt70JYKiFBZiaJnz8LUfkgwUu7mLJIVxAj45PiiBEi~FyWAuIUsH6aA7sbTqdjb~EU2ehRcsaaGFOxuJgcUFprR5Sx~kkvy3UojSVcd8nHwncTMEtroYIOo5JlrAlntHxyh29wbjb5uG6ynoIXfPsRgaGIOyGFBiT5~TFwvs9rANNvvTIGCLPEzV~B5HQUt4WPnvalTNtHdbqNHFClgIoT3e6VkE5mVzIzwLxIibjJ4TSdMNhVrD9o~yKOigY~Fw-BUi7kGWuALb7ifHA__",
+          "https://s3-alpha-sig.figma.com/img/e48c/9525/2d2942319899d7806e984cd444389e8a?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h8lCYQLZCTQrSQgGXDs0ioo~3SdaERRfwB-w8S5TIFgMZz3l5DEei4DCyG87BSNU4CsuOboievfx8fOYJqEU0qxEEq9-O8sNu0k59vSNAjbuwpnlpVQ-C6bu~ZDdq8zOXduRDML4L0AOIKdd0sAJo7tTPvWKLbuoT8VqCTSXCpLl-4VrPi2jJecYUR5MJ6u7c60L-ml0N4MQJYF2yyLpHruCj6LkKbRxO~IUvtltyUmzDe4S-UE01jFmUioNFdWB0nSLWWK0DjSU3x17tZEuJeZYB9cgfzIJzZa7qCinm0NFclPW34LbLyKs7iBieD9-b6yC4VOxQ2cG29xxBw3Yww__",
       },
     ],
-  },
-  {
-    id: 5,
-    userId: "5",
-    userName: "George",
-    userAvatar:
-      "https://s3-alpha-sig.figma.com/img/e48c/9525/2d2942319899d7806e984cd444389e8a?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ODu-CLbVfLzooRMl6NKG7XYGd8ipCETAWcgv~SmXRCda8MQbqjxHNNvbelQgeHX9F8jbT22dYQWTXmhKlri6rd6tdDKj6nkGjMqaXNmsPF5iC6iSGwyzPWGZHP1Vj01FElUEe1b2ebzpcIY6ahkpiutRFoyj9o9lGdgc6uOLgpTtkI7Qqzn-9ph7D3mzvVV5qceyetB-LxGmlA8TDLhIyuXthSIkxGclqBYStPUB8Ozep6aOraCiPHeZox6Uj65lD9vEDdXaJ88Gag9RC2GBliqFjNAwW-cNrE1Gj5YVGCLjj7NAVCXkxOcWX07xkzySDwcL8Kme8dTz66HHUBfltA__",
-    storyLine: [
-      {
-        image:
-          "https://s3-alpha-sig.figma.com/img/e48c/9525/2d2942319899d7806e984cd444389e8a?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ODu-CLbVfLzooRMl6NKG7XYGd8ipCETAWcgv~SmXRCda8MQbqjxHNNvbelQgeHX9F8jbT22dYQWTXmhKlri6rd6tdDKj6nkGjMqaXNmsPF5iC6iSGwyzPWGZHP1Vj01FElUEe1b2ebzpcIY6ahkpiutRFoyj9o9lGdgc6uOLgpTtkI7Qqzn-9ph7D3mzvVV5qceyetB-LxGmlA8TDLhIyuXthSIkxGclqBYStPUB8Ozep6aOraCiPHeZox6Uj65lD9vEDdXaJ88Gag9RC2GBliqFjNAwW-cNrE1Gj5YVGCLjj7NAVCXkxOcWX07xkzySDwcL8Kme8dTz66HHUBfltA__",
-      },
-    ],
-  },
-  {
-    id: 6,
-    userId: "6",
-    userName: "John",
-    userAvatar:
-      "https://s3-alpha-sig.figma.com/img/e48c/9525/2d2942319899d7806e984cd444389e8a?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ODu-CLbVfLzooRMl6NKG7XYGd8ipCETAWcgv~SmXRCda8MQbqjxHNNvbelQgeHX9F8jbT22dYQWTXmhKlri6rd6tdDKj6nkGjMqaXNmsPF5iC6iSGwyzPWGZHP1Vj01FElUEe1b2ebzpcIY6ahkpiutRFoyj9o9lGdgc6uOLgpTtkI7Qqzn-9ph7D3mzvVV5qceyetB-LxGmlA8TDLhIyuXthSIkxGclqBYStPUB8Ozep6aOraCiPHeZox6Uj65lD9vEDdXaJ88Gag9RC2GBliqFjNAwW-cNrE1Gj5YVGCLjj7NAVCXkxOcWX07xkzySDwcL8Kme8dTz66HHUBfltA__",
-    storyLine: [
-      {
-        image:
-          "https://s3-alpha-sig.figma.com/img/e48c/9525/2d2942319899d7806e984cd444389e8a?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ODu-CLbVfLzooRMl6NKG7XYGd8ipCETAWcgv~SmXRCda8MQbqjxHNNvbelQgeHX9F8jbT22dYQWTXmhKlri6rd6tdDKj6nkGjMqaXNmsPF5iC6iSGwyzPWGZHP1Vj01FElUEe1b2ebzpcIY6ahkpiutRFoyj9o9lGdgc6uOLgpTtkI7Qqzn-9ph7D3mzvVV5qceyetB-LxGmlA8TDLhIyuXthSIkxGclqBYStPUB8Ozep6aOraCiPHeZox6Uj65lD9vEDdXaJ88Gag9RC2GBliqFjNAwW-cNrE1Gj5YVGCLjj7NAVCXkxOcWX07xkzySDwcL8Kme8dTz66HHUBfltA__",
-      },
-    ],
-  },
-];
-
-export const postTestData: IPost[] = [
-  {
-    id: "1",
-    content: "Ping me if you wanna talk about Trump memecoins",
-    createdAt: new Date(),
-    author: {
-      id: "1",
-      name: "Miranda Kehlani",
-      avatar:
-        "https://s3-alpha-sig.figma.com/img/8a02/8648/ba46efd818c6a40fec5a8b546e01fa80?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=gA3-WSNddEx2nAwMOO16ZVm50E6CVwv6B8KtykKN8pCT-Uz6LxhbSdOspDofZTbltw84RLXsu3OOeYGuFOaXRjYevlp5J7tzVIDzLuxw6W40DFbbsswEapDKwux4Yd9O~4hwUKGHVGbkGOMUu6TbUuKFjSr5t0s912GXNWJ4yoDgUixXDQSLwLmAl99007Zp-S9RlpArWrV5rnkAfW7X2Fz19wWsi-b2dbA22XqmV7bLhV5xgyDkYvMVbj663VXWFdsO7tpkAcnBTDjuyAX1R26L-5LVnOf6-KWqJCDN~Zo0rOWc~8iVlsqHy5mqpOvagEPEzFzHNaRWvAjlEPeb6w__",
-      location: "VIETNAM",
-    },
-    image:
-      "https://s3-alpha-sig.figma.com/img/131b/d108/49fb33a7941fdea941ae87ed11c103d3?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QDrnPcwOlug5K4IdMe-KtGePBv4kQouYxGWbc54fBd8Sl3RF8uZ-XeHWyDwXFDOUuch1yJj8BU4yVceh19igxJBo10ZP~tD6E0D630Lne2kULPIxuybFd~84uSS0bW0CBRchkIIioY~vZbhvAodSNHD97e5QBVnLX5X8kxg5E8r-ovKIfIfCVIKGBIcR4u1xgNb12PjE8ygY1BmDdvkbQZa-Mw65UWffDIk26CT5ItXxa01p6vLh0iZP6wIeSQaUvO5gXW6S0eY~~5vNWcg6ioMi6PLDLY1FjH1av8gLoqg69j9m3XC9u3EChCDKQwLdeopD5KPcXjMiGk75sQbjcw__",
-  },
-  {
-    id: "2",
-    content: "Who do you think will win Euro 2020?",
-    createdAt: new Date(),
-    author: {
-      id: "2",
-      name: "Brandon Aminoff",
-      avatar:
-        "https://s3-alpha-sig.figma.com/img/bdee/9c5b/82d3af637f56f526634d05993f85c521?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=SmRI82ckyGq-B~eK55iiM-26jevsrFcfYCwaIGgtXPAH7pXevpIxAXjPJwvzdGFPuXOR2KYDoMh3T2sE~w4YNQ2-KjfRu90n2izM8Ev2CQAbJkf3zuy91yEVpOYrC4t8JV7CsJlluUCnL5IsOn3isp5ldVWn1T-jss3gJX3Xpxqa3GXgtmYnyEv047EI1b-itslUEcEAFQocqnZTxjVp4g6Epg584fCzwbyVG67P6~vtKEK~KXnoRhW87-H~Dc0YqE4vpTQl4cfTi9uuufQ1LdQAr-iEZTASYOh90AO7NBTXphzmSU3hFY29OB-fY4avCDw52xLuT106qTbZVpdACw__",
-      location: "HAMBURG",
-    },
-    image:
-      "https://s3-alpha-sig.figma.com/img/9880/e0eb/a7663e38645e173c971cc65186b3aa3f?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ahZJ2p8P-PGmS0plddbSbganCcTQDmuVr7cfTOL8bquQeNIpe2q-X2vXbQvjc3Aa3TMhE3miWY8brRJXPgXxTu8gCjc7odGsH830utEB7Y3iDN4Re0TVqsKvq9ZyPp7uygiVoUQqnBOyyRnh4m6XFSvV2jgI1FmuLOOqclvAjoFBRFF0b2T71Sf0fCQIPayariakfUy5X7sheWPL9-DmzgEjXDrBrgcXYVm8eVqt6986L09WOv6AoTOb9Gyo9pebxHEXbiYLk5vfFqotGiFGzSVVFcViK0Im8giUKQI-uAqJqK5E6eXk~zx0vtx5IfMLjZmPjRPQk3ggbhesL8m~7Q__",
-  },
-  {
-    id: "3",
-    content: "So lonely here guys, wanna talk with me???",
-    createdAt: new Date(),
-    author: {
-      id: "3",
-      name: "Anna",
-      avatar:
-        "https://s3-alpha-sig.figma.com/img/2abc/9621/62a5490bdd30048513796d066a106cde?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Ln~B3h9XZwyq76a4gBIA2jlxOFqTmKLaNLlPO6a3z3QrfM2alpJT1dnGbByjqRX4B9zn6WfUYpYOwurHJPa5vjcE3PIZj4J4VpON0clArMVqj9nUwJUSafWvDP67~-9w23uJVHG-0bsP1pRzjV4UFtOqctraVw7fginyZ4iqlwgTc6o8rS81~UQWy6Lf8Ky66wZs7JKgQ8AMG9DabSGk83VPwnwq6c-OxwKzc4Bl2EZIiOrD1D48EONifWo-vY5f2EjWwHI9yrnRa2OLM1VLHFhpecWThLLT7Kp7LpTJoOQ2GA8mz99uuym4KBe11wM961zK9IhwuT3Z0vu~~Dy6Aw__",
-      location: "USA",
-    },
-    image:
-      "https://s3-alpha-sig.figma.com/img/2abc/9621/62a5490bdd30048513796d066a106cde?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Ln~B3h9XZwyq76a4gBIA2jlxOFqTmKLaNLlPO6a3z3QrfM2alpJT1dnGbByjqRX4B9zn6WfUYpYOwurHJPa5vjcE3PIZj4J4VpON0clArMVqj9nUwJUSafWvDP67~-9w23uJVHG-0bsP1pRzjV4UFtOqctraVw7fginyZ4iqlwgTc6o8rS81~UQWy6Lf8Ky66wZs7JKgQ8AMG9DabSGk83VPwnwq6c-OxwKzc4Bl2EZIiOrD1D48EONifWo-vY5f2EjWwHI9yrnRa2OLM1VLHFhpecWThLLT7Kp7LpTJoOQ2GA8mz99uuym4KBe11wM961zK9IhwuT3Z0vu~~Dy6Aw__",
-  },
-  {
-    id: "4",
-    content: "Share with me the type of girl that everyone likes the most! 😆",
-    createdAt: new Date(),
-    author: {
-      id: "5",
-      name: "Parody Elon",
-      avatar:
-        "https://s3-alpha-sig.figma.com/img/3016/2de4/c907a34ba435fc71bec86f1d51c62a0d?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fi~XA7G2VOiyxi1ShqdIg94eDQ4oqLWJ4lunAuEgiTmPPhmA2V6PsetOVZLXnOhioqsNvbt70JYKiFBZiaJnz8LUfkgwUu7mLJIVxAj45PiiBEi~FyWAuIUsH6aA7sbTqdjb~EU2ehRcsaaGFOxuJgcUFprR5Sx~kkvy3UojSVcd8nHwncTMEtroYIOo5JlrAlntHxyh29wbjb5uG6ynoIXfPsRgaGIOyGFBiT5~TFwvs9rANNvvTIGCLPEzV~B5HQUt4WPnvalTNtHdbqNHFClgIoT3e6VkE5mVzIzwLxIibjJ4TSdMNhVrD9o~yKOigY~Fw-BUi7kGWuALb7ifHA__",
-      location: "USA",
-    },
-    image:
-      "https://s3-alpha-sig.figma.com/img/3e36/3294/d000148ee952d4d19b62e6113a9369ea?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=p5p1yLb4j6WTJVZXw4pt9acuimqsxn7t3-gALFmVUkdAI2z9~gyRoMJUUin36YTsWgI2zyP~qN72pjWJwht-Lj9MMPJDKCxAdbRoksSAi8oVFA52bKOsyM4PHk2u39DrQztRJ8osygW9~g8RbxYrM6L3lJRcN9fNpAGZEpnSg-B6rpM3hncPhGQNwo-gnPjwT4bnsigtjHQwMZoM6uXy1hykviyyudApkc1bBlb2PpvCvZh3vbM2rj5e7RlUeKb92dmRoJqt0IRRueWcUukyUlplBuChzfg67SSWgo9rGXzRVaRtWoOrypLqO3C23mrCw5cgNdm-7ZfTeCAMFYEBfg__",
   },
 ];
 
@@ -219,7 +121,7 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 65,
     image:
-      "https://s3-alpha-sig.figma.com/img/f108/994f/df80102efce40452125cc5746b8fbc47?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Jpy1zjcRbs~gNMFCZEvyPmIDgg1CAs0VM0yRQ6XqxbsgrVtnUFclnbbczv4w6D3nu3USm2zkWCkzMfu4B1NWdOHQeNvmRL4cC5BBgGNzQFimFkmpyckjZIK-NhcpIL-o56HKEQ0EvZOo~GpiSh4wnS7HKimWu3lvBY~H0qHQxXKIHjyAbv08davmGcIY2YgqAUJY4v8dJJpuKIhXpQlc308deeMMgKmw9J~~GmDDb-mMFKOx1tMEYfbhjxnnW6cFXJOWQVjLrXRNsr7yMRRxM6MnX8eV3u7eGdONhJu1vLCBR8YjRTeeqY304scycdAbPO2NBLRWe8z8zQwAyZrOwA__",
+      "https://s3-alpha-sig.figma.com/img/f108/994f/df80102efce40452125cc5746b8fbc47?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=aCMgNvmYYdrBiKCGj2oGqLbsLn9UwYTeqkrdnvznEZyxn2uFdU7pkypHa8Y~MNNbw3SkqrizOzm0ftSwj0D3zypgfYNrGUZOs6lcngtHWPh4YQmKv2eRwF6qW6wVOQLm~rfupxZBn40JxfdQWpHcBEXmb9lOw2rt~N6QEy90HlsBLPlQkW7POhysZhYM2EY~G0T51OWpG4-fd171mmDwcgdiKXxjI1mIfJ0-LZd2yvOQKN~OrAT9i2LtpOrx6wAs-2U2FRrzs8oucYdcqSp8W6Ku1yZUpzv9gbIFJESqbuNqZxWm9PwmqUG59owCmE2PJUZSCiie9CHd3NjUoZjSQg__",
   },
   {
     id: "6",
@@ -239,7 +141,7 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 80,
     image:
-      "https://s3-alpha-sig.figma.com/img/fbbf/d684/015f685de24ada3dd686e216ebd1a3bb?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=iY7b25l0khEOdPnJSLcdDcOjTAmXz4EhaTKNhdugpQTbccmWnmPqf6Bfrf3TRk1LlHrVdKMvzeU-GlsgMPkVtAveqoJSk6m-BJIUohCnHaymE13nas1SLJj~bI3pmAF0N4fm9nfQynhX3vOLxLNFx90i6Zy-YQczc4FEsg2pHdmc5z3AfL7nRX77WDxS-ASGy506Z7pb~ttGpS-ARszH~155ASr9~FdZpPoW~Ffgv6pOrYxijs9fQM1nj2ovweSgaVeTNKLQ14yFnM4Hux8u6zGhYm64DzmnWT88aHSgKPCh1Ue7dODMq4p96HeXgGecDW5ksJ2s7NphsxWCtnCF4w__",
+      "https://s3-alpha-sig.figma.com/img/1398/2ffd/fdadcd413286d1957a6b477eab57205f?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Hnbog072jLowrbwYbVfbJxlIhBZk6bAM9PCCW0HtbmrNddUpmnUJJqHrXAzUWNeraiKafxjuVy07MESMTRmOKhvyPjZPayYJCL-7LMNcY84rlXMdKbNdDn2NvH31B5wrZHY4yFUbR3dKyESrQ08ZSThS3lD85d9AtTGGbMgf5cWVA-ZKrBGgmX-8WvxtBfHgbct9jWx8XJJiOGX-OHoQ5wY3-bXfbMIJbldoAMIZooaEylAgEumJQi6q4unug2mbIoHg3v5kyTPjifsB-BxRbxxhoNbBftqDMBBWJnawJkuRU0qbKU3euQU-VUHDQf0Mg8IP4UVnv9K-hVcXaQaMAw__",
   },
   {
     id: "8",
@@ -249,7 +151,42 @@ export const userTestData: IUser[] = [
     interests: ["traveling", "cooking", "reading"],
     matchesPercentage: 85,
     image:
-      "https://s3-alpha-sig.figma.com/img/46ae/4423/ac7b3f93af2508943645cbc3d35fdc62?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HsHhmJ3mzLZ18DxROIrQgMvnU2Nkz6Z6WDPA8rfSLqcSBgcEd77MgwZI0ubOqCaGRofMaU~kfiTXPhYIWO4GJ0-QHmWKEBe6weEFoCDhrDlXhfVfpxvaQds~Wj~Q~DdD-L4o77LjGF3uLR98Ti-XgpXQYwQxa0u45LRsdInq4q4mlq09dji1uk8bC6iWtNb6urwF7-W6Ck2IqnUUIBuJPYCioBh-yVUlTcBXb4mLVbsHSiFfyMTF~sOYSsHYgfwCmB35o-Hb~J1YeZIDiZpCZkr68oIc5nNuOtnbwdf7rh5n6bFq2mSUtg3lVUOsPXH7ZsM07gALQ1e-7g0stJJWUA__",
+      "https://s3-alpha-sig.figma.com/img/bdee/9c5b/82d3af637f56f526634d05993f85c521?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=V3Vb46KrqtKbAM4urQcEWptbUbLAxcT~dgdo7bR1uu0xy2ESAjwzJJgdQ7nuzKTS2sHoF5CAu9iyMD25zxWkRvigM8scYQ8pH9aAyJ82z4afkpQDLT7ucK99x7ACsD8PTQapO79YnFcttydj3TBN1PB0JJ7DD11cUbZk5K4Q0aAC135LDw47gRwGB8R77DaP~gFYaqu7prC0cDGc~AoCecdi17ovmJaT6lJ1rRsjkhyDY0fz1aOoEau5gF1yAoILTvbBubJ3RcS9y2qCd5OK0TpAyYzn2SnEgKhqb5Ps5XgyKFRnJE~n05lQRBJoRAbW4yi-SgKyr1iHbVV8QivJHw__",
+  },
+];
+
+export const postTestData: IPost[] = [
+  {
+    id: "1",
+    content: "Ping me if you wanna talk about Trump memecoins",
+    createdAt: new Date(),
+    author: userTestData[0],
+    image:
+      "https://s3-alpha-sig.figma.com/img/131b/d108/49fb33a7941fdea941ae87ed11c103d3?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=pMxHglcJLWQjQDd~UXSDtF3afk2ieK1TCCBPwIYsNZaul90Tn5QBzJpgFpz2AzXGvwF07bz992AGVohuFlm4oylhfkh06PqWNddX7nRNLGNlw0I3nvNmqhBdMENEmZxOWMsmawLPKarI4~61mUN1xTapAQ6EmMGr6EGaDBl1~jYpL7cR3ajIGwCc8gM4bZIR1CDR3xcxjjnx9H0uzDFQY3jThQHg4EvVqrKh4hjVRM2n2YmhSN4jgm-eAwoXhfmHeWAfHAZCoO4k~wue11YhQI7k6XaLd-PIzG64EIvmD4GCrkuAtRmUxvhqtWtW3JpgtZ6TDKMSn5UQzpygukhR8w__",
+  },
+  {
+    id: "2",
+    content: "Who do you think will win Euro 2020?",
+    createdAt: new Date(),
+    author: userTestData[1],
+    image:
+      "https://s3-alpha-sig.figma.com/img/9880/e0eb/a7663e38645e173c971cc65186b3aa3f?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Iyb8YxuxGvsjeMEMUMgf~1WBprbJA8hJS53QFIiVteI39BcKaRQqxN39j~gJ54wXEqK5kqKrN94hcPe45fIuAOxcZ9hBgpR4j1H72IhdkdZw8SiiRbj6xWD6eXVMncouhnr5ah4PvK7X0Dvi5-~EKEafJdC0~l0-v6JKaXy7-UPrna8jq6eVcYOAowKf2ss-eq1yl8Wv6nnJEfMPrBYFKHr0sbcrcAQVhTcHMQaTFHBOof0I52vvNO3sFz5f-5DvMMroY-JAJmwuSL4OUPtpE2xXPOivkAPbmqUmGVuNL4zmtUv6AWyA41qoqyOyGWPbMxVcuRX8zn0olug0vt-1pw__",
+  },
+  {
+    id: "3",
+    content: "So lonely here guys, wanna talk with me???",
+    createdAt: new Date(),
+    author: userTestData[2],
+    image:
+      "https://s3-alpha-sig.figma.com/img/2abc/9621/62a5490bdd30048513796d066a106cde?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=LOkbXJt2TepSOD3b~BSP70HcL~htPEzQMkT~BZOuLUVBlBRTBWMe5cyNFbHy~y3qUwwLlMhZn3AeMmLB3wZmoFP67wfnCN--JxETC3lVLXT0N8UPJIcRd-VE8J38FLr-JqF4GYKB41i8ecEiSOk0ivwgVw~dPM7WQ6MQ1Xt3VW9bM8aUYjOfef3n-9ib6WSeDrN6Eswz7E7f9x6tedL4L7wA24rCW3Od65M074AA2aupsHpczhPItHoNk0kwQM4J~B3cYBSzW-YugFMyf2WBuTXjUhYX12jFgDP3aikZ7mI86xFQN2c-c0zP4XWVFU0IaFD4uoE7GCo~D2Cpr41yjA__",
+  },
+  {
+    id: "4",
+    content: "Share with me the type of girl that everyone likes the most! 😆",
+    createdAt: new Date(),
+    author: userTestData[3],
+    image:
+      "https://s3-alpha-sig.figma.com/img/3e36/3294/d000148ee952d4d19b62e6113a9369ea?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=pjgO~X3JPfYPMQtZnKc1H7JY~JJFSIyG~FcW1bafHZ8g9MCnuRrrw7GMdQdRZSq7UhKkgqIrd9uBQDBPxhjNAXfitVtwJbi1cRXO63hnJjiVe80KCS9YyRU31wCfPTRVGVxjF~lXACPQyCEf~qYFv1EAEB3BG4uyCWbQ04HUc9SYy~VpfJqplaHcDnZ~7bw70JS7bOd0lj9FwhrLe2U-uGzjwOg6LZ2jidr-ts~7tOKYcQBl-tDuT-9tunE3JFxRDmHZOEBxUNOs8ZYjKxunQ~Dwun5Cm5JKnR2zN7GvFESf88UqKKhofp1M89PsrmqUAJTY8Lv-5bKbTByDH7SqLA__",
   },
 ];
 

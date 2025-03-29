@@ -4,18 +4,23 @@ import Thumbnail from "@/assets/backgrounds/signup.background.png";
 import { env } from "@/constants/env";
 import { somniaChain } from "@/constants/somniaChain";
 import { basicClient } from "@/providers/thirdweb.provider";
+import { getNftProfileContract } from "@/services/contracts/nftProfile";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
-import { Button } from "@heroui/react";
+import { Button, CircularProgress } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
+import { useState } from "react";
+import { getOwnedNFTs } from "thirdweb/extensions/erc721";
 import { useConnectModal } from "thirdweb/react";
 
 export default function LoginPage() {
   const router = useTransitionRouter();
   const { connect } = useConnectModal();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleConnect = async () => {
+    setIsLoading(true);
     const wallet = await connect({
       client: basicClient,
       accountAbstraction: {
@@ -25,9 +30,28 @@ export default function LoginPage() {
       },
     });
 
+    // SBT setup
     if (wallet) {
-      router.push("/onboarding/profile-name");
+      const account = wallet.getAccount();
+      if (!account) {
+        setIsLoading(false);
+        router.push("/onboarding/profile-name");
+        return;
+      }
+
+      const sbt = await getOwnedNFTs({
+        contract: getNftProfileContract({ client: basicClient }),
+        owner: account.address,
+      });
+
+      if (sbt.length === 0) {
+        setIsLoading(false);
+        router.push("/onboarding/profile-name");
+      }
     }
+
+    setIsLoading(false);
+    router.push("/home");
   };
 
   return (
@@ -73,6 +97,12 @@ export default function LoginPage() {
           </Button>
         </div>
       </div>
+
+      {isLoading && (
+        <div className="absolute z-[60] inset-0 h-svh flex items-center justify-center bg-black/50">
+          <CircularProgress />
+        </div>
+      )}
     </div>
   );
 }

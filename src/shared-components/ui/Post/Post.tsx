@@ -125,7 +125,7 @@ export function Post({ post }: PostProps) {
 
         {/* Author */}
         <div className="flex items-center gap-2">
-          <Avatar src={post.author.avatar} />
+          <Avatar src={post.author.image} />
           <div className="flex flex-col items-start">
             <p className="text-sm font-semibold">{post.author.name}</p>
             <p className="text-sm capitalize text-slate-300 font-medium tracking-[0.1rem]">

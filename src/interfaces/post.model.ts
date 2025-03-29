@@ -1,12 +1,9 @@
+import { IUser } from "./user.model";
+
 export interface IPost {
   id: string;
   content: string;
   createdAt: Date;
-  author: {
-    id: string;
-    name: string;
-    avatar: string;
-    location: string;
-  };
+  author: IUser;
   image: string;
 }

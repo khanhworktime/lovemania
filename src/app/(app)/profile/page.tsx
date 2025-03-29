@@ -1,10 +1,20 @@
 "use client";
 
-import { currentUser } from "@/exampleData/data";
-import { Avatar, Button, CircularProgress } from "@heroui/react";
+import {
+  Avatar,
+  Button,
+  CircularProgress,
+  ModalFooter,
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalHeader,
+  useDisclosure,
+} from "@heroui/react";
 import {
   ChevronRightIcon,
   Languages,
+  LogOut,
   Settings,
   UserIcon,
   Wallet2Icon,
@@ -12,14 +22,62 @@ import {
 } from "lucide-react";
 
 import { Link, useTransitionRouter } from "next-view-transitions";
+import { useProfileSBT } from "@/hooks/UseProfile";
+import moment from "moment";
+import { resolveScheme } from "thirdweb/storage";
+import { basicClient } from "@/providers/thirdweb.provider";
+import { useOnboarding } from "@/app/onboarding/components/onboarding.provider";
+import { useConnectedWallets } from "thirdweb/react";
 
 const profileDonePercentage = 70;
 
 export default function ProfilePage() {
   const router = useTransitionRouter();
+  const { sbt, isLoading } = useProfileSBT();
+
+  // Logout modal
+  const logoutModalControl = useDisclosure();
+  const { updateProfileData } = useOnboarding();
+  const connectedWallets = useConnectedWallets();
+
+  const handleLogout = async () => {
+    updateProfileData({
+      name: "",
+      dob: null,
+      definition: "",
+      definitionDescription: "",
+      interests: [],
+      photos: [],
+      photosIpfs: [],
+    });
+    for (const wallet of connectedWallets) {
+      await wallet.disconnect();
+    }
+    router.replace("/login");
+  };
+
+  if (isLoading || !sbt) {
+    return (
+      <div className="flex flex-col gap-y-4 px-4 w-full h-svh justify-center items-center">
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  const profile = {
+    name: sbt?.metadata.name,
+    age: moment().diff(
+      moment(sbt?.metadata.properties?.birthday || undefined),
+      "years"
+    ),
+    image: resolveScheme({
+      client: basicClient,
+      uri: sbt?.metadata.image || "",
+    }),
+  };
 
   return (
-    <div className="flex flex-col gap-y-4 px-4 ">
+    <div className="flex flex-col gap-y-4 px-4 h-svh">
       <div className="flex items-center justify-between gap-x-2 pt-4 pb-2 sticky top-0 inset-x-0 z-50 bg-white/20 backdrop-blur-sm">
         <Button
           variant="bordered"
@@ -37,7 +95,7 @@ export default function ProfilePage() {
       <div className="flex flex-col gap-y-2 items-center justify-center">
         <div className="flex items-center gap-x-2 relative">
           <Avatar
-            src={currentUser.image}
+            src={profile.image}
             className="size-24 border-2 border-white"
           />
           <CircularProgress
@@ -52,11 +110,9 @@ export default function ProfilePage() {
           />
         </div>
         <h1 className="text-2xl font-medium font-chalet">
-          {currentUser.name} {currentUser.age}
+          {profile.name} {profile.age}
         </h1>
-        <p className="text-sm font-medium text-gray-500">
-          {currentUser.location}
-        </p>
+        <p className="text-sm font-medium text-gray-500">VIETNAM</p>
       </div>
 
       {/* Alert */}
@@ -129,6 +185,45 @@ export default function ProfilePage() {
         <Link href="#" className="text-secondary-500 font-bold">
           Upgrade to Premium
         </Link>
+      </div>
+
+      <div className="flex flex-col gap-y-4 py-4 flex-grow justify-end">
+        <Button
+          variant="solid"
+          className="bg-white gap-x-4 text-orange-800"
+          size="lg"
+          onPress={logoutModalControl.onOpen}
+        >
+          <LogOut />
+          <div className="flex-grow text-left font-chalet">Logout</div>
+        </Button>
+        <Modal
+          isOpen={logoutModalControl.isOpen}
+          onOpenChange={logoutModalControl.onOpenChange}
+          isDismissable={false}
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader>Are you sure you want to logout?</ModalHeader>
+                <ModalBody>
+                  <p>
+                    This action will disconnect your wallet and you will need to
+                    connect again.
+                  </p>
+                </ModalBody>
+                <ModalFooter>
+                  <Button onPress={onClose} variant="light">
+                    Cancel
+                  </Button>
+                  <Button color="danger" onPress={handleLogout}>
+                    Logout
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
       </div>
     </div>
   );
