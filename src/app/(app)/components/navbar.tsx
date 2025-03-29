@@ -21,7 +21,7 @@ const navItems = [
     icon: Wallet,
     activeIcon: Wallet,
     href: "/wallet",
-    disabled: true,
+    disabled: false,
   },
   {
     icon: PlusIcon,

@@ -82,6 +82,7 @@ export default function ProfilePage() {
           color="primary"
           radius="full"
           className="text-white font-chalet"
+          onPress={() => router.push("/profile/edit")}
         >
           Edit profile
         </Button>
@@ -89,7 +90,12 @@ export default function ProfilePage() {
 
       {/* Profile info */}
       <div className="flex flex-col gap-y-4 py-4">
-        <Button variant="solid" className="bg-white gap-x-4" size="lg">
+        <Button
+          variant="solid"
+          className="bg-white gap-x-4"
+          size="lg"
+          onPress={() => router.push("/profile/edit")}
+        >
           <UserIcon className="text-secondary-600" />
           <div className="flex-grow text-left font-chalet">My Account</div>
           <ChevronRightIcon className="text-gray-400" />

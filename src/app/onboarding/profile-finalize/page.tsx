@@ -21,6 +21,7 @@ import { mintNftProfile } from "@/services/minting";
 import { mintWithSignature } from "thirdweb/extensions/erc721";
 import { IProfileNftProps } from "@/services/minting/models/profileNft.model";
 import { basicClient } from "@/providers/thirdweb.provider";
+import { useState } from "react";
 
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
@@ -28,21 +29,31 @@ export default function ProfileFinalizePage() {
   // TODO: Add a button to connect to the wallet
   const account = useGetCurrentUser();
 
+  const [isSigning, setIsSigning] = useState(false);
+
   const mintProfileNft = async (props: IProfileNftProps) => {
     if (!account?.address) return;
 
     const { payload, signature } = await mintNftProfile(props);
 
-    const tx = mintWithSignature({
-      contract: getNftProfileContract({ client: basicClient }),
-      payload,
-      signature,
-    });
+    setIsSigning(true);
+    try {
 
-    await sendTransaction({
-      transaction: tx,
-      account: account,
-    });
+      const tx = mintWithSignature({
+        contract: getNftProfileContract({ client: basicClient }),
+        payload,
+        signature,
+      });
+  
+      await sendTransaction({
+        transaction: tx,
+        account: account,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSigning(false);
+    }
   };
 
   const confirmModalControl = useDisclosure();
@@ -123,6 +134,12 @@ export default function ProfileFinalizePage() {
           )}
         </ModalContent>
       </Modal>
+
+      {isSigning && (
+        <div className="fixed z-[60] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      )}
     </div>
   );
 }

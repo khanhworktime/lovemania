@@ -1,12 +1,9 @@
 "use server";
 
 import { getServerEnv } from "@/constants/env.server";
-import { somniaChain } from "@/constants/somniaChain";
-import { IUser } from "@/interfaces/user.model";
-import { createThirdwebClient, getContract } from "thirdweb";
-import { privateKeyToAccount } from "thirdweb/wallets";
+import { createThirdwebClient } from "thirdweb";
 import { generateMintSignature } from "thirdweb/extensions/erc721";
-import { env } from "@/constants/env";
+import { privateKeyToAccount } from "thirdweb/wallets";
 import { getNftProfileContract } from "../contracts/nftProfile";
 import { IProfileNftProps } from "./models/profileNft.model";
 
