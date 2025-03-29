@@ -60,6 +60,9 @@ export default function MessagePage() {
     }
   }, [mountDataState]);
 
+  // Handle focus change
+  const [isFocus, setIsFocus] = useState(false);
+
   // Render loading state
   if (mountDataState >= EMountDataState.FIRST_LOAD && conversation === null) {
     return (
@@ -90,9 +93,6 @@ export default function MessagePage() {
       </div>
     );
   }
-
-  // Handle focus change
-  const [isFocus, setIsFocus] = useState(false);
 
   return (
     <>

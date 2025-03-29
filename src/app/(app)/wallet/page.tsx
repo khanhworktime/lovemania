@@ -122,7 +122,7 @@ export default function WalletPage() {
               Tokens
             </div>
             <div className="flex-1 text-xl font-medium text-center text-black/40 cursor-pointer">
-              NFT's
+              NFT&apos;s
             </div>
           </div>
         </div>
