@@ -17,6 +17,44 @@ import { useTransitionRouter } from "next-view-transitions";
 import { resolveScheme } from "thirdweb/storage";
 import { TokenItem } from "./components/TokenItem";
 
+// Add this function before the component
+function drawerTransition() {
+  // Animate the drawer sliding up
+  document.documentElement.animate(
+    [
+      {
+        transform: "translateY(0)",
+      },
+      {
+        transform: "translateY(-100%)",
+      },
+    ],
+    {
+      duration: 700,
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(drawer)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        transform: "translateY(100%)",
+      },
+      {
+        transform: "translateY(0)",
+      },
+    ],
+    {
+      duration: 700,
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-new(drawer)",
+    }
+  );
+}
+
 export default function WalletPage() {
   // Page transitions
   const router = useTransitionRouter();
@@ -33,7 +71,29 @@ export default function WalletPage() {
     name: sbt?.metadata.name,
   };
   return (
-    <div className="flex-1 relative h-screen w-full flex flex-col items-stretch">
+    <div className="flex-1 relative h-screen w-full flex flex-col items-stretch bg-[#4B164C]">
+      <style jsx global>{`
+        @keyframes slide-up {
+          from {
+            transform: translateY(0);
+          }
+          to {
+            transform: translateY(-100%);
+          }
+        }
+
+        .drawer {
+          view-transition-name: drawer;
+        }
+
+        ::view-transition-old(drawer),
+        ::view-transition-new(drawer) {
+          animation: none;
+          mix-blend-mode: normal;
+          height: 100%;
+          transform-origin: center;
+        }
+      `}</style>
       <div className="flex justify-between items-start gap-x-2 pt-4 pb-2 px-6 sticky top-0 inset-x-0 z-50  backdrop-blur-sm text-white">
         <Button
           variant="bordered"
@@ -111,7 +171,7 @@ export default function WalletPage() {
         </div>
       </div>
 
-      <div className="mt-2 bg-white rounded-t-3xl flex-grow">
+      <div className="drawer mt-2 bg-white rounded-t-3xl flex-grow">
         <div className="rounded-3xl p-6 w-full px-6">
           <div className="flex flex-row justify-center w-full">
             <div className="h-1 w-[50px] rounded-xl bg-foreground/30 -mt-2" />
@@ -122,7 +182,14 @@ export default function WalletPage() {
             <div className="flex-1 text-xl font-medium text-center cursor-pointer">
               Tokens
             </div>
-            <div className="flex-1 text-xl font-medium text-center text-black/40 cursor-pointer">
+            <div
+              className="flex-1 text-xl font-medium text-center text-black/40 cursor-pointer"
+              onClick={() => {
+                router.push("/wallet/nft", {
+                  onTransitionReady: drawerTransition,
+                });
+              }}
+            >
               NFT&apos;s
             </div>
           </div>

@@ -54,14 +54,25 @@ export default function HomePage() {
         {/* Notifications */}
         <div className="flex items-center gap-x-2">
           {currentTab === "$.0" && (
-            <Button
-              variant="bordered"
-              className="size-12"
-              radius="full"
-              isIconOnly
-            >
-              <BellDotIcon />
-            </Button>
+            <>
+              <Button
+                variant="bordered"
+                className="size-12"
+                radius="full"
+                isIconOnly
+              >
+                <BellDotIcon />
+              </Button>
+              <Button
+                variant="bordered"
+                className="size-12"
+                radius="full"
+                isIconOnly
+                onPress={() => router.push("/profile")}
+              >
+                <FilterIcon />
+              </Button>
+            </>
           )}
           {currentTab === "$.1" && (
             <>
@@ -72,14 +83,6 @@ export default function HomePage() {
                 isIconOnly
               >
                 <NewLoveIcon />
-              </Button>
-              <Button
-                variant="bordered"
-                className="size-12"
-                radius="full"
-                isIconOnly
-              >
-                <FilterIcon />
               </Button>
             </>
           )}

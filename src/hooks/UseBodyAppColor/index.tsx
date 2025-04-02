@@ -17,11 +17,15 @@ export function useBodyAppColor(color?: string) {
 
   useEffect(() => {
     body.current = document.body as HTMLBodyElement;
-
+    // Set the viewport color
     if (color) {
       body.current?.style.setProperty("background-color", color);
     } else {
       body.current?.style.setProperty("background-color", "#fff");
+    }
+    const viewport = document.querySelector("meta[name='viewport']");
+    if (viewport) {
+      viewport.setAttribute("theme-color", color ?? "#fff");
     }
   }, [pathname, color]);
 }

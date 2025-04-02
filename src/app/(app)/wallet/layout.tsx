@@ -7,7 +7,7 @@ export default function WalletLayout({
 }) {
   return (
     <div
-      className="bg-primary-900 h-svh min-h-svh overflow-y-auto pb-4 flex flex-col"
+      className="h-svh min-h-svh overflow-y-auto pb-4 flex flex-col"
       id="wallet-layout"
     >
       {children}

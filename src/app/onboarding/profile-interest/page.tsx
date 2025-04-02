@@ -115,7 +115,7 @@ export default function ProfileInterestPage() {
               key={interest.value}
               className="transition-all duration-300"
               classNames={{
-                content: cn("font-chalet text-medium"),
+                content: cn("text-medium"),
                 base: cn(
                   "h-fit py-2 px-3 bg-white border border-primary-300 cursor-pointer",
                   selectedInterests.includes(interest.value) &&
