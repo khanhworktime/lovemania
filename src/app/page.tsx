@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { SlashScreen } from "./components/slash-screen";
 
 export const viewport: Viewport = {

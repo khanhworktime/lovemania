@@ -10,6 +10,7 @@ import { useEffect, useRef } from "react";
 import { useTransitionRouter } from "next-view-transitions";
 import { useAutoConnect } from "thirdweb/react";
 import { basicClient } from "@/providers/thirdweb.provider";
+import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
 
 export function SlashScreen() {
   const { data: autoConnected } = useAutoConnect({
@@ -77,6 +78,8 @@ export function SlashScreen() {
       dependencies: [autoConnected],
     }
   );
+
+  useBodyAppColor("#DD88CF");
 
   return (
     <main

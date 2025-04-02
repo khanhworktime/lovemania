@@ -90,6 +90,7 @@ export default function WalletPage() {
                 className="border-1 border-slate-100 text-blue-500 size-14"
                 radius="full"
                 isIconOnly
+                onPress={() => router.push("/wallet/receive")}
               >
                 <Download size={24} />
               </Button>
