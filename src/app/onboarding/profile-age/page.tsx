@@ -14,11 +14,22 @@ export default function ProfileAgePage() {
   const { profileData, updateProfileData } = useOnboarding();
 
   const handleAgeChange = (dob: DateValue | null) => {
-    if (!dob) return;
+    if (!dob || !dob.year || !dob.month || !dob.day) return;
 
-    updateProfileData({
-      dob: moment(dob).add(-1, "month").format("YYYY-MM-DD"),
-    });
+    try {
+      const dateStr = moment({
+        year: dob.year,
+        month: dob.month - 1,
+        day: dob.day,
+      }).format("YYYY-MM-DD");
+
+      updateProfileData({
+        dob: dateStr,
+      });
+    } catch (error) {
+      // Invalid date, do nothing
+      return;
+    }
   };
 
   const isAgeValid = profileData.dob
