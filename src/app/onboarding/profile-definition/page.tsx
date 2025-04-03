@@ -82,7 +82,7 @@ export default function ProfileDefinitionPage() {
               setActive={() => {
                 setCurrentSelection({
                   value: option.value,
-                  description: option.value,
+                  description: option.isAbleToModify ? "" : option.value,
                 });
               }}
               icon={option.icon}

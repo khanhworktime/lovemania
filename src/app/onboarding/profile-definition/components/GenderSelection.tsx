@@ -31,13 +31,14 @@ export default function GenderSelection({
   }, [defaultValue]);
 
   useEffect(() => {
-    if (!active) {
+    if (!active && !isAbleToModify) {
       setValue("");
     }
-  }, [active]);
+  }, [active, isAbleToModify]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     let newValue = e.target.value;
+    console.log(newValue);
     if (newValue.length > 64) {
       newValue = newValue.slice(0, 64);
     }
@@ -69,49 +70,51 @@ export default function GenderSelection({
   }, [value]);
 
   return (
-    <Card
-      shadow="sm"
-      isPressable
-      className={cn(
-        "flex items-center gap-2 aspect-square transition-all duration-300",
-        active &&
-          "outline outline-2 outline-primary-300 focus-visible:outline-2"
-      )}
-      onPress={handleCardClick}
-    >
-      <CardBody className="grid grid-rows-2 gap-4 items-center justify-center">
-        <div
-          className={cn(
-            "transition-all duration-300 self-end justify-self-center w-12 h-12 flex items-center justify-center gap-2 bg-primary rounded-full",
-            active && "bg-primary-300"
-          )}
-        >
-          {icon}
-        </div>
-        {!isAbleToModify ? (
-          <div className="flex flex-col items-center space-y-1">
-            <p className="text-center font-semibold text-base">{placeholder}</p>
-          </div>
-        ) : (
-          <div className="relative w-full">
-            <textarea
-              ref={textareaRef}
-              value={value}
-              onChange={handleInputChange}
-              onClick={handleTextareaClick}
-              onKeyDown={handleTextareaKeyDown}
-              placeholder={placeholder}
-              rows={2}
-              className={cn(
-                "w-full text-center font-semibold bg-transparent outline-none placeholder:text-primary-300 resize-none overflow-hidden",
-                "focus:ring-0 focus:outline-none"
-              )}
-              maxLength={64}
-              aria-label="Enter your gender"
-            />
-          </div>
+    <div className="cursor-pointer" onClick={handleCardClick}>
+      <Card
+        shadow="sm"
+        className={cn(
+          "flex items-center gap-2 aspect-square transition-all duration-300",
+          active &&
+            "outline outline-2 outline-primary-300 focus-visible:outline-2"
         )}
-      </CardBody>
-    </Card>
+      >
+        <CardBody className="grid grid-rows-2 gap-4 items-center justify-center">
+          <div
+            className={cn(
+              "transition-all duration-300 self-end justify-self-center w-12 h-12 flex items-center justify-center gap-2 bg-primary rounded-full",
+              active && "bg-primary-300"
+            )}
+          >
+            {icon}
+          </div>
+          {!isAbleToModify ? (
+            <div className="flex flex-col items-center space-y-1">
+              <p className="text-center font-semibold text-base">
+                {placeholder}
+              </p>
+            </div>
+          ) : (
+            <div className="relative w-full">
+              <textarea
+                ref={textareaRef}
+                value={value}
+                onChange={handleInputChange}
+                onClick={handleTextareaClick}
+                onKeyDown={handleTextareaKeyDown}
+                placeholder={placeholder}
+                rows={2}
+                className={cn(
+                  "w-full text-center font-semibold bg-transparent outline-none placeholder:text-primary-300 resize-none overflow-hidden",
+                  "focus:ring-0 focus:outline-none"
+                )}
+                maxLength={64}
+                aria-label="Enter your gender"
+              />
+            </div>
+          )}
+        </CardBody>
+      </Card>
+    </div>
   );
 }
