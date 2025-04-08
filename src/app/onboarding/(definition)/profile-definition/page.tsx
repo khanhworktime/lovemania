@@ -2,11 +2,11 @@
 
 import { FemaleIcon, GenderIcon, MaleIcon, RocketIcon } from "@/assets/icons";
 import { Button } from "@heroui/react";
-import { useOnboarding } from "../components/onboarding.provider";
-import GenderSelection from "./components/GenderSelection";
+import { useOnboarding } from "../../components/onboarding.provider";
+import GenderSelection from "../components/GenderSelection";
 import { useEffect, useState } from "react";
 import { ArrowRightIcon } from "@/assets/icons";
-import { onboardingSteps } from "../steps";
+import { onboardingSteps } from "../../steps";
 import { useTransitionRouter } from "next-view-transitions";
 
 const definitionOptions = [

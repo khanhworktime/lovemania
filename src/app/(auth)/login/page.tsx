@@ -4,14 +4,12 @@ import Thumbnail from "@/assets/backgrounds/signup.background.png";
 import { env } from "@/constants/env";
 import { somniaChain } from "@/constants/somniaChain";
 import { basicClient } from "@/providers/thirdweb.provider";
-import { getNftProfileContract } from "@/services/contracts/nftProfile";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
 import { Button, CircularProgress } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
 import { useState } from "react";
-import { getOwnedNFTs } from "thirdweb/extensions/erc721";
 import { useConnectModal } from "thirdweb/react";
 
 export default function LoginPage() {

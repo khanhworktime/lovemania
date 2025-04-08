@@ -1,5 +1,5 @@
-import { selectText } from "@/utils/selectText";
 import { Card, cn, CardBody, Input } from "@heroui/react";
+import { Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 interface GenderSelectionProps {
@@ -70,11 +70,14 @@ export default function GenderSelection({
   }, [value]);
 
   return (
-    <div className="cursor-pointer" onClick={handleCardClick}>
+    <div
+      className="cursor-pointer h-full w-full relative"
+      onClick={handleCardClick}
+    >
       <Card
         shadow="sm"
         className={cn(
-          "flex items-center gap-2 aspect-square transition-all duration-300",
+          "flex items-center gap-2 transition-all duration-300 py-3 ",
           active &&
             "outline outline-2 outline-primary-300 focus-visible:outline-2"
         )}
@@ -115,6 +118,16 @@ export default function GenderSelection({
           )}
         </CardBody>
       </Card>
+
+      <div
+        className={cn(
+          "absolute top-4 right-4 text-white bg-primary-300 rounded-full p-0.5 transition-all duration-300",
+          active && "opacity-100 scale-100",
+          !active && "opacity-0 scale-0"
+        )}
+      >
+        <Check size={12} />
+      </div>
     </div>
   );
 }

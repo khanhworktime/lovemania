@@ -38,13 +38,12 @@ export default function ProfileFinalizePage() {
 
     setIsSigning(true);
     try {
-
       const tx = mintWithSignature({
         contract: getNftProfileContract({ client: basicClient }),
         payload,
         signature,
       });
-  
+
       await sendTransaction({
         transaction: tx,
         account: account,
@@ -126,6 +125,7 @@ export default function ProfileFinalizePage() {
                     await handleConfirm();
                     onClose();
                   }}
+                  isLoading={isSigning}
                 >
                   Confirm
                 </Button>

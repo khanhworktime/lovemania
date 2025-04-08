@@ -136,7 +136,7 @@ export default function ProfileInterestPage() {
         isIconOnly
         className="bg-primary shadow absolute bottom-4 right-4 translate-y-[calc(24px+85%)] z-20"
         onPress={() => {
-          router.push(`/onboarding/${onboardingSteps[5]}`);
+          router.push(`/onboarding/${onboardingSteps[6]}`);
         }}
         isDisabled={selectedInterests.length === 0}
       >

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { upload } from "thirdweb/storage";
 import { useOnboarding } from "../components/onboarding.provider";
 import { getFileFromBase64 } from "@/utils/converBase64toFile";
+import { onboardingSteps } from "../steps";
 
 export default function ProfilePhotoPage() {
   const router = useTransitionRouter();
@@ -81,7 +82,7 @@ export default function ProfilePhotoPage() {
           radius="full"
           onPress={async () => {
             await handleImageUpload();
-            router.push(`/onboarding/profile-finalize`);
+            router.push(`/onboarding/${onboardingSteps[7]}`);
           }}
           disabled={isDisabled}
           variant="solid"

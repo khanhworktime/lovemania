@@ -9,6 +9,7 @@ interface ProfileFormData {
   dob: string | null;
   definition: string;
   definitionDescription: string;
+  lookingFor: string;
   interests: string[];
   photos: string[];
   photosIpfs: string[];
@@ -24,6 +25,7 @@ const defaultProfileData: ProfileFormData = {
   dob: null,
   definition: "man",
   definitionDescription: "man",
+  lookingFor: "man",
   interests: [],
   photos: [],
   photosIpfs: [],

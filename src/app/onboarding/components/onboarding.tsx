@@ -120,12 +120,12 @@ export default function Onboarding({
           <div className="flex justify-between items-end gap-2">
             <span className="font-bold text-lg font-chalet">
               {currentStep}
-              <span className="text-secondary-300">/5</span>
+              <span className="text-secondary-300">/7</span>
             </span>
           </div>
           <Progress
             aria-label="Onboarding progress"
-            value={(currentStep / 5) * 100}
+            value={(currentStep / 7) * 100}
             classNames={{
               indicator: "bg-secondary",
               track: "bg-secondary-200",
