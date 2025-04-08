@@ -30,3 +30,5 @@ export { default as GenderIcon } from "./GenderIcon";
 export { default as GenderNeutralIcon } from "./GenderNeutralIcon";
 export { default as MatchesPeopleIcon } from "./MatchesPeopleIcon";
 export { default as MatchesPeopleOutlineIcon } from "./MatchesPeopleOutlineIcon";
+export { default as SwipeIcon } from "./SwipeIcon";
+export { default as ChatIcon } from "./ChatIcon";
