@@ -26,8 +26,8 @@ const navItems = [
   {
     icon: PlusIcon,
     activeIcon: PlusIcon,
-    href: "/create",
-    disabled: true,
+    href: "/post/create/image",
+    disabled: false,
   },
   {
     icon: MatchesPeopleOutlineIcon,

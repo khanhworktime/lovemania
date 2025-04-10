@@ -1,8 +1,9 @@
 import CameraIcon from "@/assets/icons/CameraIcon";
 import FaceIcon from "@/assets/icons/FaceIcon";
+import { useUploadImage } from "@/hooks/UseUploadImage";
 import { Button, Card, CardBody } from "@heroui/react";
-import React, { useRef, useState } from "react";
 import { XIcon } from "lucide-react";
+import React from "react";
 
 interface PhotoUploaderProps {
   initialImage?: string;
@@ -15,33 +16,12 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = ({
   onImageChange,
   onImageFileChange,
 }) => {
-  const [image, setImage] = useState<string | null>(initialImage || null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const imageData = e.target?.result as string;
-        setImage(imageData);
-        onImageChange?.(imageData);
-      };
-      reader.readAsDataURL(file);
-      onImageFileChange?.(file);
-    }
-  };
-
-  const triggerFileUpload = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleDelete = () => {
-    setImage(null);
-    onImageChange?.(null);
-    onImageFileChange?.(null);
-  };
+  const { triggerFileUpload, image, handleDelete, ImplementImageInput } =
+    useUploadImage({
+      initialImage,
+      onImageChange,
+      onImageFileChange,
+    });
 
   return (
     <div className="w-full h-full relative">
@@ -99,13 +79,7 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = ({
       )}
 
       {/* Hidden file input */}
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        accept="image/*"
-        className="hidden"
-      />
+      <ImplementImageInput />
     </div>
   );
 };
