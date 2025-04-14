@@ -4,6 +4,7 @@ import Thumbnail from "@/assets/backgrounds/signup.background.png";
 import { env } from "@/constants/env";
 import { somniaChain } from "@/constants/somniaChain";
 import { basicClient } from "@/providers/thirdweb.provider";
+import { useLoginServer } from "@/services/graphQl/authentication/hooks/useLoginServer";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
 import { Button, CircularProgress } from "@heroui/react";
@@ -11,49 +12,29 @@ import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
 import { useState } from "react";
 import { useConnectModal } from "thirdweb/react";
+import { useIsomorphicLayoutEffect } from "usehooks-ts";
 
 export default function LoginPage() {
   const router = useTransitionRouter();
-  const { connect } = useConnectModal();
+  // const { connect } = useConnectModal();
   const [isLoading, setIsLoading] = useState(false);
+
+  const { startLogin, walletLoginData } = useLoginServer();
 
   const handleConnect = async () => {
     setIsLoading(true);
-    const wallet = await connect({
-      client: basicClient,
-      accountAbstraction: {
-        factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
-        chain: somniaChain,
-        sponsorGas: true,
-      },
-    });
-
-    // SBT setup
-    if (wallet) {
-      setIsLoading(false);
-      router.push("/onboarding/profile-name");
-      // const account = wallet.getAccount();
-      // if (!account) {
-      //   setIsLoading(false);
-      //   router.push("/onboarding/profile-name");
-      //   return;
-      // }
-
-      // const sbt = await getOwnedNFTs({
-      //   contract: getNftProfileContract({ client: basicClient }),
-      //   owner: account.address,
-      // });
-
-      // if (sbt.length === 0) {
-      //   setIsLoading(false);
-      //   router.push("/onboarding/profile-name");
-      //   return;
-      // }
-
-      // setIsLoading(false);
-      // router.push("/home");
-    }
+    await startLogin();
   };
+
+  useIsomorphicLayoutEffect(() => {
+    if (walletLoginData) {
+      if (walletLoginData.user !== null) {
+        router.push("/home");
+      } else {
+        router.push("/onboarding/profile-name");
+      }
+    }
+  }, [walletLoginData]);
 
   return (
     <div className="relative flex flex-col items-center justify-between gap-y-10 h-full pb-4">

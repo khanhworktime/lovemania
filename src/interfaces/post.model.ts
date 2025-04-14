@@ -1,9 +1,9 @@
-import { IUser } from "./user.model";
+import { IUserExample } from "./user.model";
 
 export interface IPost {
   id: string;
   content: string;
   createdAt: Date;
-  author: IUser;
+  author: IUserExample;
   image: string;
 }

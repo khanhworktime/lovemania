@@ -1,27 +1,45 @@
+"use client";
+
+import { useMatcherList } from "@/services/graphQl/user/hooks/useMatcherList";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { MatcherCard } from "../MatcherCard";
-import { userTestData } from "@/exampleData/data";
-import { IUser } from "@/interfaces/user.model";
+import { preloadImages } from "@/utils/preloadImg";
 
 export function Finder() {
-  const [currentUser, setCurrentUser] = useState<IUser>(userTestData[0]);
-  const [currentUserIndex, setCurrentUserIndex] = useState(0);
+  const [page, setPage] = useState<number>(0);
+  const [index, setIndex] = useState<number>(0);
+  const { data, isLoading, error, fetchNextPage } = useMatcherList();
 
-  const nextUser = () => {
-    const nextIndex = currentUserIndex + 1;
-    if (nextIndex < userTestData.length) {
-      setCurrentUser(userTestData[nextIndex]);
-      setCurrentUserIndex(nextIndex);
+  const nextUser = async () => {
+    if (index < (data?.pages[page]?.items?.length || 0) - 1) {
+      setIndex(index + 1);
     } else {
-      // Reset to first user if we've reached the end
-      setCurrentUser(userTestData[0]);
-      setCurrentUserIndex(0);
+      await fetchNextPage();
+      setPage(page + 1);
+      setIndex(0);
     }
   };
 
+  useEffect(() => {
+    if (data?.pages[page]?.items) {
+      preloadImages(data?.pages[page]?.items.map((item) => item.avatarUrl));
+    }
+  }, [data]);
+
+  const user = data?.pages[page]?.items[index] || null;
+
+  if (user === null || isLoading) {
+    return (
+      <div className="relative w-full h-full flex justify-center items-center">
+        <Loader className="animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full h-full">
-      <MatcherCard user={currentUser} nextUser={nextUser} />
+      <MatcherCard user={user} nextUser={nextUser} />
     </div>
   );
 }

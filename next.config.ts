@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  // webpack: (config: any) => {
-  //   config.externals.push("pino-pretty", "lokijs", "encoding");
-  //   return config;
-  // },
+  webpack: (config: any) => {
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      use: ["graphql-tag/loader"],
+    });
+    return config;
+  },
   images: {
     remotePatterns: [
       { hostname: "s3-alpha-sig.figma.com" },

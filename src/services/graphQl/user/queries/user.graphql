@@ -1,0 +1,22 @@
+query GetUsers($cursor: String, $limit: Int!) {
+  users(cursor: $cursor, limit: $limit) {
+    totalCount
+    length
+    items {
+      id
+      displayName
+      walletAddress
+      birthday
+      bio
+      avatarUrl
+      genderType
+      genderValue
+      interests
+      createdAt
+      updatedAt
+    }
+    hasNextPage
+    hasPreviousPage
+    endCursor
+  }
+}

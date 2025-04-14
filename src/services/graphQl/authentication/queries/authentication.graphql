@@ -1,0 +1,48 @@
+query walletLogin($walletAddress: String!) {
+  walletLogin(address: $walletAddress) {
+    domain
+    address
+    statement
+    uri
+    version
+    chain_id
+    nonce
+    issued_at
+    expiration_time
+    invalid_before
+    resources
+  }
+}
+
+input LoginPayloadInput {
+  domain: String!
+  address: String!
+  statement: String!
+  uri: String!
+  version: String!
+  chain_id: String!
+  nonce: String!
+  issued_at: String!
+  expiration_time: String!
+  invalid_before: String!
+  resources: [String!]!
+}
+
+query loginAuthentication($payload: LoginPayloadInput!, $signature: String!) {
+  login(signature: $signature, payload: $payload) {
+    token
+    user {
+      id
+      displayName
+      walletAddress
+      birthday
+      bio
+      avatarUrl
+      genderType
+      genderValue
+      interests
+      createdAt
+      updatedAt
+    }
+  }
+}

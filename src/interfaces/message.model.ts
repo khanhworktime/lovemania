@@ -1,8 +1,8 @@
-import { IUser } from "./user.model";
+import { IUserExample } from "./user.model";
 
 export interface IConversation {
   id: string;
-  from: IUser;
+  from: IUserExample;
   latestMessage: {
     content: string;
     createdAt: Date;
@@ -14,6 +14,6 @@ export interface IMessage {
   id: string;
   content: string;
   createdAt: Date;
-  sender: IUser;
+  sender: IUserExample;
   conversationId: string;
 }

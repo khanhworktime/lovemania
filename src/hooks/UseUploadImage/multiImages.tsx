@@ -9,7 +9,7 @@ interface UseUploadImageProps {
   onImageFilesChange?: (files: File[]) => void;
 }
 
-export const useUploadImage = ({
+export const useUploadImages = ({
   initialImages = [],
   maxImages = 10,
   minImages = 1,

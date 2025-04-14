@@ -1,7 +1,7 @@
-import { IUser } from "@/interfaces/user.model";
+import { IUserExample } from "@/interfaces/user.model";
 
 interface MatcherItemProps {
-  user: IUser;
+  user: IUserExample;
 }
 
 export function MatcherItem({ user }: MatcherItemProps) {

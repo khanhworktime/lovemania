@@ -1,4 +1,4 @@
-import { IUser } from "@/interfaces/user.model";
+import { IUser } from "@/services/graphQl/user/user.model";
 import { useGSAP } from "@gsap/react";
 import {
   Button,
@@ -11,8 +11,7 @@ import {
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { Heart, Instagram, StarIcon, Twitter, XIcon } from "lucide-react";
-import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(CustomEase);
 
@@ -352,10 +351,9 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
             <CardBody>
               {/* Card main */}
               <div className="relative w-full h-auto aspect-[0.9] overflow-hidden rounded-2xl ">
-                <Image
-                  src={user.image}
+                <img
+                  src={user?.avatarUrl}
                   alt="Profile"
-                  fill
                   className="object-cover object-center aspect-[0.9] w-full h-full"
                 />
 
@@ -365,7 +363,7 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                 <div className="absolute z-10 top-0 right-0 p-4">
                   <CircularProgress
                     aria-label="Progress match"
-                    value={user.matchesPercentage}
+                    value={80}
                     size="lg"
                     showValueLabel
                     classNames={{
@@ -397,10 +395,10 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                     </Button>
                   </div>
                   <h3 className="text-white text-2xl font-bold font-chalet text-center">
-                    {user.name}
+                    {user.displayName}
                   </h3>
                   <p className="text-white/80 font-semibold text-sm text-center tracking-[0.1rem]">
-                    {user.location}
+                    {user.genderValue}
                   </p>
                 </div>
 

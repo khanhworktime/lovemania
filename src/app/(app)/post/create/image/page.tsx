@@ -1,6 +1,6 @@
 "use client";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-import { useUploadImage } from "@/hooks/UseUploadImage";
+import { useUploadImages } from "@/hooks/UseUploadImage/multiImages";
 import {
   Carousel,
   CarouselContent,
@@ -40,7 +40,7 @@ export default function PostCreateImagePage() {
     triggerFileUpload,
     handleDelete,
     ImplementImageInput,
-  } = useUploadImage({
+  } = useUploadImages({
     initialImages: [],
     maxImages: MAX_IMAGES,
     minImages: 1,

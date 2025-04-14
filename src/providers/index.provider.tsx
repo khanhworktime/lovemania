@@ -1,10 +1,9 @@
 "use client";
 
-import { HeroUIProvider, ToastProvider, ToastProps } from "@heroui/react";
-import { ThirdwebProvider } from "./thirdweb.provider";
 import MobileLayout from "@/shared-components/layouts/mobile.layout";
+import { HeroUIProvider, ToastProps, ToastProvider } from "@heroui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { MatchedNotification } from "@/shared-components/ui/MatchedNotification/MatchedNotification";
+import { ThirdwebProvider } from "./thirdweb.provider";
 
 const queryClient = new QueryClient();
 

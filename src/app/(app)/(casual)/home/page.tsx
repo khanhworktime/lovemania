@@ -3,11 +3,12 @@ import { FilterIcon, NewLoveIcon } from "@/assets/icons";
 import Logo from "@/assets/logos/lovemania.logo.png";
 import { useProfileSBT } from "@/hooks/UseProfile";
 import { basicClient } from "@/providers/thirdweb.provider";
+import { userClient } from "@/services/graphQl/user/userClient";
 import { Avatar, Button, cn, Tab, Tabs } from "@heroui/react";
 import { BellDotIcon } from "lucide-react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { resolveScheme } from "thirdweb/storage";
 import { Finder } from "./components/Segments/finder";
 import { NewsFeed } from "./components/Segments/matches";
@@ -28,7 +29,6 @@ export default function HomePage() {
         })
       : null,
   };
-
   return (
     <div className="flex flex-col gap-y-4 ">
       {/* Header */}

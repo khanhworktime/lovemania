@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IUserExample {
   id: string;
   name: string;
   age: number;

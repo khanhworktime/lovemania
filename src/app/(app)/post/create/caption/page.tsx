@@ -1,6 +1,6 @@
 "use client";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-import { useUploadImage } from "@/hooks/UseUploadImage";
+import { useUploadImages } from "@/hooks/UseUploadImage/multiImages";
 import {
   Carousel,
   CarouselContent,

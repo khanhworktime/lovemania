@@ -9,6 +9,7 @@ import {
   useDisclosure,
   ModalBody,
   ModalHeader,
+  addToast,
 } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import { useOnboarding } from "../components/onboarding.provider";
@@ -22,53 +23,41 @@ import { mintWithSignature } from "thirdweb/extensions/erc721";
 import { IProfileNftProps } from "@/services/minting/models/profileNft.model";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { useState } from "react";
+import useMintingProfile from "@/services/graphQl/user/hooks/useMintingProfile";
 
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
   const { profileData } = useOnboarding();
-  // TODO: Add a button to connect to the wallet
   const account = useGetCurrentUser();
 
-  const [isSigning, setIsSigning] = useState(false);
-
-  const mintProfileNft = async (props: IProfileNftProps) => {
-    if (!account?.address) return;
-
-    const { payload, signature } = await mintNftProfile(props);
-
-    setIsSigning(true);
-    try {
-      const tx = mintWithSignature({
-        contract: getNftProfileContract({ client: basicClient }),
-        payload,
-        signature,
-      });
-
-      await sendTransaction({
-        transaction: tx,
-        account: account,
-      });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsSigning(false);
-    }
-  };
+  const { mutateAsync, isPending } = useMintingProfile();
 
   const confirmModalControl = useDisclosure();
 
   const handleConfirm = async () => {
     if (!account?.address) return;
-    await mintProfileNft({
-      address: account?.address,
-      media: profileData.photosIpfs[0],
-      name: profileData.name,
-      birthday: profileData.dob || "",
-      genderType: profileData.definition,
-      gender: profileData.definitionDescription,
-    });
 
-    router.replace("/home");
+    try {
+      await mutateAsync({
+        metadata: {
+          name: profileData.name,
+          description: "",
+          image:
+            "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
+          interests: profileData.interests,
+          gender: profileData.definition,
+          genderType: profileData.definitionDescription,
+          birthday: profileData.dob || "",
+        },
+      });
+      router.replace("/home");
+    } catch (error) {
+      addToast({
+        title: "Error",
+        description: "Failed to mint profile NFT",
+        color: "danger",
+      });
+    }
   };
 
   return (
@@ -125,7 +114,7 @@ export default function ProfileFinalizePage() {
                     await handleConfirm();
                     onClose();
                   }}
-                  isLoading={isSigning}
+                  isLoading={isPending}
                 >
                   Confirm
                 </Button>
@@ -135,7 +124,7 @@ export default function ProfileFinalizePage() {
         </ModalContent>
       </Modal>
 
-      {isSigning && (
+      {isPending && (
         <div className="fixed z-[60] inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
         </div>
