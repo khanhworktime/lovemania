@@ -1,29 +1,21 @@
 "use client";
 
-import { ArrowRightIcon } from "lucide-react";
+import Thumbnail from "@/assets/decors/profile-finalize.decor.png";
+import useMintingProfile from "@/services/graphQl/user/hooks/useMintingProfile";
+import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import {
   Button,
-  ModalFooter,
   Modal,
-  ModalContent,
-  useDisclosure,
   ModalBody,
+  ModalContent,
+  ModalFooter,
   ModalHeader,
   addToast,
+  useDisclosure,
 } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
-import { useOnboarding } from "../components/onboarding.provider";
-import Thumbnail from "@/assets/decors/profile-finalize.decor.png";
 import Image from "next/image";
-import { sendTransaction } from "thirdweb";
-import { getNftProfileContract } from "@/services/contracts/nftProfile";
-import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
-import { mintNftProfile } from "@/services/minting";
-import { mintWithSignature } from "thirdweb/extensions/erc721";
-import { IProfileNftProps } from "@/services/minting/models/profileNft.model";
-import { basicClient } from "@/providers/thirdweb.provider";
-import { useState } from "react";
-import useMintingProfile from "@/services/graphQl/user/hooks/useMintingProfile";
+import { useOnboarding } from "../components/onboarding.provider";
 
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
@@ -50,7 +42,7 @@ export default function ProfileFinalizePage() {
           birthday: profileData.dob || "",
         },
       });
-      router.replace("/home");
+      router.replace(`/onboarding/profile-photo`);
     } catch (error) {
       addToast({
         title: "Error",

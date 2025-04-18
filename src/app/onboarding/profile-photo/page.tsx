@@ -44,7 +44,7 @@ export default function ProfilePhotoPage() {
       files: [image],
       metadata: {
         name: image.name,
-        description: "This is a test image",
+        description: "Image for profile ",
         image: image.name,
       },
     });
@@ -60,7 +60,7 @@ export default function ProfilePhotoPage() {
   return (
     <>
       <h1 className="text-2xl font-medium font-chalet text-center mb-6">
-        Upload your photos
+        Upload your photos to claim your first Avatar NFT
       </h1>
       <div className="grid-cols-3 grid gap-2">
         <div className="col-span-2 row-span-2">
