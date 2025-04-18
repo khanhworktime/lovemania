@@ -4,6 +4,6 @@ export enum onboardingSteps {
   "profile-definition" = 3,
   "profile-lookingfor" = 4,
   "profile-interest" = 5,
-  "profile-finalize" = 6,
-  "profile-photo" = 7,
+  "profile-photo" = 6,
+  "profile-finalize" = 7,
 }

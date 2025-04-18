@@ -34,7 +34,9 @@ export default function ProfileFinalizePage() {
         metadata: {
           name: profileData.name,
           description: "",
+          // TODO: use default image for profile instead of photos[0]
           image:
+            profileData.photos[0] ||
             "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
           interests: profileData.interests,
           gender: profileData.definition,
