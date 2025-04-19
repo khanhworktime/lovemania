@@ -14,10 +14,14 @@ export default function ProfilePhotoPage() {
   const router = useTransitionRouter();
 
   const { profileData, updateProfileData } = useOnboarding();
-  const [photos, setPhotos] = useState<string[]>(profileData.photos || []);
+  const [photos, setPhotos] = useState<string[]>(
+    new Array(5).fill(undefined).concat(...(profileData.photos || []))
+  );
 
   useEffect(() => {
-    updateProfileData({ photos });
+    updateProfileData({
+      photos: photos.filter((photo) => photo !== undefined),
+    });
   }, [photos]);
 
   const handlePhotoUpload = (photo: string | null, index: number) => {
@@ -27,8 +31,7 @@ export default function ProfilePhotoPage() {
       setPhotos(newPhotos);
     } else {
       const newPhotos = [...photos];
-      newPhotos[index] = "";
-      setPhotos(newPhotos);
+      setPhotos(newPhotos.filter((photo) => photo !== undefined));
     }
   };
 
@@ -37,24 +40,28 @@ export default function ProfilePhotoPage() {
   const [isUploading, setIsUploading] = useState(false);
 
   const handleImageUpload = async () => {
-    const image = getFileFromBase64(photos[0], "imageTest");
-    setIsUploading(true);
-    const result = await upload({
-      client: basicClient,
-      files: [image],
-      metadata: {
-        name: image.name,
-        description: "Image for profile ",
-        image: image.name,
-      },
-    });
+    const ipfsImages = [];
+    for (const photo of photos) {
+      if (!photo) continue;
+      const image = getFileFromBase64(photo, "imageTest");
+      setIsUploading(true);
+      const result = await upload({
+        client: basicClient,
+        files: [image],
+        metadata: {
+          name: image.name,
+          description: "Image for profile photo",
+          image: image.name,
+        },
+      });
+      ipfsImages.push(result);
+    }
 
     setIsUploading(false);
-    if (!result) return;
+    if (!ipfsImages) return;
 
-    updateProfileData({ photosIpfs: [result] });
+    updateProfileData({ photosIpfs: ipfsImages });
   };
-
   const isDisabled = !photos[0] || isUploading;
 
   return (

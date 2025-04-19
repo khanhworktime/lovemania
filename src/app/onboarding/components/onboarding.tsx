@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 import { useConnectedWallets } from "thirdweb/react";
 import { onboardingSteps } from "../steps";
 import { useOnboarding } from "./onboarding.provider";
-
+import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 export default function Onboarding({
   children,
 }: {
@@ -93,8 +93,8 @@ export default function Onboarding({
                       updateProfileData({
                         name: "",
                         dob: null,
-                        definition: "",
-                        definitionDescription: "",
+                        genderValue: "Male",
+                        genderType: EGenderDefine.MALE,
                         interests: [],
                         photos: [],
                         photosIpfs: [],

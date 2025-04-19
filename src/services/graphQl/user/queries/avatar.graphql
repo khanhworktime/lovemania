@@ -1,0 +1,17 @@
+query MintingAvatar($address: String!, $metadata: MintErc721Input!) {
+  mintingAvatar(address: $address, metadata: $metadata) {
+    signature
+    payload {
+      to
+      royaltyRecipient
+      royaltyBps
+      primarySaleRecipient
+      uri
+      price
+      currency
+      validityStartTimestamp
+      validityEndTimestamp
+      uid
+    }
+  }
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 import { CalendarDate } from "@internationalized/date";
 import { createContext, useContext } from "react";
 import { useSessionStorage } from "usehooks-ts";
@@ -7,9 +8,9 @@ import { useSessionStorage } from "usehooks-ts";
 interface ProfileFormData {
   name: string;
   dob: string | null;
-  definition: string;
-  definitionDescription: string;
-  lookingFor: string;
+  genderType: EGenderDefine;
+  genderValue: string;
+  lookingFor: EGenderDefine;
   interests: string[];
   photos: string[];
   photosIpfs: string[];
@@ -23,9 +24,9 @@ interface OnboardingContextType {
 const defaultProfileData: ProfileFormData = {
   name: "",
   dob: null,
-  definition: "man",
-  definitionDescription: "man",
-  lookingFor: "man",
+  genderType: EGenderDefine.MALE,
+  genderValue: "Male",
+  lookingFor: EGenderDefine.MALE,
   interests: [],
   photos: [],
   photosIpfs: [],

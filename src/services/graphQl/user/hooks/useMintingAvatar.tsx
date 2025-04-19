@@ -3,35 +3,27 @@ import { getNftProfileContract } from "@/services/contracts/nftProfile";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import { useMutation } from "@tanstack/react-query";
 import { mintWithSignature } from "thirdweb/extensions/erc721";
-import { MetadataMintProfileInput } from "../user.model";
+import { MetadataMintAvatarInput } from "../user.model";
 import { userClient } from "../userClient";
+import { getAvatarProfileContract } from "@/services/contracts/avatarProfile";
 
-export default function useGetMintingProfileTx() {
+export default function useGetMintingAvatarTx() {
   const account = useGetCurrentUser();
 
   const { mutateAsync, data, isPending, error } = useMutation({
-    mutationFn: async ({
-      metadata,
-    }: {
-      metadata: MetadataMintProfileInput;
-    }) => {
+    mutationFn: async ({ metadata }: { metadata: MetadataMintAvatarInput }) => {
       if (!account?.address) return;
 
-      const { signature, payload } = await userClient.mintingProfile({
+      const { signature, payload } = await userClient.mintingAvatar({
         address: account.address,
         metadata,
       });
 
       const tx = mintWithSignature({
-        contract: getNftProfileContract({ client: basicClient }),
+        contract: getAvatarProfileContract({ client: basicClient }),
         signature,
         payload,
       });
-
-      // await sendTransaction({
-      //   transaction: tx,
-      //   account: account,
-      // });
 
       return tx;
     },

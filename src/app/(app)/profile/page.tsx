@@ -28,7 +28,7 @@ import { resolveScheme } from "thirdweb/storage";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { useOnboarding } from "@/app/onboarding/components/onboarding.provider";
 import { useConnectedWallets } from "thirdweb/react";
-
+import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 const profileDonePercentage = 70;
 
 export default function ProfilePage() {
@@ -44,11 +44,11 @@ export default function ProfilePage() {
     updateProfileData({
       name: "",
       dob: null,
-      definition: "",
-      definitionDescription: "",
       interests: [],
       photos: [],
       photosIpfs: [],
+      genderType: EGenderDefine.MALE,
+      genderValue: "",
     });
     for (const wallet of connectedWallets) {
       await wallet.disconnect();

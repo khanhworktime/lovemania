@@ -1,16 +1,56 @@
 import { ApolloClientBase } from "../config/baseClass";
-import { Me } from "./queries/me.graphql";
-import { MintingProfile } from "./mutates/mintingProfile.graphql";
-import { MetadataInput, IUser } from "./user.model";
 import {
   DefaultErc721Response,
   IDefaultResponse,
 } from "../interface/response.model";
+import { MintingProfile } from "./queries/mintingProfile.graphql";
+import { MintingAvatar } from "./queries/avatar.graphql";
+import { Me } from "./queries/me.graphql";
 import { GetUsers } from "./queries/user.graphql";
+import { CreateUser } from "./mutaties/createUser.graphql";
+import {
+  IUser,
+  MetadataMintAvatarInput,
+  MetadataMintProfileInput,
+  CreateUserInput,
+} from "./user.model";
 class UserClient extends ApolloClientBase {
   constructor() {
     super();
   }
+
+  // Minting Profile
+  async mintingProfile(request: {
+    address: string;
+    metadata: MetadataMintProfileInput;
+  }): Promise<DefaultErc721Response> {
+    const { data } = await this.instance.query<{
+      mintingProfile: DefaultErc721Response;
+    }>({
+      query: MintingProfile,
+      variables: request,
+    });
+
+    return data.mintingProfile;
+  }
+
+  // Minting Avatar
+  async mintingAvatar(request: {
+    address: string;
+    metadata: MetadataMintAvatarInput;
+  }): Promise<DefaultErc721Response> {
+    const { data } = await this.instance.query<{
+      mintingAvatar: DefaultErc721Response;
+    }>({
+      query: MintingAvatar,
+      variables: request,
+    });
+
+    return data.mintingAvatar;
+  }
+
+  //#region Authentication required
+
   // Get matcher list
   async getMatcherList(request: { cursor: string | null; limit: number }) {
     const { data } = await this.instance.query<{
@@ -32,20 +72,18 @@ class UserClient extends ApolloClientBase {
     return data.me;
   }
 
-  // Minting Profile
-  async mintingProfile(request: {
-    address: string;
-    metadata: MetadataInput;
+  // Create user
+  async createUser(request: {
+    userInput: CreateUserInput;
   }): Promise<DefaultErc721Response> {
-    const { data } = await this.instance.query<{
-      mintingProfile: DefaultErc721Response;
-    }>({
-      query: MintingProfile,
+    const { data } = await this.instance.query({
+      query: CreateUser,
       variables: request,
     });
 
-    return data.mintingProfile;
+    return data.createUser;
   }
+  //#endregion
 }
 
 export const userClient = new UserClient();

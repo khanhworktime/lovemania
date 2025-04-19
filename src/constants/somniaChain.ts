@@ -10,7 +10,6 @@ export const somniaChain = /* @__PURE__ */ defineChain({
       url: "https://shannon-explorer.somnia.network/",
     },
   ],
+  rpc: "https://rpc.ankr.com/somnia_testnet",
   testnet: true,
 });
-
-

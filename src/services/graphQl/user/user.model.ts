@@ -1,11 +1,34 @@
-export interface MetadataInput {
+import { EGenderDefine } from "@/enum/EGenderDefine.enum";
+
+export interface MetadataMintProfileInput {
   name: string;
   description: string;
   image: string;
   interests: string[];
   gender: string;
-  genderType: string;
+  genderType: EGenderDefine;
   birthday: string;
+}
+
+export interface MetadataMintAvatarInput {
+  name: string;
+  description: string;
+  image: string;
+}
+
+export interface CreateUserInput {
+  userInput: {
+    profile: {
+      interests: string[];
+    };
+    preference: {
+      distance: number;
+      minAge: number;
+      maxAge: number;
+      genderType: `${EGenderDefine}`;
+      genderValue: string;
+    };
+  };
 }
 
 export interface IUser {
