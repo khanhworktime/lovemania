@@ -1,7 +1,7 @@
 import { Viewport } from "next";
 
 export const viewport: Viewport = {
-  themeColor: "#F9FAFB",
+  themeColor: "#fcf5fa",
 };
 
 export default function ProfileLayout({
@@ -9,5 +9,5 @@ export default function ProfileLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="bg-[#fcf5fa] min-h-svh">{children}</div>;
+  return <div className="">{children}</div>;
 }

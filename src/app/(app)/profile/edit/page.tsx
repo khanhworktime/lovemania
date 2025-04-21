@@ -63,8 +63,8 @@ export default function EditProfilePage() {
   }, [sbt]);
 
   return (
-    <div className="h-fit flex flex-col gap-y-6 [&>*]:px-4 relative">
-      <div className="flex justify-between items-center gap-x-2 pt-4 pb-2 sticky top-0 inset-x-0 z-50 bg-white/20 backdrop-blur-sm">
+    <div className="bg-[#fcf5fa] flex flex-col gap-y-6 [&>*]:px-4 relative">
+      <div className="flex justify-between items-center gap-x-2 pt-4 pb-2 sticky top-0 inset-x-0 z-50  backdrop-blur-sm">
         <Button
           variant="bordered"
           className="size-10 border-1"
@@ -174,7 +174,7 @@ export default function EditProfilePage() {
                       key={interest}
                       className="transition-all duration-300"
                       classNames={{
-                        content: cn("font-chalet text-medium"),
+                        content: cn("text-medium"),
                         base: cn(
                           "h-fit py-2 px-3 bg-white border border-primary-300 cursor-pointer"
                         ),
