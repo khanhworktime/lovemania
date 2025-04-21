@@ -26,8 +26,6 @@ export const useLoginServer = () => {
         sponsorGas: true,
       },
     });
-
-    
   };
 
   const currentQueryKey = [

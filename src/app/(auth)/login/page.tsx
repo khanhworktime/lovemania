@@ -4,26 +4,43 @@ import Thumbnail from "@/assets/backgrounds/signup.background.png";
 import { env } from "@/constants/env";
 import { somniaChain } from "@/constants/somniaChain";
 import { basicClient } from "@/providers/thirdweb.provider";
+import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
 import { useLoginServer } from "@/services/graphQl/authentication/hooks/useLoginServer";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
-import { Button, CircularProgress } from "@heroui/react";
+import { addToast, Button, CircularProgress } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
 import { useState } from "react";
-import { useConnectModal } from "thirdweb/react";
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 
 export default function LoginPage() {
   const router = useTransitionRouter();
-  // const { connect } = useConnectModal();
   const [isLoading, setIsLoading] = useState(false);
+
+  // First time login always remove local token
+  useIsomorphicLayoutEffect(() => {
+    const localToken = localStorage.getItem(storageKeys.TOKEN);
+    if (localToken) {
+      localStorage.removeItem(storageKeys.TOKEN);
+    }
+  });
 
   const { startLogin, walletLoginData } = useLoginServer();
 
   const handleConnect = async () => {
     setIsLoading(true);
-    await startLogin();
+    try {
+      await startLogin();
+    } catch (error) {
+      addToast({
+        title: "Error",
+        description: "Failed to login",
+        color: "danger",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useIsomorphicLayoutEffect(() => {
