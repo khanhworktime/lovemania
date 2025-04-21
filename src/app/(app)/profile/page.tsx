@@ -30,6 +30,7 @@ import { useOnboarding } from "@/app/onboarding/components/onboarding.provider";
 import { useConnectedWallets } from "thirdweb/react";
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 import { useMe } from "@/services/graphQl/user/hooks/useMe";
+import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
 
 const profileDonePercentage = 70;
 
@@ -53,6 +54,10 @@ export default function ProfilePage() {
       genderType: EGenderDefine.MALE,
       genderValue: "",
     });
+    const localToken = localStorage.getItem(storageKeys.TOKEN);
+    if (localToken) {
+      localStorage.removeItem(storageKeys.TOKEN);
+    }
     for (const wallet of connectedWallets) {
       await wallet.disconnect();
     }

@@ -19,12 +19,6 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   // First time login always remove local token
-  useIsomorphicLayoutEffect(() => {
-    const localToken = localStorage.getItem(storageKeys.TOKEN);
-    if (localToken) {
-      localStorage.removeItem(storageKeys.TOKEN);
-    }
-  });
 
   const { startLogin, walletLoginData } = useLoginServer();
 
