@@ -1,6 +1,6 @@
 export enum EGenderDefine {
-  MALE,
-  FEMALE,
-  NON_BINARY,
-  ANYTHING,
+  MALE = "MALE",
+  FEMALE = "FEMALE",
+  NON_BINARY = "NON_BINARY",
+  ANYTHING = "ANYTHING",
 }

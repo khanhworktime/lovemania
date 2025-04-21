@@ -1,5 +1,5 @@
 import { addToast } from "@heroui/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface UseUploadImageProps {
   initialImage?: string;
@@ -15,6 +15,12 @@ export const useUploadImage = ({
   const [image, setImage] = useState<string>(initialImage);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (initialImage) {
+      setImage(initialImage);
+    }
+  }, [initialImage]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

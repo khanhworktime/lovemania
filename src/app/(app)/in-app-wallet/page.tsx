@@ -9,9 +9,6 @@ import { inAppWallet } from "thirdweb/wallets";
 import { createWallet } from "thirdweb/wallets";
 
 import { env } from "@/constants/env";
-import { EGenderDefine } from "@/enum/EGenderDefine.enum";
-import useGetMintingAvatarTx from "@/services/graphQl/user/hooks/useMintingAvatar";
-import useGetMintingProfileTx from "@/services/graphQl/user/hooks/useMintingProfile";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import { Button } from "@heroui/react";
 const wallets = [
@@ -39,36 +36,8 @@ export default function InAppWalletPage() {
   const account = useGetCurrentUser();
   const { mutateAsync: sendBatchTransaction, isPending } =
     useSendBatchTransaction();
-  const { mutateAsync: mintProfile } = useGetMintingProfileTx();
-  const { mutateAsync: mintAvatar } = useGetMintingAvatarTx();
 
-  const testMint = async () => {
-    const txAvatar = await mintAvatar({
-      metadata: {
-        name: "test",
-        description: "test",
-        image:
-          "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
-      },
-    });
-
-    const txProfile = await mintProfile({
-      metadata: {
-        name: "test",
-        description: "test",
-        image:
-          "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
-        interests: [],
-        gender: "Male",
-        genderType: EGenderDefine.MALE,
-        birthday: "2002-23-09",
-      },
-    });
-
-    if (!txAvatar || !txProfile || !account) return;
-
-    await sendBatchTransaction([txProfile, txAvatar]);
-  };
+  const testMint = async () => {};
 
   return (
     <>

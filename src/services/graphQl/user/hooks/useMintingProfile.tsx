@@ -1,21 +1,24 @@
 import { basicClient } from "@/providers/thirdweb.provider";
 import { getNftProfileContract } from "@/services/contracts/nftProfile";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { mintWithSignature } from "thirdweb/extensions/erc721";
 import { MetadataMintProfileInput } from "../user.model";
 import { userClient } from "../userClient";
 
-export default function useGetMintingProfileTx() {
+export default function useGetMintingProfileTx({
+  metadata,
+  enabled = false,
+}: {
+  metadata: MetadataMintProfileInput;
+  enabled?: boolean;
+}) {
   const account = useGetCurrentUser();
 
-  const { mutateAsync, data, isPending, error } = useMutation({
-    mutationFn: async ({
-      metadata,
-    }: {
-      metadata: MetadataMintProfileInput;
-    }) => {
-      if (!account?.address) return;
+  const { data, isPending, error, refetch } = useQuery({
+    queryKey: ["mintingProfile", metadata, enabled],
+    queryFn: async () => {
+      if (!account?.address) throw new Error("Account not found");
 
       const { signature, payload } = await userClient.mintingProfile({
         address: account.address,
@@ -35,7 +38,8 @@ export default function useGetMintingProfileTx() {
 
       return tx;
     },
+    enabled: !!account?.address && !!metadata && enabled,
   });
 
-  return { mutateAsync, data, isPending, error };
+  return { data, isPending, error, refetch };
 }

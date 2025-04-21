@@ -29,6 +29,7 @@ class UserClient extends ApolloClientBase {
     }>({
       query: MintingProfile,
       variables: request,
+      fetchPolicy: "no-cache",
     });
 
     return data.mintingProfile;
@@ -44,6 +45,7 @@ class UserClient extends ApolloClientBase {
     }>({
       query: MintingAvatar,
       variables: request,
+      fetchPolicy: "no-cache",
     });
 
     return data.mintingAvatar;
@@ -73,11 +75,9 @@ class UserClient extends ApolloClientBase {
   }
 
   // Create user
-  async createUser(request: {
-    userInput: CreateUserInput;
-  }): Promise<DefaultErc721Response> {
-    const { data } = await this.instance.query({
-      query: CreateUser,
+  async createUser(request: CreateUserInput): Promise<DefaultErc721Response> {
+    const { data } = await this.instance.mutate({
+      mutation: CreateUser,
       variables: request,
     });
 

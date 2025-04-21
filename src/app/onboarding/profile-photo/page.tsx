@@ -14,9 +14,7 @@ export default function ProfilePhotoPage() {
   const router = useTransitionRouter();
 
   const { profileData, updateProfileData } = useOnboarding();
-  const [photos, setPhotos] = useState<string[]>(
-    new Array(5).fill(undefined).concat(...(profileData.photos || []))
-  );
+  const [photos, setPhotos] = useState<string[]>([]);
 
   useEffect(() => {
     updateProfileData({
@@ -72,7 +70,7 @@ export default function ProfilePhotoPage() {
       <div className="grid-cols-3 grid gap-2">
         <div className="col-span-2 row-span-2">
           <PhotoUploader
-            initialImage={photos[0]}
+            initialImage={profileData.photos[0]}
             onImageChange={(photo) => handlePhotoUpload(photo, 0)}
           />
         </div>

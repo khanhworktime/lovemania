@@ -1,3 +1,15 @@
 query Me {
-  health
+  me {
+    id
+    displayName
+    walletAddress
+    birthday
+    bio
+    avatarUrl
+    genderType
+    genderValue
+    interests
+    createdAt
+    updatedAt
+  }
 }

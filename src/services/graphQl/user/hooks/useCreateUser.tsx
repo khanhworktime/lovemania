@@ -5,7 +5,7 @@ import { CreateUserInput } from "../user.model";
 export default function useCreateUser() {
   return useMutation({
     mutationFn: async (request: CreateUserInput) => {
-      return await userClient.createUser({ userInput: request });
+      return await userClient.createUser(request);
     },
   });
 }

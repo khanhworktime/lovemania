@@ -12,7 +12,7 @@ export default function useGetMintingAvatarTx() {
 
   const { mutateAsync, data, isPending, error } = useMutation({
     mutationFn: async ({ metadata }: { metadata: MetadataMintAvatarInput }) => {
-      if (!account?.address) return;
+      if (!account?.address) throw new Error("Account not found");
 
       const { signature, payload } = await userClient.mintingAvatar({
         address: account.address,

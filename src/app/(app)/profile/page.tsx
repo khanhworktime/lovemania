@@ -29,10 +29,13 @@ import { basicClient } from "@/providers/thirdweb.provider";
 import { useOnboarding } from "@/app/onboarding/components/onboarding.provider";
 import { useConnectedWallets } from "thirdweb/react";
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
+import { useMe } from "@/services/graphQl/user/hooks/useMe";
+
 const profileDonePercentage = 70;
 
 export default function ProfilePage() {
   const router = useTransitionRouter();
+  const { data: me, isLoading: isMeLoading } = useMe();
   const { sbt, isLoading } = useProfileSBT();
 
   // Logout modal
@@ -56,7 +59,7 @@ export default function ProfilePage() {
     router.replace("/login");
   };
 
-  if (isLoading || !sbt) {
+  if (isLoading || !sbt || isMeLoading) {
     return (
       <div className="flex flex-col gap-y-4 px-4 w-full h-svh justify-center items-center">
         <CircularProgress />

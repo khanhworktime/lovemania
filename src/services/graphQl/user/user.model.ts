@@ -25,7 +25,7 @@ export interface CreateUserInput {
       distance: number;
       minAge: number;
       maxAge: number;
-      genderType: `${EGenderDefine}`;
+      genderType: EGenderDefine;
       genderValue: string;
     };
   };

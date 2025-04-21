@@ -19,6 +19,7 @@ interface ProfileFormData {
 interface OnboardingContextType {
   profileData: ProfileFormData;
   updateProfileData: (data: Partial<ProfileFormData>) => void;
+  retrieveProfileData: () => void;
 }
 
 const defaultProfileData: ProfileFormData = {
@@ -61,11 +62,16 @@ export function OnboardingProvider({
     }));
   };
 
+  const retrieveProfileData = () => {
+    setProfileData(defaultProfileData);
+  };
+
   return (
     <OnboardingContext.Provider
       value={{
         profileData,
         updateProfileData,
+        retrieveProfileData,
       }}
     >
       {children}

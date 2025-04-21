@@ -1,12 +1,15 @@
 "use client";
 
 import Thumbnail from "@/assets/decors/profile-finalize.decor.png";
-import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { getAvatarProfileContract } from "@/services/contracts/avatarProfile";
+import { getNftProfileContract } from "@/services/contracts/nftProfile";
 import useCreateUser from "@/services/graphQl/user/hooks/useCreateUser";
-import useGetMintingAvatarTx from "@/services/graphQl/user/hooks/useMintingAvatar";
-import useGetMintingProfileTx from "@/services/graphQl/user/hooks/useMintingProfile";
+import {
+  MetadataMintAvatarInput,
+  MetadataMintProfileInput,
+} from "@/services/graphQl/user/user.model";
+import { userClient } from "@/services/graphQl/user/userClient";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import { sleep } from "@/utils/sleep";
 import {
@@ -21,50 +24,71 @@ import {
 } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
-import { getOwnedNFTs } from "thirdweb/extensions/erc721";
+import { mintWithSignature } from "thirdweb/extensions/erc721";
 import { useSendBatchTransaction } from "thirdweb/react";
 import { useOnboarding } from "../components/onboarding.provider";
-
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
-  const { profileData } = useOnboarding();
+  const { profileData, retrieveProfileData } = useOnboarding();
   const account = useGetCurrentUser();
 
-  const { mutateAsync: mintProfile } = useGetMintingProfileTx();
   const { mutateAsync: createUser } = useCreateUser();
-  const { mutateAsync: mintAvatar } = useGetMintingAvatarTx();
 
   const { mutateAsync: sendBatchTransaction, isPending } =
     useSendBatchTransaction();
 
   const confirmModalControl = useDisclosure();
 
-  const handleConfirm = async () => {
-    if (!account?.address) return;
+  const getTxProfile = async (metadata: MetadataMintProfileInput) => {
+    if (!account?.address) throw new Error("Account not found");
+    const { signature, payload } = await userClient.mintingProfile({
+      address: account.address,
+      metadata,
+    });
 
+    return mintWithSignature({
+      contract: getNftProfileContract({ client: basicClient }),
+      signature,
+      payload,
+    });
+  };
+
+  const getTxAvatar = async (metadata: MetadataMintAvatarInput) => {
+    if (!account?.address) throw new Error("Account not found");
+    const { signature, payload } = await userClient.mintingAvatar({
+      address: account.address,
+      metadata,
+    });
+
+    return mintWithSignature({
+      contract: getAvatarProfileContract({ client: basicClient }),
+      signature,
+      payload,
+    });
+  };
+
+  const handleConfirm = async () => {
     try {
-      const txProfile = await mintProfile({
-        metadata: {
-          name: profileData.name,
-          description: "",
-          image:
-            profileData.photos[0] ||
-            "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
-          interests: profileData.interests,
-          gender: profileData.genderValue,
-          genderType: profileData.genderType,
-          birthday: profileData.dob || "",
-        },
+      if (!account?.address) throw new Error("Account not found");
+
+      const txProfile = await getTxProfile({
+        name: profileData.name,
+        description: "",
+        image:
+          profileData.photosIpfs[0] ||
+          "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
+        interests: profileData.interests,
+        gender: profileData.genderValue,
+        genderType: profileData.genderType,
+        birthday: new Date(profileData.dob || "").toISOString() || "",
       });
 
-      const txAvatar = await mintAvatar({
-        metadata: {
-          name: "Initial Avatar",
-          description: "",
-          image:
-            profileData.photos[0] ||
-            "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
-        },
+      const txAvatar = await getTxAvatar({
+        name: "Initial Avatar",
+        description: "",
+        image:
+          profileData.photosIpfs[0] ||
+          "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
       });
 
       if (!txProfile || !txAvatar) {
@@ -75,15 +99,6 @@ export default function ProfileFinalizePage() {
 
       await sleep(1000);
 
-      const nftProfile = await getOwnedNFTs({
-        contract: getAvatarProfileContract({ client: basicClient }),
-        owner: account.address,
-      });
-
-      if (!nftProfile) {
-        throw new Error("Failed to get profile NFT");
-      }
-
       await createUser({
         userInput: {
           profile: {
@@ -93,19 +108,21 @@ export default function ProfileFinalizePage() {
             distance: 100,
             minAge: 18,
             maxAge: 30,
-            genderType: profileData.genderType.toString() as `${EGenderDefine}`,
+            genderType: profileData.genderType,
             genderValue: profileData.genderValue,
           },
         },
       });
 
+      retrieveProfileData();
       router.replace(`/home`);
     } catch (error) {
       addToast({
         title: "Error",
-        description: "Failed to mint profile NFT",
+        description: "Failed to mint profile NFT" + error,
         color: "danger",
       });
+      console.log(error);
     }
   };
 
