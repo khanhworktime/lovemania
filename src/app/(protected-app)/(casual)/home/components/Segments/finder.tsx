@@ -5,7 +5,7 @@ import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { MatcherCard } from "../MatcherCard";
 import { preloadImages } from "@/utils/preloadImg";
-
+import { CircularProgress } from "@heroui/react";
 export function Finder() {
   const [page, setPage] = useState<number>(0);
   const [index, setIndex] = useState<number>(0);
@@ -32,7 +32,7 @@ export function Finder() {
   if (user === null || isLoading) {
     return (
       <div className="relative w-full h-full flex justify-center items-center">
-        <Loader className="animate-spin" />
+        <CircularProgress />
       </div>
     );
   }

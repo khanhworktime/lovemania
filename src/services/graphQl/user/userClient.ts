@@ -75,7 +75,7 @@ class UserClient extends ApolloClientBase {
   }
 
   // Create user
-  async createUser(request: CreateUserInput): Promise<DefaultErc721Response> {
+  async createUser(request: CreateUserInput): Promise<IUser> {
     const { data } = await this.instance.mutate({
       mutation: CreateUser,
       variables: request,

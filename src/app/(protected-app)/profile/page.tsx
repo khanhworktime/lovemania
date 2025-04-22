@@ -4,10 +4,10 @@ import {
   Avatar,
   Button,
   CircularProgress,
-  ModalFooter,
   Modal,
-  ModalContent,
   ModalBody,
+  ModalContent,
+  ModalFooter,
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
@@ -21,16 +21,18 @@ import {
   XIcon,
 } from "lucide-react";
 
-import { Link, useTransitionRouter } from "next-view-transitions";
-import { useProfileSBT } from "@/hooks/UseProfile";
-import moment from "moment";
-import { resolveScheme } from "thirdweb/storage";
-import { basicClient } from "@/providers/thirdweb.provider";
-import { useOnboarding } from "@/app/onboarding/components/onboarding.provider";
-import { useConnectedWallets } from "thirdweb/react";
+import { useOnboarding } from "@/app/(protected-app)/onboarding/components/onboarding.provider";
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
-import { useMe } from "@/services/graphQl/user/hooks/useMe";
+import { useProfileSBT } from "@/hooks/UseProfile";
+import { basicClient } from "@/providers/thirdweb.provider";
 import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
+import { ApolloClientWrapper } from "@/services/graphQl/config/baseClass";
+import { useMe } from "@/services/graphQl/user/hooks/useMe";
+import moment from "moment";
+import { Link, useTransitionRouter } from "next-view-transitions";
+import { useConnectedWallets } from "thirdweb/react";
+import { resolveScheme } from "thirdweb/storage";
+import { useQueryClient } from "@tanstack/react-query";
 
 const profileDonePercentage = 70;
 
@@ -44,6 +46,8 @@ export default function ProfilePage() {
   const { updateProfileData } = useOnboarding();
   const connectedWallets = useConnectedWallets();
 
+  const queryClient = useQueryClient();
+
   const handleLogout = async () => {
     updateProfileData({
       name: "",
@@ -54,13 +58,22 @@ export default function ProfilePage() {
       genderType: EGenderDefine.MALE,
       genderValue: "",
     });
-    const localToken = localStorage.getItem(storageKeys.TOKEN);
+    const localToken = sessionStorage.getItem(storageKeys.TOKEN);
     if (localToken) {
-      localStorage.removeItem(storageKeys.TOKEN);
+      sessionStorage.removeItem(storageKeys.TOKEN);
+      sessionStorage.removeItem(storageKeys.USER_DATA);
     }
     for (const wallet of connectedWallets) {
       await wallet.disconnect();
     }
+
+    ApolloClientWrapper.resetInstance();
+
+    // Clear React Query cache
+    if (queryClient) {
+      queryClient.clear();
+    }
+
     router.replace("/login");
   };
 

@@ -27,12 +27,21 @@ import Image from "next/image";
 import { mintWithSignature } from "thirdweb/extensions/erc721";
 import { useSendBatchTransaction } from "thirdweb/react";
 import { useOnboarding } from "../components/onboarding.provider";
+import { IUser } from "@/services/graphQl/user/user.model";
+import { useSessionStorage } from "usehooks-ts";
+import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
+
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
   const { profileData, retrieveProfileData } = useOnboarding();
   const account = useGetCurrentUser();
 
+  // Handle create user
   const { mutateAsync: createUser } = useCreateUser();
+  const [_, setUser] = useSessionStorage<IUser | null>(
+    storageKeys.USER_DATA,
+    null
+  );
 
   const { mutateAsync: sendBatchTransaction, isPending } =
     useSendBatchTransaction();
@@ -99,7 +108,7 @@ export default function ProfileFinalizePage() {
 
       await sleep(1000);
 
-      await createUser({
+      const user = await createUser({
         userInput: {
           profile: {
             interests: profileData.interests,
@@ -113,6 +122,9 @@ export default function ProfileFinalizePage() {
           },
         },
       });
+
+      // Set user data to session storage
+      setUser(user);
 
       retrieveProfileData();
       router.replace(`/home`);

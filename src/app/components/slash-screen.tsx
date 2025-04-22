@@ -11,11 +11,28 @@ import { useTransitionRouter } from "next-view-transitions";
 import { useAutoConnect } from "thirdweb/react";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-
+import { env } from "@/constants/env";
+import { somniaChain } from "@/constants/somniaChain";
+import { useSessionStorage } from "usehooks-ts";
+import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
+import { IUser } from "@/services/graphQl/user/user.model";
 export function SlashScreen() {
   const { data: autoConnected } = useAutoConnect({
     client: basicClient,
+    accountAbstraction: {
+      factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
+      chain: somniaChain,
+      sponsorGas: true,
+    },
   });
+  const [token, setToken] = useSessionStorage<string | null>(
+    storageKeys.TOKEN,
+    null
+  );
+  const [userData, setUserData] = useSessionStorage<IUser | null>(
+    storageKeys.USER_DATA,
+    null
+  );
 
   // Upload the viewport
   useEffect(() => {
@@ -66,7 +83,11 @@ export function SlashScreen() {
         ease: "power2.inOut",
         onComplete: () => {
           if (autoConnected) {
-            router.push("/home");
+            if (token && userData) {
+              router.push("/home");
+            } else {
+              router.push("/greeting");
+            }
           } else {
             router.push("/greeting");
           }
@@ -75,7 +96,7 @@ export function SlashScreen() {
     },
     {
       scope: containerRef,
-      dependencies: [autoConnected],
+      dependencies: [autoConnected, token, userData, router],
     }
   );
 

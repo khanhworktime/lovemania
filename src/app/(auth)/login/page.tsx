@@ -1,18 +1,18 @@
 "use client";
 
 import Thumbnail from "@/assets/backgrounds/signup.background.png";
-import { env } from "@/constants/env";
-import { somniaChain } from "@/constants/somniaChain";
-import { basicClient } from "@/providers/thirdweb.provider";
 import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
 import { useLoginServer } from "@/services/graphQl/authentication/hooks/useLoginServer";
+import { IUser } from "@/services/graphQl/user/user.model";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
+import { sleep } from "@/utils/sleep";
+import { validateJwtToken } from "@/utils/validateJwtToken";
 import { addToast, Button, CircularProgress } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
 import { useState } from "react";
-import { useIsomorphicLayoutEffect } from "usehooks-ts";
+import { useIsomorphicLayoutEffect, useSessionStorage } from "usehooks-ts";
 
 export default function LoginPage() {
   const router = useTransitionRouter();
@@ -20,12 +20,22 @@ export default function LoginPage() {
 
   // First time login always remove local token
 
-  const { startLogin, walletLoginData } = useLoginServer();
+  const { loginAsync } = useLoginServer();
 
   const handleConnect = async () => {
     setIsLoading(true);
     try {
-      await startLogin();
+      const result = await loginAsync();
+      if (result?.user) {
+        router.push("/home");
+      } else {
+        if (result?.token) {
+          router.push("/onboarding/profile-name");
+        }
+
+        // Wait a second after route to make sure the token is set
+        await sleep(1000);
+      }
     } catch (error) {
       addToast({
         title: "Error",
@@ -37,15 +47,31 @@ export default function LoginPage() {
     }
   };
 
+  const [token, setToken] = useSessionStorage<string | null>(
+    storageKeys.TOKEN,
+    null
+  );
+
+  const [userData, setUserData] = useSessionStorage<IUser | null>(
+    storageKeys.USER_DATA,
+    null
+  );
+
   useIsomorphicLayoutEffect(() => {
-    if (walletLoginData) {
-      if (walletLoginData.user !== null) {
-        router.push("/home");
+    if (token && !isLoading) {
+      const isValid = validateJwtToken(token);
+      if (isValid) {
+        if (userData) {
+          router.push("/home");
+        } else {
+          router.push("/onboarding/profile-name");
+        }
       } else {
-        router.push("/onboarding/profile-name");
+        setToken(null);
+        setUserData(null);
       }
     }
-  }, [walletLoginData]);
+  }, [router, token, isLoading]);
 
   return (
     <div className="relative flex flex-col items-center justify-between gap-y-10 h-full pb-4">

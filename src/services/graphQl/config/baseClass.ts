@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloLink } from "@apollo/client";
 import { storageKeys } from "../authentication/constants/storage.key";
-
+import { validateJwtToken } from "@/utils/validateJwtToken";
 import createApolloClient from ".";
 
 export class ApolloClientWrapper {
@@ -17,14 +17,17 @@ export class ApolloClientWrapper {
       const currentLink = ApolloClientWrapper.instance.link;
 
       const authLink = new ApolloLink((operation, forward) => {
-        const token = localStorage.getItem(storageKeys.TOKEN);
+        const token = sessionStorage.getItem(storageKeys.TOKEN);
 
         if (token) {
-          operation.setContext({
-            headers: {
-              Authorization: `Bearer ${JSON.parse(token)}`,
-            },
-          });
+          const isValid = validateJwtToken(token);
+          if (isValid) {
+            operation.setContext({
+              headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+              },
+            });
+          }
         }
 
         return forward(operation);

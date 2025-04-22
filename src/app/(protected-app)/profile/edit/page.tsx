@@ -84,10 +84,10 @@ export default function EditProfilePage() {
         <div className="col-span-2 row-span-2">
           {sbt?.metadata.image && (
             <PhotoUploader
-            // initialImage={resolveScheme({
-            //   client: basicClient,
-            //   uri: sbt?.metadata.image,
-            // })}
+              initialImage={resolveScheme({
+                client: basicClient,
+                uri: sbt?.metadata.image,
+              })}
             />
           )}
         </div>

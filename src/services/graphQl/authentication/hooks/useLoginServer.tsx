@@ -1,55 +1,46 @@
 import { env } from "@/constants/env";
 import { somniaChain } from "@/constants/somniaChain";
 import { basicClient } from "@/providers/thirdweb.provider";
-import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import { addToast } from "@heroui/react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { signLoginPayload } from "thirdweb/auth";
 import { useConnectModal } from "thirdweb/react";
-import { useLocalStorage, useSessionStorage } from "usehooks-ts";
+import { useIsomorphicLayoutEffect, useSessionStorage } from "usehooks-ts";
 import { authenticationClient } from "../authenticationClient";
 import { authenticationKeys } from "../constants/authentication.key";
 import { storageKeys } from "../constants/storage.key";
+import { IUser } from "../../user/user.model";
 
 export const useLoginServer = () => {
-  const { isConnecting, connect } = useConnectModal();
-  const currentAccount = useGetCurrentUser();
+  const { isConnecting: connectingModal, connect: connectModal } =
+    useConnectModal();
 
-  //   Handle login
-
-  const startLogin = async () => {
-    await connect({
-      client: basicClient,
-      accountAbstraction: {
-        factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
-        chain: somniaChain,
-        sponsorGas: true,
-      },
-    });
-  };
-
-  const currentQueryKey = [
-    authenticationKeys.WALLET_LOGIN,
-    currentAccount?.address,
-  ];
-
-  //   Handle Storage
-  const [token, setToken] = useLocalStorage<string | null>(
-    storageKeys.TOKEN,
-    null
-  );
+  const currentMutationKey = [authenticationKeys.WALLET_LOGIN];
 
   const {
-    data: walletLoginData,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: currentQueryKey,
-    queryFn: async () => {
-      if (!currentAccount) {
+    mutateAsync: loginAsync,
+    isPending: isLoginPending,
+    data,
+  } = useMutation({
+    mutationKey: currentMutationKey,
+    mutationFn: async () => {
+      // Login with ThirdwebModal
+      const wallet = await connectModal({
+        client: basicClient,
+        accountAbstraction: {
+          factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
+          chain: somniaChain,
+          sponsorGas: true,
+        },
+      });
+
+      const account = wallet.getAccount();
+
+      // Get the transaction signed in BE
+      if (!account) {
         addToast({
           title: "No account found",
-          description: "Please connect your wallet",
+          description: "Account abstraction was not successful, try again",
           color: "danger",
         });
 
@@ -57,11 +48,13 @@ export const useLoginServer = () => {
       }
 
       const payload = await authenticationClient.walletLogin({
-        walletAddress: currentAccount.address,
+        walletAddress: account.address,
       });
 
+      // Sign the payload
+
       const { signature } = await signLoginPayload({
-        account: currentAccount,
+        account,
         payload,
       });
 
@@ -70,19 +63,29 @@ export const useLoginServer = () => {
         signature,
       });
 
-      setToken(result.token);
-
       return result;
     },
-    enabled: !!currentAccount,
-    retry: false,
   });
 
+  const [token, setToken] = useSessionStorage<string | null>(
+    storageKeys.TOKEN,
+    null
+  );
+
+  const [userData, setUserData] = useSessionStorage<IUser | null>(
+    storageKeys.USER_DATA,
+    null
+  );
+
+  useIsomorphicLayoutEffect(() => {
+    if (data) {
+      setToken(data.token);
+      setUserData(data.user);
+    }
+  }, [data]);
+
   return {
-    startLogin,
-    walletLoginData,
-    error,
-    isLoading: isLoading || isConnecting,
-    currentQueryKey,
+    loginAsync,
+    isPending: isLoginPending || connectingModal,
   };
 };

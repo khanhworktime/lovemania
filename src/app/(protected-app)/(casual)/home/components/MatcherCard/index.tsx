@@ -1,3 +1,4 @@
+import { basicClient } from "@/providers/thirdweb.provider";
 import { IUser } from "@/services/graphQl/user/user.model";
 import { useGSAP } from "@gsap/react";
 import {
@@ -11,7 +12,9 @@ import {
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { Heart, Instagram, StarIcon, Twitter, XIcon } from "lucide-react";
+import moment from "moment";
 import { useEffect, useRef, useState } from "react";
+import { MediaRenderer } from "thirdweb/react";
 
 gsap.registerPlugin(CustomEase);
 
@@ -351,10 +354,11 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
             <CardBody>
               {/* Card main */}
               <div className="relative w-full h-auto aspect-[0.9] overflow-hidden rounded-2xl ">
-                <img
+                <MediaRenderer
                   src={user?.avatarUrl}
                   alt="Profile"
                   className="object-cover object-center aspect-[0.9] w-full h-full"
+                  client={basicClient}
                 />
 
                 <div className="absolute z-0 inset-0 bg-gradient-to-b from-transparent to-primary-800/95 rounded-2xl" />
@@ -376,23 +380,8 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
 
                 {/* Profile info */}
                 <div className="absolute z-10 bottom-0 left-0 right-0 p-4">
-                  <div className="flex gap-1 justify-center">
-                    <Button
-                      isIconOnly
-                      variant="light"
-                      className="text-white"
-                      radius="full"
-                    >
-                      <Twitter />
-                    </Button>
-                    <Button
-                      isIconOnly
-                      variant="light"
-                      className="text-white"
-                      radius="full"
-                    >
-                      <Instagram />
-                    </Button>
+                  <div className="flex gap-1 justify-center text-white/70 text-sm mb-2 font-semibold">
+                    {moment().diff(moment(user.birthday), "years")} - USA
                   </div>
                   <h3 className="text-white text-2xl font-bold font-chalet text-center">
                     {user.displayName}
