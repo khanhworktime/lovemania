@@ -23,7 +23,7 @@ import {
 
 import { useOnboarding } from "@/app/(protected-app)/onboarding/components/onboarding.provider";
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
-import { useProfileSBT } from "@/hooks/UseProfile";
+import { useProfileSBT } from "@/services/profileNft/hooks/useGetProfileNft";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
 import { ApolloClientWrapper } from "@/services/graphQl/config/baseClass";

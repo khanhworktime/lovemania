@@ -1,6 +1,6 @@
 import { storyLineTestData } from "../../../../../../exampleData/data";
 import Image from "next/image";
-import { useProfileSBT } from "@/hooks/UseProfile";
+import { useProfileSBT } from "@/services/profileNft/hooks/useGetProfileNft";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { resolveScheme } from "thirdweb/storage";
 import { CircularProgress, image, Skeleton } from "@heroui/react";

@@ -17,7 +17,7 @@ import { useState, useEffect } from "react";
 import { NFT } from "thirdweb";
 import moment from "moment";
 import { resolveScheme } from "thirdweb/storage";
-import { useProfileSBT } from "@/hooks/UseProfile";
+import { useProfileSBT } from "@/services/profileNft/hooks/useGetProfileNft";
 // const profileDonePercentage = 70;
 
 export default function EditProfilePage() {

@@ -1,7 +1,7 @@
 "use client";
 import { FilterIcon, NewLoveIcon } from "@/assets/icons";
 import Logo from "@/assets/logos/lovemania.logo.png";
-import { useProfileSBT } from "@/hooks/UseProfile";
+import { useProfileSBT } from "@/services/profileNft/hooks/useGetProfileNft";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { userClient } from "@/services/graphQl/user/userClient";
 import { Avatar, Button, cn, Tab, Tabs } from "@heroui/react";

@@ -1,7 +1,7 @@
 "use client";
 import { tokens } from "@/exampleData/data";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-import { useProfileSBT } from "@/hooks/UseProfile";
+import { useProfileSBT } from "@/services/profileNft/hooks/useGetProfileNft";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { WalletShortcut } from "@/shared-components/ui/Wallet/WalletShortcut";
 import { Avatar, Button } from "@heroui/react";

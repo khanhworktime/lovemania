@@ -1,0 +1,3 @@
+export const CONTRACT_KEY = {
+  STORAGE_CONTRACTS: "STORAGE_CONTRACTS",
+};
