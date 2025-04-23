@@ -11,11 +11,11 @@ import {
 } from "@heroui/react";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-import { Heart, Instagram, StarIcon, Twitter, XIcon } from "lucide-react";
+import { Heart, StarIcon, XIcon } from "lucide-react";
 import moment from "moment";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { MediaRenderer } from "thirdweb/react";
-
 gsap.registerPlugin(CustomEase);
 
 interface MatcherCardProps {
@@ -354,12 +354,20 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
             <CardBody>
               {/* Card main */}
               <div className="relative w-full h-auto aspect-[0.9] overflow-hidden rounded-2xl ">
-                <MediaRenderer
-                  src={user?.avatarUrl}
-                  alt="Profile"
-                  className="object-cover object-center aspect-[0.9] w-full h-full"
-                  client={basicClient}
-                />
+                {user?.avatarUrl.startsWith("ipfs://") ? (
+                  <MediaRenderer
+                    src={user?.avatarUrl}
+                    alt="Profile"
+                    className="object-cover object-center aspect-[0.9] w-full h-full"
+                    client={basicClient}
+                  />
+                ) : (
+                  <Image
+                    src={user?.avatarUrl}
+                    alt="Profile"
+                    className="object-cover object-center aspect-[0.9] w-full h-full"
+                  />
+                )}
 
                 <div className="absolute z-0 inset-0 bg-gradient-to-b from-transparent to-primary-800/95 rounded-2xl" />
 

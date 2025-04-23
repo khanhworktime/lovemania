@@ -29,7 +29,7 @@ export function UserPersonalStatistic() {
             </div>
           </div>
           <p className="text-sm">
-            Like <strong className="font-medium text-secondary-500">32</strong>
+            Matches <strong className="font-medium text-secondary-500">32</strong>
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export function UserPersonalStatistic() {
             </div>
           </div>
           <p className="text-sm">
-            Connect{" "}
+            Connects{" "}
             <strong className="font-medium text-secondary-500">12</strong>
           </p>
         </div>
