@@ -74,6 +74,7 @@ class UserClient extends ApolloClientBase {
     }>({
       query: RecommendedUsers,
       variables: request,
+      fetchPolicy: "no-cache",
     });
 
     return data.recommendedUsers;
