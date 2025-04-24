@@ -21,6 +21,7 @@ export function useProfileSBT() {
       });
       return nfts;
     },
+    enabled: !!account,
   });
 
   return { sbt: nfts?.[0] || null, isLoading };
