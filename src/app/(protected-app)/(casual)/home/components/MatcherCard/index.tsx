@@ -407,7 +407,7 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                     className={cn(
                       "absolute z-0 bottom-0 inset-x-0 h-[35%] bg-gradient-to-b from-transparent rounded-b-2xl"
                     )}
-                    count={200}
+                    count={75}
                   />
                 </div>
 
