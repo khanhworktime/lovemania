@@ -22,9 +22,9 @@ export function Finder() {
   };
 
   useEffect(() => {
-    if (data?.pages[page]?.items) {
-      preloadImages(data?.pages[page]?.items.map((item) => item.avatarUrl));
-    }
+    // if (data?.pages[page]?.items) {
+    //   preloadImages(data?.pages[page]?.items.map((item) => item.avatarUrl));
+    // }
   }, [data]);
 
   const user = data?.pages[page]?.items[index] || null;

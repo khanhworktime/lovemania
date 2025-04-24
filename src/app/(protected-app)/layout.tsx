@@ -5,13 +5,18 @@ import { storageKeys } from "@/services/graphQl/authentication/constants/storage
 import { addToast } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import { PropsWithChildren, useEffect } from "react";
-import { useActiveAccount } from "thirdweb/react";
+import { useActiveAccount, useConnectionManager } from "thirdweb/react";
 
 export default function Layout({ children }: PropsWithChildren) {
   const router = useTransitionRouter();
   const account = useActiveAccount();
+  const connectionManager = useConnectionManager();
 
   useEffect(() => {
+    if (connectionManager.isAutoConnecting) {
+      return;
+    }
+
     if (!account) {
       addToast({
         title: "You need to connect your wallet",
@@ -22,7 +27,7 @@ export default function Layout({ children }: PropsWithChildren) {
       sessionStorage.removeItem(storageKeys.USER_DATA);
       router.replace("/login");
     }
-  }, [account, router]);
+  }, [account, router, connectionManager.isAutoConnecting]);
 
   return (
     <MatchedNotification>

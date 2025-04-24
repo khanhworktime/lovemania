@@ -358,14 +358,16 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                   <MediaRenderer
                     src={user?.avatarUrl}
                     alt="Profile"
-                    className="object-cover object-center aspect-[0.9] w-full h-full"
+                    className="!object-cover object-center aspect-[0.9] w-full h-full"
                     client={basicClient}
                   />
                 ) : (
-                  <Image
+                  <img
                     src={user?.avatarUrl}
                     alt="Profile"
                     className="object-cover object-center aspect-[0.9] w-full h-full"
+                    width={100}
+                    height={100}
                   />
                 )}
 

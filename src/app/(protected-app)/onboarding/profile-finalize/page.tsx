@@ -30,23 +30,26 @@ import { useOnboarding } from "../components/onboarding.provider";
 import { IUser } from "@/services/graphQl/user/user.model";
 import { useSessionStorage } from "usehooks-ts";
 import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
-
+import { useState } from "react";
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
   const { profileData, retrieveProfileData } = useOnboarding();
   const account = useGetCurrentUser();
 
   // Handle create user
-  const { mutateAsync: createUser } = useCreateUser();
+  const { mutateAsync: createUser, isPending: isCreatingUser } =
+    useCreateUser();
   const [_, setUser] = useSessionStorage<IUser | null>(
     storageKeys.USER_DATA,
     null
   );
 
-  const { mutateAsync: sendBatchTransaction, isPending } =
+  const { mutateAsync: sendBatchTransaction, isPending: isSendingTx } =
     useSendBatchTransaction();
 
   const confirmModalControl = useDisclosure();
+
+  const [isGettingTx, setIsGettingTx] = useState(false);
 
   const getTxProfile = async (metadata: MetadataMintProfileInput) => {
     if (!account?.address) throw new Error("Account not found");
@@ -80,6 +83,8 @@ export default function ProfileFinalizePage() {
     try {
       if (!account?.address) throw new Error("Account not found");
 
+      setIsGettingTx(true);
+
       const txProfile = await getTxProfile({
         name: profileData.name,
         description: "",
@@ -99,6 +104,8 @@ export default function ProfileFinalizePage() {
           profileData.photosIpfs[0] ||
           "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
       });
+
+      setIsGettingTx(false);
 
       if (!txProfile || !txAvatar) {
         throw new Error("Failed to mint profile NFT");
@@ -137,6 +144,8 @@ export default function ProfileFinalizePage() {
       console.log(error);
     }
   };
+
+  const isPending = isCreatingUser || isSendingTx || isGettingTx;
 
   return (
     <div className="flex flex-col gap-y-4 h-full pb-12 px-4">

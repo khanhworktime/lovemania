@@ -6,6 +6,11 @@
 export const preloadImages = (urls: string[]): Promise<void[]> => {
   const loadImage = (url: string): Promise<void> => {
     return new Promise((resolve, reject) => {
+      if (url.startsWith("ipfs://")) {
+        resolve();
+        return;
+      }
+
       const img = new Image();
 
       img.onload = () => {
@@ -13,7 +18,7 @@ export const preloadImages = (urls: string[]): Promise<void[]> => {
       };
 
       img.onerror = () => {
-        reject(new Error(`Failed to load image: ${url}`));
+        reject();
       };
 
       img.src = url;
@@ -29,5 +34,9 @@ export const preloadImages = (urls: string[]): Promise<void[]> => {
  * @returns Promise that resolves when the image is loaded
  */
 export const preloadImage = (url: string): Promise<void> => {
+  if (url.startsWith("ipfs://")) {
+    return Promise.resolve();
+  }
+
   return preloadImages([url]).then(() => void 0);
 };
