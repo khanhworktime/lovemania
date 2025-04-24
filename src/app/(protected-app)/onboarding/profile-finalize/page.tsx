@@ -125,7 +125,6 @@ export default function ProfileFinalizePage() {
             minAge: 18,
             maxAge: 30,
             genderType: profileData.genderType,
-            genderValue: profileData.genderValue,
           },
         },
       });

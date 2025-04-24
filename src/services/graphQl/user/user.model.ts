@@ -26,7 +26,6 @@ export interface CreateUserInput {
       minAge: number;
       maxAge: number;
       genderType: EGenderDefine;
-      genderValue: string;
     };
   };
 }
