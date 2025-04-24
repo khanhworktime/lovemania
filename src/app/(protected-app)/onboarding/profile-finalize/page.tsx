@@ -24,13 +24,15 @@ import {
 } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
-import { mintWithSignature } from "thirdweb/extensions/erc721";
+import { getOwnedNFTs, mintWithSignature } from "thirdweb/extensions/erc721";
 import { useSendBatchTransaction } from "thirdweb/react";
 import { useOnboarding } from "../components/onboarding.provider";
 import { IUser } from "@/services/graphQl/user/user.model";
 import { useSessionStorage } from "usehooks-ts";
 import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
 import { useState } from "react";
+import { useGetOwnedNft } from "@/services/users/hooks/useGetOwnedNft";
+
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
   const { profileData, retrieveProfileData } = useOnboarding();
@@ -85,35 +87,51 @@ export default function ProfileFinalizePage() {
 
       setIsGettingTx(true);
 
-      const txProfile = await getTxProfile({
-        name: profileData.name,
-        description: "",
-        image:
-          profileData.photosIpfs[0] ||
-          "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
-        // interests: profileData.interests,
-        gender: profileData.genderValue,
-        genderType: profileData.genderType,
-        birthday: new Date(profileData.dob || "").toISOString() || "",
+      const txLists = [];
+
+      const nftProfile = await getOwnedNFTs({
+        contract: getNftProfileContract({ client: basicClient }),
+        owner: account.address,
       });
 
-      const txAvatar = await getTxAvatar({
-        name: "Initial Avatar",
-        description: "",
-        image:
-          profileData.photosIpfs[0] ||
-          "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
+      if (nftProfile.length === 0) {
+        const txProfile = await getTxProfile({
+          name: profileData.name,
+          description: "",
+          image:
+            profileData.photosIpfs[0] ||
+            "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
+          // interests: profileData.interests,
+          gender: profileData.genderValue,
+          genderType: profileData.genderType,
+          birthday: new Date(profileData.dob || "").toISOString() || "",
+        });
+        txLists.push(txProfile);
+      }
+
+      const nftAvatar = await getOwnedNFTs({
+        contract: getAvatarProfileContract({ client: basicClient }),
+        owner: account.address,
       });
+
+      if (nftAvatar.length === 0) {
+        const txAvatar = await getTxAvatar({
+          name: "Initial Avatar",
+          description: "",
+          image:
+            profileData.photosIpfs[0] ||
+            "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
+        });
+        txLists.push(txAvatar);
+      }
 
       setIsGettingTx(false);
 
-      if (!txProfile || !txAvatar) {
-        throw new Error("Failed to mint profile NFT");
+      if (txLists.length > 0) {
+        await sendBatchTransaction(txLists);
       }
 
-      await sendBatchTransaction([txProfile, txAvatar]);
-
-      await sleep(1000);
+      // await sleep(1000);
 
       const user = await createUser({
         userInput: {
