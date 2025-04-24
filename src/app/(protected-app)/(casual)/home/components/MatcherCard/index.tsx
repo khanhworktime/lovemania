@@ -1,5 +1,8 @@
+import { EDiscoveryType } from "@/enum/EDiscoveryType.enum";
 import { basicClient } from "@/providers/thirdweb.provider";
+import { useSwipeInteraction } from "@/services/graphQl/discovery/hooks/useSwipeInteraction";
 import { IUser } from "@/services/graphQl/user/user.model";
+import { FloatingParticles } from "@/shared-components/ui/FloatingParticles";
 import { useGSAP } from "@gsap/react";
 import {
   Button,
@@ -13,7 +16,6 @@ import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { Heart, StarIcon, XIcon } from "lucide-react";
 import moment from "moment";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { MediaRenderer } from "thirdweb/react";
 gsap.registerPlugin(CustomEase);
@@ -103,7 +105,7 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
 
       case "superLike":
         return (
-          <div className="rounded-full flex items-center justify-center size-14 bg-primary-800 text-white shadow-lg">
+          <div className="rounded-full flex items-center justify-center size-14 bg-orange-700 text-white shadow-lg">
             <StarIcon fill="white" />
           </div>
         );
@@ -113,10 +115,18 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
     }
   };
 
+  // Handle action interaction
+  const { mutateAsync: swipeInteraction } = useSwipeInteraction();
+
   // Click love action
-  const loveAction = thisContext(() => {
+  const loveAction = thisContext(async () => {
     const tl = gsap.timeline();
     setCurrentEmotion("love");
+
+    swipeInteraction({
+      type: EDiscoveryType.LIKE,
+      swipeeId: user.id,
+    });
 
     tl.set(containerRef.current, {
       zIndex: 20,
@@ -189,9 +199,14 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
   });
 
   // Click dislike action
-  const dislikeAction = thisContext(() => {
+  const dislikeAction = thisContext(async () => {
     const tl = gsap.timeline();
     setCurrentEmotion("dislike");
+
+    swipeInteraction({
+      type: EDiscoveryType.DISLIKE,
+      swipeeId: user.id,
+    });
 
     tl.set(containerRef.current, {
       zIndex: 50,
@@ -263,9 +278,14 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
   });
 
   // Click super like action
-  const superLikeAction = thisContext(() => {
+  const superLikeAction = thisContext(async () => {
     const tl = gsap.timeline();
     setCurrentEmotion("superLike");
+
+    swipeInteraction({
+      type: EDiscoveryType.SUPER_LIKE,
+      swipeeId: user.id,
+    });
 
     tl.set(containerRef.current, {
       zIndex: 50,
@@ -371,7 +391,25 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                   />
                 )}
 
-                <div className="absolute z-0 inset-0 bg-gradient-to-b from-transparent to-primary-800/95 rounded-2xl" />
+                {/* Overlay */}
+                <div className="absolute z-0 inset-0 h-full w-full">
+                  {/* Background gradient */}
+                  <div
+                    className={cn(
+                      "absolute z-0 inset-x-0 bottom-0 h-1/4 bg-gradient-to-b from-transparent rounded-b-2xl",
+                      user.isSuperLikeBadge
+                        ? "to-orange-600/100"
+                        : "to-primary-800/95"
+                    )}
+                  ></div>
+                  {/* Particles */}
+                  <FloatingParticles
+                    className={cn(
+                      "absolute z-0 bottom-0 inset-x-0 h-[35%] bg-gradient-to-b from-transparent rounded-b-2xl"
+                    )}
+                    count={200}
+                  />
+                </div>
 
                 {/* Progress match */}
                 <div className="absolute z-10 top-0 right-0 p-4">
@@ -381,7 +419,7 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                     size="lg"
                     showValueLabel
                     classNames={{
-                      base: "bg-white/30 rounded-full w-fit h-fit",
+                      base: "bg-gray-800/30 rounded-full w-fit h-fit",
                       indicator: "text-white",
                       value: "text-white text-xs",
                     }}
@@ -428,7 +466,7 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
               <Button
                 isIconOnly
                 variant="solid"
-                className="size-14 bg-primary-800 text-white shadow-lg"
+                className="size-14 bg-orange-600 text-white shadow-lg"
                 radius="full"
                 onPress={superLikeAction}
                 isDisabled={currentEmotion !== "unset"}

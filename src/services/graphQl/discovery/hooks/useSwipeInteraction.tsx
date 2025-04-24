@@ -1,24 +1,25 @@
 import { useMutation } from "@tanstack/react-query";
 import { discoveryClient } from "../discoveryClient";
 import { EDiscoveryType } from "@/enum/EDiscoveryType.enum";
+import { useMe } from "@/services/graphQl/user/hooks/useMe";
 export const useSwipeInteraction = () => {
+  const { data: me } = useMe();
+
   return useMutation({
     mutationFn: async ({
-      swiperId,
       swipeeId,
       type,
     }: {
-      swiperId: string;
       swipeeId: string;
       type: EDiscoveryType;
     }) => {
       switch (type) {
         case EDiscoveryType.LIKE:
-          return await discoveryClient.like(swiperId, swipeeId);
+          return await discoveryClient.like(me?.id, swipeeId);
         case EDiscoveryType.DISLIKE:
-          return await discoveryClient.dislike(swiperId, swipeeId);
+          return await discoveryClient.dislike(me?.id, swipeeId);
         case EDiscoveryType.SUPER_LIKE:
-          return await discoveryClient.superLike(swiperId, swipeeId);
+          return await discoveryClient.superLike(me?.id, swipeeId);
       }
     },
   });

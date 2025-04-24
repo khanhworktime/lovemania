@@ -20,7 +20,7 @@ export function Finder() {
     useRecommendedUsers();
 
   useEffect(() => {
-    if (data && !isFetchedAfterMount) {
+    if ((data && !isFetchedAfterMount) || !currentUser) {
       setCurrentUser(data?.[0]);
     }
   }, [data, isFetchedAfterMount]);

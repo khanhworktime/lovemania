@@ -43,4 +43,5 @@ export interface IUser {
   interests: string[];
   createdAt: string;
   updatedAt: string;
+  isSuperLikeBadge: boolean;
 }
