@@ -1,0 +1,15 @@
+query RecommendedUsers($userId: String!) {
+  recommendedUsers(userId: $userId) {
+    id
+    displayName
+    avatarUrl
+    bio
+    genderType
+    genderValue
+    interests
+    age
+    distanceKm
+    compatibilityScore
+    isSuperLikeBadge
+  }
+}

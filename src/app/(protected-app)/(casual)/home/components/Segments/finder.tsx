@@ -1,35 +1,46 @@
 "use client";
 
-import { useMatcherList } from "@/services/graphQl/user/hooks/useMatcherList";
-import { Loader } from "lucide-react";
+import { useRecommendedUsers } from "@/services/graphQl/user/hooks/useRecommendedUsers";
+import { IUser } from "@/services/graphQl/user/user.model";
+import { useLocalStorage } from "usehooks-ts";
+import { DISCOVERY_STORAGE_KEY } from "@/services/graphQl/discovery/constants/storageKey";
 import { useEffect, useState } from "react";
 import { MatcherCard } from "../MatcherCard";
-import { preloadImages } from "@/utils/preloadImg";
 import { CircularProgress } from "@heroui/react";
+
 export function Finder() {
-  const [page, setPage] = useState<number>(0);
-  const [index, setIndex] = useState<number>(0);
-  const { data, isLoading, error, fetchNextPage } = useMatcherList();
+  const [index, setIndex] = useState<number>(-1);
+
+  const [currentUser, setCurrentUser] = useLocalStorage<IUser | undefined>(
+    DISCOVERY_STORAGE_KEY.CURRENT_USER_INTERACTING,
+    undefined
+  );
+
+  const { data, isLoading, refetch, isFetchedAfterMount } =
+    useRecommendedUsers();
+
+  useEffect(() => {
+    if (data && !isFetchedAfterMount) {
+      setCurrentUser(data?.[0]);
+    }
+  }, [data, isFetchedAfterMount]);
 
   const nextUser = async () => {
-    if (index < (data?.pages[page]?.items?.length || 0) - 1) {
+    if (isFetchedAfterMount && index === -1) {
+      setCurrentUser(data?.[0]);
+      setIndex(0);
+      return;
+    }
+    if (index < (data?.length || 0) - 1) {
       setIndex(index + 1);
+      setCurrentUser(data?.[index + 1]);
     } else {
-      await fetchNextPage();
-      setPage(page + 1);
+      await refetch();
       setIndex(0);
     }
   };
 
-  useEffect(() => {
-    // if (data?.pages[page]?.items) {
-    //   preloadImages(data?.pages[page]?.items.map((item) => item.avatarUrl));
-    // }
-  }, [data]);
-
-  const user = data?.pages[page]?.items[index] || null;
-
-  if (user === null || isLoading) {
+  if (data === null || isLoading || !currentUser) {
     return (
       <div className="relative w-full h-full flex justify-center items-center">
         <CircularProgress />
@@ -39,7 +50,7 @@ export function Finder() {
 
   return (
     <div className="relative w-full h-full">
-      <MatcherCard user={user} nextUser={nextUser} />
+      <MatcherCard user={currentUser} nextUser={nextUser} />
     </div>
   );
 }

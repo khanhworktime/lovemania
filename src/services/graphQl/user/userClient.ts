@@ -14,6 +14,8 @@ import {
   MetadataMintProfileInput,
   CreateUserInput,
 } from "./user.model";
+import { RecommendedUsers } from "./queries/recommendedUser.graphql";
+
 class UserClient extends ApolloClientBase {
   constructor() {
     super();
@@ -63,6 +65,18 @@ class UserClient extends ApolloClientBase {
     });
 
     return data.users;
+  }
+
+  // Get recommended users
+  async getRecommendedUsers(request: { userId: string }) {
+    const { data } = await this.instance.query<{
+      recommendedUsers: IUser[];
+    }>({
+      query: RecommendedUsers,
+      variables: request,
+    });
+
+    return data.recommendedUsers;
   }
 
   // Self

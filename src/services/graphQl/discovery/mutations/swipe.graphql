@@ -1,0 +1,29 @@
+mutation Like($swiperId: String!, $swipeeId: String!) {
+  like(input: { swiperId: $swiperId, swipeeId: $swipeeId }) {
+    id
+    swiperId
+    swipeeId
+    type
+    createdAt
+  }
+}
+
+mutation Dislike($swiperId: String!, $swipeeId: String!) {
+  dislike(input: { swiperId: $swiperId, swipeeId: $swipeeId }) {
+    id
+    swiperId
+    swipeeId
+    type
+    createdAt
+  }
+}
+
+mutation SuperLike($swiperId: String!, $swipeeId: String!) {
+  superLike(input: { swiperId: $swiperId, swipeeId: $swipeeId }) {
+    id
+    swiperId
+    swipeeId
+    type
+    createdAt
+  }
+}
