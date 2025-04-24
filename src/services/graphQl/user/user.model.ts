@@ -4,7 +4,7 @@ export interface MetadataMintProfileInput {
   name: string;
   description: string;
   image: string;
-  interests: string[];
+  // interests: string[];
   gender: string;
   genderType: EGenderDefine;
   birthday: string;

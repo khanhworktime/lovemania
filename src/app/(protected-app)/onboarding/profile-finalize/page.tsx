@@ -91,7 +91,7 @@ export default function ProfileFinalizePage() {
         image:
           profileData.photosIpfs[0] ||
           "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
-        interests: profileData.interests,
+        // interests: profileData.interests,
         gender: profileData.genderValue,
         genderType: profileData.genderType,
         birthday: new Date(profileData.dob || "").toISOString() || "",
