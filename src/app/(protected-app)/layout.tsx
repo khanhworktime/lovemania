@@ -6,11 +6,16 @@ import { addToast } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import { PropsWithChildren, useEffect } from "react";
 import { useActiveAccount, useConnectionManager } from "thirdweb/react";
+import { DISCOVERY_STORAGE_KEY } from "@/services/graphQl/discovery/constants/storageKey";
+import { useQueryClient } from "@tanstack/react-query";
+import { ApolloClientWrapper } from "@/services/graphQl/config/baseClass";
 
 export default function Layout({ children }: PropsWithChildren) {
   const router = useTransitionRouter();
   const account = useActiveAccount();
   const connectionManager = useConnectionManager();
+
+  const client = useQueryClient();
 
   useEffect(() => {
     if (connectionManager.isAutoConnecting) {
@@ -25,6 +30,13 @@ export default function Layout({ children }: PropsWithChildren) {
       });
       sessionStorage.removeItem(storageKeys.TOKEN);
       sessionStorage.removeItem(storageKeys.USER_DATA);
+      localStorage.removeItem(DISCOVERY_STORAGE_KEY.CURRENT_USER_INTERACTING);
+
+      client.clear();
+      client.resetQueries();
+
+      ApolloClientWrapper.resetInstance();
+
       router.replace("/login");
     }
   }, [account, router, connectionManager.isAutoConnecting]);
