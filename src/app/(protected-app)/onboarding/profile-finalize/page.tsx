@@ -32,6 +32,7 @@ import { useSessionStorage } from "usehooks-ts";
 import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
 import { useState } from "react";
 import { useGetOwnedNft } from "@/services/users/hooks/useGetOwnedNft";
+import { sendTransaction } from "thirdweb";
 
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
@@ -83,6 +84,7 @@ export default function ProfileFinalizePage() {
 
   const handleConfirm = async () => {
     try {
+      debugger;
       if (!account?.address) throw new Error("Account not found");
 
       setIsGettingTx(true);
@@ -106,7 +108,10 @@ export default function ProfileFinalizePage() {
           genderType: profileData.genderType,
           birthday: new Date(profileData.dob || "").toISOString() || "",
         });
-        txLists.push(txProfile);
+        await sendTransaction({
+          transaction: txProfile,
+          account,
+        });
       }
 
       const nftAvatar = await getOwnedNFTs({
@@ -122,14 +127,17 @@ export default function ProfileFinalizePage() {
             profileData.photosIpfs[0] ||
             "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
         });
-        txLists.push(txAvatar);
+        await sendTransaction({
+          transaction: txAvatar,
+          account,
+        });
       }
 
       setIsGettingTx(false);
 
-      if (txLists.length > 0) {
-        await sendBatchTransaction(txLists);
-      }
+      // if (txLists.length > 0) {
+      //   await sendBatchTransaction(txLists);
+      // }
 
       // await sleep(1000);
 

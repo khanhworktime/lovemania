@@ -21,6 +21,7 @@ import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 import { useLoginServer } from "@/services/graphQl/authentication/hooks/useLoginServer";
 import { useSessionStorage } from "usehooks-ts";
 import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
+import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 
 export default function Onboarding({
   children,
@@ -46,6 +47,10 @@ export default function Onboarding({
   );
 
   // Handle forward action
+
+  const account = useGetCurrentUser();
+
+  console.log(account);
 
   const handleBack = async () => {
     if (
