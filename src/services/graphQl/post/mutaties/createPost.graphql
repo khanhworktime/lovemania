@@ -1,0 +1,23 @@
+mutation CreatePost($tokenId: Float!) {
+  createPost(tokenId: $tokenId) {
+    id
+    thumbnail
+    description
+    media
+    createdAt
+    views
+    author {
+      id
+      displayName
+      walletAddress
+      birthday
+      bio
+      avatarUrl
+      genderType
+      genderValue
+      interests
+      createdAt
+      updatedAt
+    }
+  }
+}

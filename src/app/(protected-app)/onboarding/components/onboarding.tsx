@@ -18,6 +18,10 @@ import { useConnectedWallets } from "thirdweb/react";
 import { onboardingSteps } from "../steps";
 import { useOnboarding } from "./onboarding.provider";
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
+import { useLoginServer } from "@/services/graphQl/authentication/hooks/useLoginServer";
+import { useSessionStorage } from "usehooks-ts";
+import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
+
 export default function Onboarding({
   children,
 }: {
@@ -35,6 +39,11 @@ export default function Onboarding({
 
   // Handle modal díclosure
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const [_, setToken] = useSessionStorage<string | null>(
+    storageKeys.TOKEN,
+    null
+  );
 
   // Handle forward action
 
@@ -102,6 +111,7 @@ export default function Onboarding({
                       for (const wallet of connectedWallets) {
                         await wallet.disconnect();
                       }
+                      setToken(null);
                       router.replace("/login");
                     }}
                   >

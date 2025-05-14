@@ -1,0 +1,54 @@
+query PostsOnFeed($limit: Int!, $cursor: String) {
+  postsOnFeed(limit: $limit, cursor: $cursor) {
+    totalCount
+    length
+    hasNextPage
+    hasPreviousPage
+    endCursor
+    items {
+      id
+      thumbnail
+      description
+      media
+      createdAt
+      views
+      author {
+        id
+        displayName
+        walletAddress
+        birthday
+        bio
+        avatarUrl
+        genderType
+        genderValue
+        interests
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}
+
+query Post($id: String!) {
+  post(id: $id) {
+    id
+    thumbnail
+    description
+    media
+    createdAt
+    views
+    author {
+      id
+      displayName
+      walletAddress
+      birthday
+      bio
+      avatarUrl
+      genderType
+      genderValue
+      interests
+      createdAt
+      updatedAt
+    }
+  }
+}

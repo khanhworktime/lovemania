@@ -20,7 +20,7 @@ export default function LoginPage() {
 
   // First time login always remove local token
 
-  const { loginAsync } = useLoginServer();
+  const { loginAsync, isPending } = useLoginServer();
 
   const handleConnect = async () => {
     setIsLoading(true);
@@ -58,7 +58,7 @@ export default function LoginPage() {
   );
 
   useIsomorphicLayoutEffect(() => {
-    if (token && !isLoading) {
+    if (token && !isLoading && !isPending) {
       const isValid = validateJwtToken(token);
       if (isValid) {
         if (userData) {

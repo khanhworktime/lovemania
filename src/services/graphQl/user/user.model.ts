@@ -44,3 +44,5 @@ export interface IUser {
   updatedAt: string;
   isSuperLikeBadge: boolean;
 }
+
+export interface IOtherUser extends Omit<IUser, "isSuperLikeBadge"> {}
