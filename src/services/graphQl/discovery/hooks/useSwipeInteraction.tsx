@@ -13,14 +13,15 @@ export const useSwipeInteraction = () => {
       swipeeId: string;
       type: EDiscoveryType;
     }) => {
-      switch (type) {
-        case EDiscoveryType.LIKE:
-          return await discoveryClient.like(me?.id, swipeeId);
-        case EDiscoveryType.DISLIKE:
-          return await discoveryClient.dislike(me?.id, swipeeId);
-        case EDiscoveryType.SUPER_LIKE:
-          return await discoveryClient.superLike(me?.id, swipeeId);
-      }
+      // TODO: Mock data phrase
+      // switch (type) {
+      //   case EDiscoveryType.LIKE:
+      //     return await discoveryClient.like(me?.id, swipeeId);
+      //   case EDiscoveryType.DISLIKE:
+      //     return await discoveryClient.dislike(me?.id, swipeeId);
+      //   case EDiscoveryType.SUPER_LIKE:
+      //     return await discoveryClient.superLike(me?.id, swipeeId);
+      // }
     },
   });
 };
