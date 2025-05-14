@@ -20,7 +20,9 @@ export function NewsFeed() {
     return (
       <div className="flex flex-col gap-1 pb-24 items-center justify-center">
         <p className="text-xl">No posts to show!!!</p>
-        <p className="font-chalet text-3xl text-primary-600">LET'S SWIPE</p>
+        <p className="font-chalet text-3xl text-primary-600">
+          LET&apos;S SWIPE
+        </p>
       </div>
     );
   }

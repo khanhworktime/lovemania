@@ -1,4 +1,5 @@
 "use client";
+import { ipfsService } from "@/services/IpfsServices/ipfs.service";
 import { createContext, useContext, useState } from "react";
 
 interface CreatePostFormContextType {
@@ -9,6 +10,7 @@ interface CreatePostFormContextType {
   setImageFiles: (files: File[]) => void;
   setCaption: (caption: string) => void;
   reset: () => void;
+  uploadImage: () => Promise<string[]>;
 }
 
 const CreatePostFormContext = createContext<
@@ -30,6 +32,13 @@ export function CreatePostFormProvider({
     setCaption("");
   };
 
+  const uploadImage = async () => {
+    console.log(imageFiles);
+
+    const media = await ipfsService.uploadIpfsArray(imageFiles);
+    return media;
+  };
+
   return (
     <CreatePostFormContext.Provider
       value={{
@@ -40,6 +49,7 @@ export function CreatePostFormProvider({
         setImageFiles,
         setCaption,
         reset,
+        uploadImage,
       }}
     >
       {children}

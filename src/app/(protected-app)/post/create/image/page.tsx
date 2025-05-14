@@ -32,7 +32,7 @@ export default function PostCreateImagePage() {
 
   useBodyAppColor("#fff");
 
-  const { setImages } = useCreatePostForm();
+  const { setImages, setImageFiles } = useCreatePostForm();
   // Upload Image handler
   const {
     images,
@@ -56,6 +56,8 @@ export default function PostCreateImagePage() {
       return;
     }
     setImages(images);
+    setImageFiles(imageFiles);
+
     drawerDisclosure.onOpen();
     await sleep(1000);
     router.push("/post/create/caption");

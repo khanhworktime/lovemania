@@ -21,6 +21,7 @@ import { useTransitionRouter } from "next-view-transitions";
 import Autoplay from "embla-carousel-autoplay";
 import { useCreatePostForm } from "../contexts/useCreatePostForm";
 import { useState } from "react";
+import { useCreatePost } from "@/services/graphQl/post/hooks/useCreatePost";
 
 export default function PostCreateCaptionPage() {
   const router = useTransitionRouter();
@@ -29,14 +30,24 @@ export default function PostCreateCaptionPage() {
   });
 
   // Data controller
-  const { images, setCaption: setFormCaption } = useCreatePostForm();
+  const {
+    images,
+    setCaption: setFormCaption,
+    uploadImage,
+  } = useCreatePostForm();
   const [caption, setCaption] = useState("");
 
   useBodyAppColor("#fff");
 
-  const handleUpload = () => {
+  const handleConfirmUpload = () => {
     setFormCaption(caption);
-    console.log("Uploading...");
+    handleUpload();
+  };
+
+  const { mutate: createPost } = useCreatePost();
+
+  const handleUpload = async () => {
+    const media = await uploadImage();
   };
 
   return (
@@ -127,7 +138,12 @@ export default function PostCreateCaptionPage() {
             />
           </DrawerBody>
           <DrawerFooter className="my-4">
-            <Button size="lg" color="primary" className="w-full rounded-full">
+            <Button
+              onPress={handleConfirmUpload}
+              size="lg"
+              color="primary"
+              className="w-full rounded-full"
+            >
               Upload
             </Button>
           </DrawerFooter>

@@ -45,4 +45,4 @@ export interface IUser {
   isSuperLikeBadge: boolean;
 }
 
-export interface IOtherUser extends Omit<IUser, "isSuperLikeBadge"> {}
+export type IOtherUser = Omit<IUser, "isSuperLikeBadge">;
