@@ -45,6 +45,7 @@ export function useCreatePost() {
         contract,
       });
 
+      // TODO: Check the signature
       const tx = await sendTransaction({
         transaction: mintTx,
         account,
@@ -55,8 +56,6 @@ export function useCreatePost() {
         client: basicClient,
         chain: somniaChain,
       });
-
-      console.log(txHash);
 
       return txHash;
     },

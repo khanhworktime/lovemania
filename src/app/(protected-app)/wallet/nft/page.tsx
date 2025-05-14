@@ -55,8 +55,6 @@ export default function NftPage() {
 
   const { data: nfts } = useGetOwnedNft();
 
-  console.log(nfts);
-
   return (
     <div className="drawer flex-1 relative h-screen w-full flex flex-col items-stretch">
       <style jsx global>{`

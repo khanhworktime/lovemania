@@ -6,8 +6,6 @@ import { Skeleton } from "@heroui/react";
 export function NewsFeed() {
   const { data, isPending } = useGetFeeds();
 
-  console.log(data);
-
   if (isPending) {
     return (
       <div className="flex flex-col gap-4 pb-24">

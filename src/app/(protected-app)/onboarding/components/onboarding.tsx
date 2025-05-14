@@ -50,8 +50,6 @@ export default function Onboarding({
 
   const account = useGetCurrentUser();
 
-  console.log(account);
-
   const handleBack = async () => {
     if (
       connectedWallets.length > 0 &&

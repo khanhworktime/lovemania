@@ -33,8 +33,6 @@ export function CreatePostFormProvider({
   };
 
   const uploadImage = async () => {
-    console.log(imageFiles);
-
     const media = await ipfsService.uploadIpfsArray(imageFiles);
     return media;
   };

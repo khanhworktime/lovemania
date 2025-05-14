@@ -23,8 +23,6 @@ export async function createPostTx({
 
   const account = await adminAccount();
 
-  console.log(account.address);
-
   const { payload, signature } = await generateMintSignature({
     contract,
     account,
