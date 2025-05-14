@@ -21,7 +21,7 @@ import { useTransitionRouter } from "next-view-transitions";
 import Autoplay from "embla-carousel-autoplay";
 import { useCreatePostForm } from "../contexts/useCreatePostForm";
 import { useState } from "react";
-import { useCreatePost } from "@/services/graphQl/post/hooks/useCreatePost";
+import { useCreatePost } from "@/services/graphql/post/hooks/useCreatePost";
 
 export default function PostCreateCaptionPage() {
   const router = useTransitionRouter();
@@ -44,10 +44,15 @@ export default function PostCreateCaptionPage() {
     handleUpload();
   };
 
-  const { mutate: createPost } = useCreatePost();
+  const { mutateAsync: createPost, isPending } = useCreatePost();
 
   const handleUpload = async () => {
     const media = await uploadImage();
+    try {
+      await createPost({ media, caption });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -143,6 +148,7 @@ export default function PostCreateCaptionPage() {
               size="lg"
               color="primary"
               className="w-full rounded-full"
+              isLoading={isPending}
             >
               Upload
             </Button>

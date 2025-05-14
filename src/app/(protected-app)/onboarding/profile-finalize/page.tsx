@@ -4,12 +4,12 @@ import Thumbnail from "@/assets/decors/profile-finalize.decor.png";
 import { basicClient } from "@/providers/thirdweb.provider";
 import { getAvatarProfileContract } from "@/services/contracts/avatarProfile";
 import { getNftProfileContract } from "@/services/contracts/nftProfile";
-import useCreateUser from "@/services/graphQl/user/hooks/useCreateUser";
+import useCreateUser from "@/services/graphql/user/hooks/useCreateUser";
 import {
   MetadataMintAvatarInput,
   MetadataMintProfileInput,
-} from "@/services/graphQl/user/user.model";
-import { userClient } from "@/services/graphQl/user/userClient";
+} from "@/services/graphql/user/user.model";
+import { userClient } from "@/services/graphql/user/userClient";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import { sleep } from "@/utils/sleep";
 import {
@@ -27,9 +27,9 @@ import Image from "next/image";
 import { getOwnedNFTs, mintWithSignature } from "thirdweb/extensions/erc721";
 import { useSendBatchTransaction } from "thirdweb/react";
 import { useOnboarding } from "../components/onboarding.provider";
-import { IUser } from "@/services/graphQl/user/user.model";
+import { IUser } from "@/services/graphql/user/user.model";
 import { useSessionStorage } from "usehooks-ts";
-import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
+import { storageKeys } from "@/services/graphql/authentication/constants/storage.key";
 import { useState } from "react";
 import { useGetOwnedNft } from "@/services/users/hooks/useGetOwnedNft";
 import { sendTransaction } from "thirdweb";

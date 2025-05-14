@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { userClient } from "../userClient";
-import { CreateUserInput } from "../user.model";
+import { userClient } from "@/services/graphql/user/userClient";
+import { CreateUserInput } from "@/services/graphql/user/user.model";
 
 export default function useCreateUser() {
   return useMutation({

@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { IDefaultResponse } from "../../interface/response.model";
-import { userKeys } from "../constants/user.key";
-import { IUser } from "../user.model";
-import { userClient } from "../userClient";
+import { IDefaultResponse } from "@/services/graphql/interface/response.model";
+import { userKeys } from "@/services/graphql/user/constants/user.key";
+import { IUser } from "@/services/graphql/user/user.model";
+import { userClient } from "@/services/graphql/user/userClient";
 const DEFAULT_LIMIT = 4;
 
 export function useMatcherList() {

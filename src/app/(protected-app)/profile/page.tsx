@@ -25,14 +25,15 @@ import { useOnboarding } from "@/app/(protected-app)/onboarding/components/onboa
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 import { useProfileSBT } from "@/services/profileNft/hooks/useGetProfileNft";
 import { basicClient } from "@/providers/thirdweb.provider";
-import { storageKeys } from "@/services/graphQl/authentication/constants/storage.key";
-import { ApolloClientWrapper } from "@/services/graphQl/config/baseClass";
-import { useMe } from "@/services/graphQl/user/hooks/useMe";
+import { storageKeys } from "@/services/graphql/authentication/constants/storage.key";
+import { ApolloClientWrapper } from "@/services/graphql/config/baseClass";
+import { useMe } from "@/services/graphql/user/hooks/useMe";
 import moment from "moment";
 import { Link, useTransitionRouter } from "next-view-transitions";
 import { useConnectedWallets } from "thirdweb/react";
 import { resolveScheme } from "thirdweb/storage";
 import { useQueryClient } from "@tanstack/react-query";
+import ProfileNftUtils from "@/services/profileNft";
 
 const profileDonePercentage = 70;
 
@@ -85,17 +86,25 @@ export default function ProfilePage() {
     );
   }
 
+  const profileAttributes = ProfileNftUtils.transformAttributes(
+    sbt?.metadata.attributes
+  );
+
   const profile = {
     name: sbt?.metadata.name,
-    age: moment().diff(
-      moment(sbt?.metadata.properties?.birthday || undefined),
-      "years"
-    ),
+    age: moment.unix(Number(profileAttributes.birthday) || 0).isValid()
+      ? moment().diff(
+          moment.unix(Number(profileAttributes.birthday) || 0),
+          "years"
+        )
+      : null,
     image: resolveScheme({
       client: basicClient,
       uri: sbt?.metadata.image || "",
     }),
   };
+
+  console.log(profileAttributes);
 
   return (
     <div className="flex flex-col gap-y-4 px-4 h-svh">

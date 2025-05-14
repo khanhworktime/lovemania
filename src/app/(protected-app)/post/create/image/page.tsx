@@ -152,10 +152,10 @@ export default function PostCreateImagePage() {
                       <img
                         src={image}
                         alt="Preview"
-                        className="w-full h-full object-contain rounded-2xl "
+                        className="w-full h-full object-cover rounded-2xl "
                       />
                       <Button
-                        variant="bordered"
+                        variant="light"
                         className="absolute top-1 right-1"
                         onPress={() => handleDelete(index)}
                         isIconOnly

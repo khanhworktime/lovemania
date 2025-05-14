@@ -7,6 +7,7 @@ const nextConfig = {
       exclude: /node_modules/,
       use: ["graphql-tag/loader"],
     });
+    config.externals.push("pino-pretty");
     return config;
   },
   images: {

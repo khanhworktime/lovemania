@@ -1,5 +1,5 @@
 import { Post } from "@/shared-components/ui/Post/Post";
-import { useGetFeeds } from "@/services/graphQl/post/hooks/useGetFeeds";
+import { useGetFeeds } from "@/services/graphql/post/hooks/useGetFeeds";
 import { postTestData } from "../../../../../../exampleData/data";
 import { Skeleton } from "@heroui/react";
 
