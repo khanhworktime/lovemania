@@ -32,6 +32,28 @@ gsap.registerEase("cardSuperLike", (progress) => {
 export function MatcherCard({ user, nextUser }: MatcherCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const pseudoCardRef = useRef<HTMLDivElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  // Prefetch image
+  useEffect(() => {
+    if (!user?.avatarUrl) return;
+
+    const isIpfs = user.avatarUrl.startsWith("ipfs://");
+    if (!isIpfs) {
+      const img = new Image();
+      img.src = user.avatarUrl;
+      img.onload = () => {
+        setImageUrl(user.avatarUrl);
+        setImageLoaded(true);
+      };
+      img.onerror = () => {
+        setImageLoaded(true); // Still mark as loaded to avoid showing loading forever
+      };
+    } else {
+      setImageLoaded(true); // For IPFS, rely on MediaRenderer's loading state
+    }
+  }, [user?.avatarUrl]);
 
   // Update pseudo card height when container height changes
   useEffect(() => {
@@ -382,13 +404,28 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                     client={basicClient}
                   />
                 ) : (
-                  <img
-                    src={user?.avatarUrl}
-                    alt="Profile"
-                    className="object-cover object-center aspect-[0.9] w-full h-full"
-                    width={100}
-                    height={100}
-                  />
+                  <>
+                    {!imageLoaded && (
+                      <div className="flex items-center justify-center w-full h-full aspect-[0.9] bg-gray-200/20">
+                        <CircularProgress
+                          size="md"
+                          aria-label="Loading image"
+                        />
+                      </div>
+                    )}
+                    {imageUrl && (
+                      <img
+                        src={imageUrl}
+                        alt="Profile"
+                        className={cn(
+                          "object-cover object-center aspect-[0.9] w-full h-full",
+                          !imageLoaded && "opacity-0"
+                        )}
+                        width={100}
+                        height={100}
+                      />
+                    )}
+                  </>
                 )}
 
                 {/* Overlay */}
@@ -429,7 +466,7 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                 {/* Profile info */}
                 <div className="absolute z-10 bottom-0 left-0 right-0 p-4">
                   <div className="flex gap-1 justify-center text-white/70 text-sm mb-2 font-semibold">
-                    {moment().diff(moment(user.birthday), "years")} - USA
+                    {user.age} - {user?.distanceKm?.toLocaleString()}km
                   </div>
                   <h3 className="text-white text-2xl font-bold font-chalet text-center">
                     {user.displayName}

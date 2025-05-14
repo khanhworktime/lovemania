@@ -32,6 +32,7 @@ export interface CreateUserInput {
 
 export interface IUser {
   id: string;
+  age: number;
   displayName: string;
   walletAddress: string;
   birthday: string;
@@ -43,6 +44,7 @@ export interface IUser {
   createdAt: string;
   updatedAt: string;
   isSuperLikeBadge: boolean;
+  distanceKm: number;
 }
 
 export type IOtherUser = Omit<IUser, "isSuperLikeBadge">;

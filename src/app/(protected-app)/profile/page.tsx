@@ -104,8 +104,6 @@ export default function ProfilePage() {
     }),
   };
 
-  console.log(profileAttributes);
-
   return (
     <div className="flex flex-col gap-y-4 px-4 h-svh">
       <div className="flex items-center justify-between gap-x-2 pt-4 pb-2 sticky top-0 inset-x-0 z-50 bg-white/20 backdrop-blur-sm">

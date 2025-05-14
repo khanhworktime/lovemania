@@ -19,6 +19,30 @@ export function Finder() {
   const { data, isLoading, refetch, isFetchedAfterMount } =
     useRecommendedUsers();
 
+  // Prefetch next users' images
+  useEffect(() => {
+    if (!data || data.length <= 1) return;
+
+    // Determine which users to prefetch
+    const nextIndex = index === -1 ? 1 : index + 1;
+    const prefetchCount = 3; // Prefetch next 3 users
+
+    // Prefetch next users' images
+    for (let i = 0; i < prefetchCount; i++) {
+      const userIndex = nextIndex + i;
+      if (userIndex < data.length) {
+        const userToPrefetch = data[userIndex];
+        if (
+          userToPrefetch?.avatarUrl &&
+          !userToPrefetch.avatarUrl.startsWith("ipfs://")
+        ) {
+          const img = new Image();
+          img.src = userToPrefetch.avatarUrl;
+        }
+      }
+    }
+  }, [data, index]);
+
   useEffect(() => {
     if ((data && !isFetchedAfterMount) || !currentUser) {
       setCurrentUser(data?.[0]);
