@@ -1,8 +1,8 @@
 "use client";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-import { useCreatePost } from "@/services/graphql/post/hooks/useCreatePost";
-import useGetMintingAvatarTx from "@/services/graphql/user/hooks/useMintingAvatar";
-import { ipfsService } from "@/services/ipfsServices/ipfs.service";
+import { useCreatePost } from "@/services/graphqlService/post/hooks/useCreatePost";
+import useGetMintingAvatarTx from "@/services/graphqlService/user/hooks/useMintingAvatar";
+import { ipfsService } from "@/services/ipfsService/ipfs.service";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import {
   Carousel,

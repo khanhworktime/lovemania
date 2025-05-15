@@ -1,9 +1,9 @@
 "use client";
 
-import { useRecommendedUsers } from "@/services/graphql/user/hooks/useRecommendedUsers";
-import { IUser } from "@/services/graphql/user/user.model";
+import { useRecommendedUsers } from "@/services/graphqlService/user/hooks/useRecommendedUsers";
+import { IUser } from "@/services/graphqlService/user/user.model";
 import { useLocalStorage } from "usehooks-ts";
-import { DISCOVERY_STORAGE_KEY } from "@/services/graphql/discovery/constants/storageKey";
+import { DISCOVERY_STORAGE_KEY } from "@/services/graphqlService/discovery/constants/storageKey";
 import { useEffect, useState } from "react";
 import { MatcherCard } from "../MatcherCard";
 import { CircularProgress } from "@heroui/react";

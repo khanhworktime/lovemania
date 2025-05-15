@@ -1,9 +1,9 @@
 "use client";
 
 import Thumbnail from "@/assets/backgrounds/signup.background.png";
-import { storageKeys } from "@/services/graphql/authentication/constants/storage.key";
-import { useLoginServer } from "@/services/graphql/authentication/hooks/useLoginServer";
-import { IUser } from "@/services/graphql/user/user.model";
+import { storageKeys } from "@/services/graphqlService/authentication/constants/storage.key";
+import { useLoginServer } from "@/services/graphqlService/authentication/hooks/useLoginServer";
+import { IUser } from "@/services/graphqlService/user/user.model";
 import GoogleIcon from "@/shared-components/icons/google.icon";
 import WalletIcon from "@/shared-components/icons/wallet.icon";
 import { sleep } from "@/utils/sleep";

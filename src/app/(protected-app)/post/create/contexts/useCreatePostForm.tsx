@@ -1,5 +1,5 @@
 "use client";
-import { ipfsService } from "@/services/ipfsServices/ipfs.service";
+import { ipfsService } from "@/services/ipfsService/ipfs.service";
 import { createContext, useContext, useState } from "react";
 
 interface CreatePostFormContextType {

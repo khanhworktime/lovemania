@@ -1,14 +1,14 @@
 "use client";
 
 import { MatchedNotification } from "@/shared-components/ui/MatchedNotification/MatchedNotification";
-import { storageKeys } from "@/services/graphql/authentication/constants/storage.key";
+import { storageKeys } from "@/services/graphqlService/authentication/constants/storage.key";
 import { addToast } from "@heroui/react";
 import { useTransitionRouter } from "next-view-transitions";
 import { PropsWithChildren, useEffect } from "react";
 import { useActiveAccount, useConnectionManager } from "thirdweb/react";
-import { DISCOVERY_STORAGE_KEY } from "@/services/graphql/discovery/constants/storageKey";
+import { DISCOVERY_STORAGE_KEY } from "@/services/graphqlService/discovery/constants/storageKey";
 import { useQueryClient } from "@tanstack/react-query";
-import { ApolloClientWrapper } from "@/services/graphql/config/baseClass";
+import { ApolloClientWrapper } from "@/services/graphqlService/config/baseClass";
 
 export default function Layout({ children }: PropsWithChildren) {
   const router = useTransitionRouter();

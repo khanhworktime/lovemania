@@ -12,7 +12,7 @@ import {
 } from "thirdweb/extensions/erc721";
 import { somniaChain } from "@/constants/somniaChain";
 import { postClient } from "../postClient";
-import { ipfsService } from "@/services/ipfsServices/ipfs.service";
+import { ipfsService } from "@/services/ipfsService/ipfs.service";
 export function useCreatePost() {
   const account = useGetCurrentUser();
   const queryClient = useQueryClient();

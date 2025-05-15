@@ -18,9 +18,9 @@ import { useConnectedWallets } from "thirdweb/react";
 import { onboardingSteps } from "../steps";
 import { useOnboarding } from "./onboarding.provider";
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
-import { useLoginServer } from "@/services/graphql/authentication/hooks/useLoginServer";
+import { useLoginServer } from "@/services/graphqlService/authentication/hooks/useLoginServer";
 import { useSessionStorage } from "usehooks-ts";
-import { storageKeys } from "@/services/graphql/authentication/constants/storage.key";
+import { storageKeys } from "@/services/graphqlService/authentication/constants/storage.key";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 
 export default function Onboarding({

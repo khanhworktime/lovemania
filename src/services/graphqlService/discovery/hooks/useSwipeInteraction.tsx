@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { discoveryClient } from "../discoveryClient";
 import { EDiscoveryType } from "@/enum/EDiscoveryType.enum";
-import { useMe } from "@/services/graphql/user/hooks/useMe";
+import { useMe } from "@/services/graphqlService/user/hooks/useMe";
 export const useSwipeInteraction = () => {
   const { data: me } = useMe();
 

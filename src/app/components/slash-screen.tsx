@@ -14,8 +14,8 @@ import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
 import { env } from "@/constants/env";
 import { somniaChain } from "@/constants/somniaChain";
 import { useSessionStorage } from "usehooks-ts";
-import { storageKeys } from "@/services/graphql/authentication/constants/storage.key";
-import { IUser } from "@/services/graphql/user/user.model";
+import { storageKeys } from "@/services/graphqlService/authentication/constants/storage.key";
+import { IUser } from "@/services/graphqlService/user/user.model";
 export function SlashScreen() {
   const { data: autoConnected } = useAutoConnect({
     client: basicClient,

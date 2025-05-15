@@ -1,7 +1,7 @@
 import { EDiscoveryType } from "@/enum/EDiscoveryType.enum";
 import { basicClient } from "@/providers/thirdweb.provider";
-import { useSwipeInteraction } from "@/services/graphql/discovery/hooks/useSwipeInteraction";
-import { IUser } from "@/services/graphql/user/user.model";
+import { useSwipeInteraction } from "@/services/graphqlService/discovery/hooks/useSwipeInteraction";
+import { IUser } from "@/services/graphqlService/user/user.model";
 import { FloatingParticles } from "@/shared-components/ui/FloatingParticles";
 import { useGSAP } from "@gsap/react";
 import {

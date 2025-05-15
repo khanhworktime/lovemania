@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { POST_QUERY_KEY } from "@/services/graphql/post/constants/queryKey";
-import { postClient } from "@/services/graphql/post/postClient";
+import { POST_QUERY_KEY } from "@/services/graphqlService/post/constants/queryKey";
+import { postClient } from "@/services/graphqlService/post/postClient";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 
 export function useGetFeeds() {

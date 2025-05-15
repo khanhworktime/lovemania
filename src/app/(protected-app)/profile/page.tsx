@@ -25,9 +25,9 @@ import { useOnboarding } from "@/app/(protected-app)/onboarding/components/onboa
 import { EGenderDefine } from "@/enum/EGenderDefine.enum";
 import { useProfileSBT } from "@/services/profileNft/hooks/useGetProfileNft";
 import { basicClient } from "@/providers/thirdweb.provider";
-import { storageKeys } from "@/services/graphql/authentication/constants/storage.key";
-import { ApolloClientWrapper } from "@/services/graphql/config/baseClass";
-import { useMe } from "@/services/graphql/user/hooks/useMe";
+import { storageKeys } from "@/services/graphqlService/authentication/constants/storage.key";
+import { ApolloClientWrapper } from "@/services/graphqlService/config/baseClass";
+import { useMe } from "@/services/graphqlService/user/hooks/useMe";
 import moment from "moment";
 import { Link, useTransitionRouter } from "next-view-transitions";
 import { useConnectedWallets } from "thirdweb/react";

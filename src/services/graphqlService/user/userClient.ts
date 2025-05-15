@@ -1,20 +1,20 @@
-import { ApolloClientBase } from "@/services/graphql/config/baseClass";
+import { ApolloClientBase } from "@/services/graphqlService/config/baseClass";
 import {
   DefaultErc721Response,
   IDefaultResponse,
-} from "@/services/graphql/interface/response.model";
-import { MintingProfile } from "@/services/graphql/user/queries/mintingProfile.graphql";
-import { MintingAvatar } from "@/services/graphql/user/queries/avatar.graphql";
-import { Me } from "@/services/graphql/user/queries/me.graphql";
-import { GetUsers } from "@/services/graphql/user/queries/user.graphql";
-import { CreateUser } from "@/services/graphql/user/mutaties/createUser.graphql";
+} from "@/services/graphqlService/interface/response.model";
+import { MintingProfile } from "@/services/graphqlService/user/queries/mintingProfile.graphql";
+import { MintingAvatar } from "@/services/graphqlService/user/queries/avatar.graphql";
+import { Me } from "@/services/graphqlService/user/queries/me.graphql";
+import { GetUsers } from "@/services/graphqlService/user/queries/user.graphql";
+import { CreateUser } from "@/services/graphqlService/user/mutaties/createUser.graphql";
 import {
   IUser,
   MetadataMintAvatarInput,
   MetadataMintProfileInput,
   CreateUserInput,
-} from "@/services/graphql/user/user.model";
-import { RecommendedUsers } from "@/services/graphql/user/queries/recommendedUser.graphql";
+} from "@/services/graphqlService/user/user.model";
+import { RecommendedUsers } from "@/services/graphqlService/user/queries/recommendedUser.graphql";
 
 class UserClient extends ApolloClientBase {
   constructor() {
