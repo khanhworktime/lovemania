@@ -466,7 +466,7 @@ export function MatcherCard({ user, nextUser }: MatcherCardProps) {
                 {/* Profile info */}
                 <div className="absolute z-10 bottom-0 left-0 right-0 p-4">
                   <div className="flex gap-1 justify-center text-white/70 text-sm mb-2 font-semibold">
-                    {user.age} - {user?.distanceKm?.toLocaleString()}km
+                    {user.age} - VIETNAM
                   </div>
                   <h3 className="text-white text-2xl font-bold font-chalet text-center">
                     {user.displayName}
