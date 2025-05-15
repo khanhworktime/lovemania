@@ -43,7 +43,6 @@ export function useCreatePost() {
         },
       });
 
-
       alert(contract);
 
       const mintTx = mintWithSignature({
@@ -51,7 +50,6 @@ export function useCreatePost() {
         signature,
         contract,
       });
-
 
       // TODO: Check the signature
       const tx = await sendTransaction({

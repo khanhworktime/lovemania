@@ -19,6 +19,7 @@ class IpfsService {
     data: UploadableFile,
     metadata?: IpfsMetadata
   ): Promise<string> {
+    // console.log("");
     const uri = await upload({
       client: basicClient,
       files: [data],

@@ -24,7 +24,7 @@ export const useLoginServer = () => {
   } = useMutation({
     mutationKey: currentMutationKey,
     mutationFn: async () => {
-      // Login with ThirdwebModal
+      // Login with ThirdwebModal.
       const wallet = await connectModal({
         client: basicClient,
         accountAbstraction: {
