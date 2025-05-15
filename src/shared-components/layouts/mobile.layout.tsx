@@ -16,7 +16,7 @@ export default function MobileLayout({
         accountAbstraction={{
           factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
           chain: somniaChain,
-          sponsorGas: true,
+          sponsorGas: false,
         }}
         wallets={[createWallet("io.metamask")]}
       />

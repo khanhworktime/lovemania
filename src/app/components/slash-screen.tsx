@@ -22,7 +22,7 @@ export function SlashScreen() {
     accountAbstraction: {
       factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
       chain: somniaChain,
-      sponsorGas: true,
+      sponsorGas: false,
     },
   });
   const [token, setToken] = useSessionStorage<string | null>(
