@@ -4,46 +4,54 @@ import { basicClient } from "@/providers/thirdweb.provider";
 import { getNftPostContract } from "@/services/contracts/nftPost";
 import { createPostTx } from "@/services/serverActions/post";
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
-import { sendTransaction, waitForReceipt } from "thirdweb";
+import { estimateGas, sendTransaction, waitForReceipt } from "thirdweb";
 
 import {
   generateMintSignature,
   mintWithSignature,
 } from "thirdweb/extensions/erc721";
 import { somniaChain } from "@/constants/somniaChain";
-
+import { postClient } from "../postClient";
+import { ipfsService } from "@/services/ipfsServices/ipfs.service";
 export function useCreatePost() {
   const account = useGetCurrentUser();
   const queryClient = useQueryClient();
 
-  return useMutation({
+  const hookMutate = useMutation({
     mutationFn: async ({
       media,
       caption,
     }: {
-      media: string[];
+      media: File[];
       caption: string;
     }) => {
       if (!account) {
         throw new Error("Account not found");
       }
 
-      debugger;
-
       const contract = getNftPostContract({ client: basicClient });
 
-      const { payload, signature } = await createPostTx({
-        name: "Post",
-        description: caption,
-        image: media,
+      const imageUris = await ipfsService.uploadIpfsArray(media);
+
+      const { payload, signature } = await postClient.mintPost({
         address: account.address,
+        metadata: {
+          name: "Post",
+          description: caption,
+          image: imageUris[0],
+          media: imageUris,
+        },
       });
+
+
+      alert(contract);
 
       const mintTx = mintWithSignature({
         payload,
         signature,
         contract,
       });
+
 
       // TODO: Check the signature
       const tx = await sendTransaction({
@@ -65,4 +73,6 @@ export function useCreatePost() {
       });
     },
   });
+
+  return { ...hookMutate };
 }

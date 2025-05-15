@@ -1,8 +1,12 @@
 import { ApolloClientBase } from "../config/baseClass";
-import { IDefaultResponse } from "../interface/response.model";
+import {
+  DefaultErc721Response,
+  IDefaultResponse,
+} from "../interface/response.model";
 import { PostsOnFeed, Post } from "./queries/posts.graphql";
-import { IPost } from "./post.model";
+import { IPost, MintPostMetadata } from "./post.model";
 import { CreatePost } from "./mutaties/createPost.graphql";
+import { MintingPost } from "./queries/getPostTx.graphql";
 
 class PostClient extends ApolloClientBase {
   constructor() {
@@ -54,6 +58,21 @@ class PostClient extends ApolloClientBase {
     });
 
     return data?.createPost;
+  }
+
+  // Mint post
+  async mintPost(request: {
+    address: string;
+    metadata: MintPostMetadata;
+  }): Promise<DefaultErc721Response> {
+    const { data } = await this.instance.query<{
+      mintingPost: DefaultErc721Response;
+    }>({
+      query: MintingPost,
+      variables: request,
+      fetchPolicy: "no-cache",
+    });
+    return data.mintingPost;
   }
 }
 

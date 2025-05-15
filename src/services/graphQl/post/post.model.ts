@@ -9,3 +9,10 @@ export interface IPost {
   views: number;
   author: IOtherUser;
 }
+
+export interface MintPostMetadata {
+  name: string;
+  description: string;
+  image: string;
+  media: string[];
+}

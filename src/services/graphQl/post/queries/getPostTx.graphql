@@ -1,0 +1,17 @@
+query MintingPost($address: String!, $metadata: MintPostInput!) {
+  mintingPost(address: $address, metadata: $metadata) {
+    signature
+    payload {
+      to
+      royaltyRecipient
+      royaltyBps
+      primarySaleRecipient
+      uri
+      price
+      currency
+      validityStartTimestamp
+      validityEndTimestamp
+      uid
+    }
+  }
+}

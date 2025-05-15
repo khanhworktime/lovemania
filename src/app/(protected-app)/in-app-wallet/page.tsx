@@ -53,7 +53,7 @@ export default function InAppWalletPage() {
         accountAbstraction={{
           chain: somniaChain,
           factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
-          sponsorGas: true,
+          sponsorGas: false,
         }}
       />
       <Button onPress={testMint} isLoading={isPending}>

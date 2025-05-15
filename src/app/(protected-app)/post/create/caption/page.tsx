@@ -1,6 +1,9 @@
 "use client";
 import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-import { useUploadImages } from "@/hooks/UseUploadImage/multiImages";
+import { useCreatePost } from "@/services/graphql/post/hooks/useCreatePost";
+import useGetMintingAvatarTx from "@/services/graphql/user/hooks/useMintingAvatar";
+import { ipfsService } from "@/services/ipfsServices/ipfs.service";
+import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
 import {
   Carousel,
   CarouselContent,
@@ -16,24 +19,28 @@ import {
   Textarea,
   useDisclosure,
 } from "@heroui/react";
-import { ChevronLeftIcon, PlusIcon, XIcon } from "lucide-react";
-import { useTransitionRouter } from "next-view-transitions";
 import Autoplay from "embla-carousel-autoplay";
-import { useCreatePostForm } from "../contexts/useCreatePostForm";
+import { ChevronLeftIcon } from "lucide-react";
+import { useTransitionRouter } from "next-view-transitions";
 import { useState } from "react";
-import { useCreatePost } from "@/services/graphql/post/hooks/useCreatePost";
-
+import { estimateGas, sendTransaction, waitForReceipt } from "thirdweb";
+import { useCreatePostForm } from "../contexts/useCreatePostForm";
+import { basicClient } from "@/providers/thirdweb.provider";
+import { somniaChain } from "@/constants/somniaChain";
+import { parseGwei } from "viem";
 export default function PostCreateCaptionPage() {
   const router = useTransitionRouter();
   const drawerDisclosure = useDisclosure({
     defaultOpen: true,
   });
 
+  const account = useGetCurrentUser();
+
   // Data controller
   const {
     images,
     setCaption: setFormCaption,
-    uploadImage,
+    imageFiles,
   } = useCreatePostForm();
   const [caption, setCaption] = useState("");
 
@@ -46,10 +53,39 @@ export default function PostCreateCaptionPage() {
 
   const { mutateAsync: createPost, isPending } = useCreatePost();
 
+  const { mutateAsync: mintAvatar, isPending: isPendingTx } =
+    useGetMintingAvatarTx();
+
   const handleUpload = async () => {
-    const media = await uploadImage();
     try {
-      await createPost({ media, caption });
+      if (!account) throw new Error("Account not found");
+      await createPost({ media: imageFiles, caption });
+      // const imageUri = await ipfsService.uploadIpfs(imageFiles[0]);
+      // const mintTx = await mintAvatar({
+      //   metadata: {
+      //     name: "Avatar",
+      //     description: "Avatar",
+      //     image: imageUri,
+      //   },
+      // });
+
+      // const estGas = await estimateGas({
+      //   transaction: mintTx,
+      //   account,
+      // });
+
+      // const tx = await sendTransaction({
+      //   transaction: mintTx,
+      //   account,
+      // });
+
+      // const txHash = await waitForReceipt({
+      //   transactionHash: tx.transactionHash,
+      //   client: basicClient,
+      //   chain: somniaChain,
+      // });
+
+      // console.log(txHash);
     } catch (error) {
       console.error(error);
     }
