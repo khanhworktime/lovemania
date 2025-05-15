@@ -1,8 +1,7 @@
-import { useMe } from "./useMe";
-import { userKeys } from "../constants/user.key";
-import { userClient } from "../userClient";
 import { useQuery } from "@tanstack/react-query";
 import { mockUsers } from "../constants/mock";
+import { userKeys } from "../constants/user.key";
+import { useMe } from "./useMe";
 
 export function useRecommendedUsers() {
   const { data: me } = useMe();
