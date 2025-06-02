@@ -17,7 +17,7 @@ export async function createSomniaWallet() {
   const wallet = smartWallet({
     chain: somniaChain, // the chain where your account will be or is deployed
     factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS, // your own deployed account factory address
-    sponsorGas: false,
+    sponsorGas: true,
   });
 
   await wallet.connect({

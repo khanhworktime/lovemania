@@ -1,16 +1,16 @@
 "use client";
 import DecorBg from "@/assets/decors/message-background.decor.png";
-import Image from "next/image";
-import { RecentMatch } from "./components/recentMatch";
-import { useRef, useState } from "react";
+import { conversationTestData } from "@/exampleData/data";
+import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
 import { useGSAP } from "@gsap/react";
+import { Button } from "@heroui/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useBodyAppColor } from "@/hooks/UseBodyAppColor";
-import { conversationTestData } from "@/exampleData/data";
-import { ConversationItem } from "./components/conversationItem";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import { Navbar } from "../../components/navbar";
-
+import { ConversationItem } from "./components/conversationItem";
+import { RecentMatch } from "./components/recentMatch";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const defaultBgColor = "#4b164c";
@@ -90,7 +90,10 @@ export default function MessagesPage() {
 
         <div className="messages-box bg-white rounded-t-[32px] mt-6 sticky flex-grow min-h-[80svh] will-change-transform p-4">
           {conversationTestData.map((conversation) => (
-            <ConversationItem key={conversation.id} conversation={conversation} />
+            <ConversationItem
+              key={conversation.id}
+              conversation={conversation}
+            />
           ))}
         </div>
       </div>
