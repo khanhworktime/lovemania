@@ -1,5 +1,5 @@
 import { useGetCurrentUser } from "@/services/users/hooks/useGetCurrentUser";
-import { basicClient } from "@/services/graphqlService/client";
+import { basicClient } from "@/providers/thirdweb.provider";
 import { viemAdapter } from "thirdweb/adapters/viem";
 import { somniaChain } from "@/constants/somniaChain";
 import { useActiveWallet } from "thirdweb/react";
