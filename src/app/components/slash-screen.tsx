@@ -19,11 +19,11 @@ import { IUser } from "@/services/graphqlService/user/user.model";
 export function SlashScreen() {
   const { data: autoConnected } = useAutoConnect({
     client: basicClient,
-    accountAbstraction: {
-      factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
-      chain: somniaChain,
-      sponsorGas: true,
-    },
+    // accountAbstraction: {
+    //   factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
+    //   chain: somniaChain,
+    //   sponsorGas: true,
+    // },
   });
   const [token, setToken] = useSessionStorage<string | null>(
     storageKeys.TOKEN,

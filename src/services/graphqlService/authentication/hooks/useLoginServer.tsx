@@ -4,7 +4,7 @@ import { basicClient } from "@/providers/thirdweb.provider";
 import { addToast } from "@heroui/react";
 import { useMutation } from "@tanstack/react-query";
 import { signLoginPayload } from "thirdweb/auth";
-import { useConnectModal } from "thirdweb/react";
+import { useConnectModal, useSetActiveWallet } from "thirdweb/react";
 import { useIsomorphicLayoutEffect, useSessionStorage } from "usehooks-ts";
 import { authenticationClient } from "../authenticationClient";
 import { authenticationKeys } from "../constants/authentication.key";
@@ -27,11 +27,11 @@ export const useLoginServer = () => {
       // Login with ThirdwebModal.
       const wallet = await connectModal({
         client: basicClient,
-        accountAbstraction: {
-          factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
-          chain: somniaChain,
-          sponsorGas: true,
-        },
+        // accountAbstraction: {
+        //   factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
+        //   chain: somniaChain,
+        //   sponsorGas: true,
+        // },
       });
 
       const account = wallet.getAccount();

@@ -13,11 +13,11 @@ export default function MobileLayout({
     <div className="container max-w-md overflow-x-hidden relative mx-auto bg-background min-h-svh h-svh">
       <AutoConnect
         client={basicClient}
-        accountAbstraction={{
-          factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
-          chain: somniaChain,
-          sponsorGas: true,
-        }}
+        // accountAbstraction={{
+        //   factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
+        //   chain: somniaChain,
+        //   sponsorGas: true,
+        // }}
         wallets={[createWallet("io.metamask")]}
       />
       {children}

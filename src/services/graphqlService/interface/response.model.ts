@@ -14,6 +14,7 @@ export type DefaultErc721Response = {
     validityStartTimestamp: bigint;
     validityEndTimestamp: bigint;
     uid: `0x${string}`;
+    __typename: "MintRequest721";
   };
 };
 

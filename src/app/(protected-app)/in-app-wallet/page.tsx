@@ -50,11 +50,11 @@ export default function InAppWalletPage() {
             getNftProfileContract({ client: basicClient }).address,
           ],
         }}
-        accountAbstraction={{
-          chain: somniaChain,
-          factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
-          sponsorGas: true,
-        }}
+        // accountAbstraction={{
+        //   chain: somniaChain,
+        //   factoryAddress: env.NEXT_PUBLIC_SOMNIA_FACTORY_ADDRESS,
+        //   sponsorGas: true,
+        // }}
       />
       <Button onPress={testMint} isLoading={isPending}>
         Test Mint

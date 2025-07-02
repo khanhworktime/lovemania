@@ -25,19 +25,26 @@ import {
 import { useTransitionRouter } from "next-view-transitions";
 import Image from "next/image";
 import { getOwnedNFTs, mintWithSignature } from "thirdweb/extensions/erc721";
-import { useSendBatchTransaction } from "thirdweb/react";
+import { useActiveWallet, useSendBatchTransaction } from "thirdweb/react";
 import { useOnboarding } from "../components/onboarding.provider";
 import { IUser } from "@/services/graphqlService/user/user.model";
 import { useSessionStorage } from "usehooks-ts";
 import { storageKeys } from "@/services/graphqlService/authentication/constants/storage.key";
 import { useState } from "react";
 import { useGetOwnedNft } from "@/services/users/hooks/useGetOwnedNft";
-import { sendTransaction } from "thirdweb";
+import {
+  PrepareContractCallOptions,
+  PreparedTransaction,
+  sendTransaction,
+} from "thirdweb";
 
 export default function ProfileFinalizePage() {
   const router = useTransitionRouter();
   const { profileData, retrieveProfileData } = useOnboarding();
   const account = useGetCurrentUser();
+  const wallet = useActiveWallet();
+
+  const adminAccount = wallet?.getAdminAccount && wallet?.getAdminAccount();
 
   // Handle create user
   const { mutateAsync: createUser, isPending: isCreatingUser } =
@@ -56,8 +63,11 @@ export default function ProfileFinalizePage() {
 
   const getTxProfile = async (metadata: MetadataMintProfileInput) => {
     if (!account?.address) throw new Error("Account not found");
-    const { signature, payload } = await userClient.mintingProfile({
-      address: account.address,
+    const {
+      signature,
+      payload: { __typename, ...payload },
+    } = await userClient.mintingProfile({
+      address: adminAccount?.address || "",
       metadata,
     });
 
@@ -70,8 +80,11 @@ export default function ProfileFinalizePage() {
 
   const getTxAvatar = async (metadata: MetadataMintAvatarInput) => {
     if (!account?.address) throw new Error("Account not found");
-    const { signature, payload } = await userClient.mintingAvatar({
-      address: account.address,
+    const {
+      signature,
+      payload: { __typename, ...payload },
+    } = await userClient.mintingAvatar({
+      address: adminAccount?.address || "",
       metadata,
     });
 
@@ -84,16 +97,16 @@ export default function ProfileFinalizePage() {
 
   const handleConfirm = async () => {
     try {
-      debugger;
-      if (!account?.address) throw new Error("Account not found");
+      // debugger;
+      if (!adminAccount?.address) throw new Error("Account not found");
 
       setIsGettingTx(true);
 
-      const txLists = [];
+      const txLists: PreparedTransaction[] = [];
 
       const nftProfile = await getOwnedNFTs({
         contract: getNftProfileContract({ client: basicClient }),
-        owner: account.address,
+        owner: adminAccount?.address || "",
       });
 
       if (nftProfile.length === 0) {
@@ -108,15 +121,12 @@ export default function ProfileFinalizePage() {
           genderType: profileData.genderType,
           birthday: new Date(profileData.dob || "").toISOString() || "",
         });
-        await sendTransaction({
-          transaction: txProfile,
-          account,
-        });
+        txLists.push(txProfile);
       }
 
       const nftAvatar = await getOwnedNFTs({
         contract: getAvatarProfileContract({ client: basicClient }),
-        owner: account.address,
+        owner: adminAccount?.address || "",
       });
 
       if (nftAvatar.length === 0) {
@@ -127,19 +137,16 @@ export default function ProfileFinalizePage() {
             profileData.photosIpfs[0] ||
             "ipfs://QmcRH3ANZLFoB7YadLkBt6m8vJWZXKaT44P3uXW7PCSrzk/lovemania.png",
         });
-        await sendTransaction({
-          transaction: txAvatar,
-          account,
-        });
+        txLists.push(txAvatar);
       }
 
       setIsGettingTx(false);
 
-      // if (txLists.length > 0) {
-      //   await sendBatchTransaction(txLists);
-      // }
+      if (txLists.length > 0) {
+        await sendBatchTransaction(txLists);
+      }
 
-      // await sleep(1000);
+      await sleep(1000);
 
       const user = await createUser({
         userInput: {
